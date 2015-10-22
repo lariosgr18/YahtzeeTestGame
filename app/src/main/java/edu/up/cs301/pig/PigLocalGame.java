@@ -13,11 +13,14 @@ import android.util.Log;
  */
 public class PigLocalGame extends LocalGame {
 
+    PigGameState state, stateInfo;
     /**
      * This ctor creates a new game state
      */
     public PigLocalGame() {
         //TODO  You will implement this constructor
+     state = new PigGameState();
+
     }
 
     /**
@@ -26,6 +29,9 @@ public class PigLocalGame extends LocalGame {
     @Override
     public boolean canMove(int playerIdx) {
         //TODO  You will implement this method
+        if(playerIdx == state.getPlayerID()) {
+            return true;
+        }
         return false;
     }
 
@@ -37,6 +43,20 @@ public class PigLocalGame extends LocalGame {
     @Override
     public boolean makeMove(GameAction action) {
         //TODO  You will implement this method
+        if( canMove(getPlayerIdx(action.getPlayer()))){
+            if( action instanceof PigHoldAction){
+               state.hold();
+                return true;
+            }
+            if( action instanceof  PigRollAction){
+                state.roll();
+                return true;
+
+            }
+
+        }
+
+
         return false;
 
     }//makeMove
@@ -47,6 +67,8 @@ public class PigLocalGame extends LocalGame {
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         //TODO  You will implement this method
+        stateInfo = new PigGameState(state);
+        p.sendInfo(stateInfo);
     }//sendUpdatedSate
 
     /**
@@ -59,6 +81,15 @@ public class PigLocalGame extends LocalGame {
     @Override
     public String checkIfGameOver() {
         //TODO  You will implement this method
+
+        if(state.getPlayer1Score() >=50) {
+
+            return "Player 1 is the grand winner!!!";
+        }
+        if(state.getPlayer2Score() >=50){
+
+            return "Player 2 is the grand winner!!!";
+        }
         return null;
     }
 
