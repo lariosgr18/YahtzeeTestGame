@@ -8,50 +8,80 @@ import edu.up.cs301.game.infoMsg.GameState;
 public class YahtzeeGameState extends GameState {
 
     private int player1Id; //player 1 id
-
-
-
     private int player2Id; // player 1 id
-    private int turns; // total turns counter
+    private int player1turns; // total turns counter
+    private int player2turns;//total turns counter
     private int rolls; //tootal rolls counter
-
+    private int currentPlayerID;
     private int[] player1Score = new int[13]; // player 1 score
     private int[] player2Score = new int[13]; //player 1 score;
-    private int[] diceValue = new int[6]; //dice values
+    private int[] diceValue = new int[5]; //dice values
     private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed
+    private boolean[] buttonsPressed2 = new boolean[13];
 
 
     public YahtzeeGameState( YahtzeeGameState state) {
         this.player1Id = state.getPlayer1Id();
         this.player2Id = state.getPlayer2Id();
-        this.turns = state.getTurns();
+        this.player1turns = state.getPlayer1turns();
+        this.player2turns = state.getPlayer2turns();
         this.rolls = state.getRolls();
         this.player1Score = state.getPlayer1Score();
         this.player2Score = state.getPlayer2Score();
         this.diceValue = state.getDiceValue();
         this.buttonsPressed = state.getButtonsPressed();
+        this.buttonsPressed2 = state.getButtonsPressed2();
+        this.currentPlayerID = state.getCurrentPlayerID();
     }
 
-    public YahtzeeGameState(int playerId, int turns, int rolls) {
+    public YahtzeeGameState(int playerId) {
         for (int i=0; i < buttonsPressed.length ;i++)
         {
             buttonsPressed[i]= false;
+            buttonsPressed2[i] = false;
         }
 
-        this.player1Id = 0 ;
-        this.player2Id = 0;
-        this.turns = 0;
-        this.rolls = 0;
+        this.player1Id = 1;
+        this.player2Id = 2;
+        this.player1turns = 0;
+        this.player2turns = 0;
+        this.rolls = 1;
+        this.currentPlayerID = playerId;
     }
 
-    public void rollDice()
+    public void rollDice(int DiceValues[],int rollerID)
     {
-
+        if(rolls < 3 && rollerID == currentPlayerID)
+        {
+            for(int i = 0; i < diceValue.length; i++)
+            {
+                diceValue[i]= DiceValues[i];
+            }
+            rolls++;
+        }
+        else
+        {
+            return;
+        }
     }
 
-    public void selectScore()
+    public void selectScore(int score, int index, int player, boolean buttonPressed)
     {
-
+        if(player == currentPlayerID) {
+            if (player == player1Id) {
+                player1Score[index] = score;
+                buttonsPressed[index] = buttonPressed;
+                currentPlayerID = player2Id;
+                player1turns++;
+            } else
+            {
+                player2Score[index] = score;
+                buttonsPressed[index] = buttonPressed;
+                currentPlayerID = player1Id;
+                player2turns++;
+            }
+            rolls = 1;
+        }
     }
 
 
@@ -64,8 +94,8 @@ public class YahtzeeGameState extends GameState {
         return player2Id;
     }
 
-    public int getTurns() {
-        return turns;
+    public int getPlayer1turns() {
+        return player1turns;
     }
 
     public int getRolls() {
@@ -96,8 +126,8 @@ public class YahtzeeGameState extends GameState {
         this.player2Id = player2Id;
     }
 
-    public void setTurns(int turns) {
-        this.turns = turns;
+    public void setPlayer1turns(int turns) {
+        this.player1turns = turns;
     }
 
     public void setRolls(int rolls) {
@@ -118,6 +148,30 @@ public class YahtzeeGameState extends GameState {
 
     public void setButtonsPressed(boolean[] buttonsPressed) {
         this.buttonsPressed = buttonsPressed;
+    }
+
+    public int getCurrentPlayerID() {
+        return currentPlayerID;
+    }
+
+    public void setCurrentPlayerID(int currentPlayerID) {
+        this.currentPlayerID = currentPlayerID;
+    }
+
+    public boolean[] getButtonsPressed2() {
+        return buttonsPressed2;
+    }
+
+    public int getPlayer2turns() {
+        return player2turns;
+    }
+
+    public void setPlayer2turns(int player2turns) {
+        this.player2turns = player2turns;
+    }
+
+    public void setButtonsPressed2(boolean[] buttonsPressed2) {
+        this.buttonsPressed2 = buttonsPressed2;
     }
 }
 

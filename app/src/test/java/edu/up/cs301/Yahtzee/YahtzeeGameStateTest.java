@@ -8,59 +8,62 @@ import static org.junit.Assert.*;
  * Created by taylorg18 on 11/4/2015.
  */
 public class YahtzeeGameStateTest {
-
     @Test
-    public void testSetTurns() throws Exception {
-        YahtzeeGameState game = new YahtzeeGameState(1,5,2);
-        int turn = game.getTurns();
-        game.setTurns(2);
-        assertNotEquals(turn,game.getTurns());
+    public void testConstructor() throws Exception {
 
+        YahtzeeGameState newGame = new YahtzeeGameState(1);
+        newGame.setPlayer1turns(12);
+        newGame.setCurrentPlayerID(2);
+        int Values[] = {1,2,3,4,5};
+        newGame.setDiceValue(Values);
+        YahtzeeGameState otherGame = new YahtzeeGameState(newGame);
+        otherGame.setCurrentPlayerID(1);
+
+        assertEquals(otherGame.getPlayer1turns(), newGame.getPlayer1turns());
+        assertArrayEquals(newGame.getDiceValue(), otherGame.getDiceValue());
+        assertNotEquals(newGame.getCurrentPlayerID(),otherGame.getCurrentPlayerID());
     }
 
     @Test
-    public void testSetRolls() throws Exception {
-        YahtzeeGameState game = new YahtzeeGameState(1,5,2);
-        int roll = game.getRolls();
-        game.setRolls(1);
-        assertNotEquals(roll,game.getRolls());
+    public void testRoll() throws Exception {
+        YahtzeeGameState newGame = new YahtzeeGameState(1);
+        int curRolls = newGame.getRolls();
+        int values[] = {1,2,3,4,5};
+        newGame.rollDice(values,1);
+        assertNotEquals(curRolls, newGame.getRolls());
+        values[0] = 5;
+        values[1] = 6;
+        newGame.rollDice(values,0);
+        assertEquals(curRolls + 1, newGame.getRolls());
+        newGame.rollDice(values, 1);
+        assertArrayEquals(values, newGame.getDiceValue());
+        newGame.rollDice(values, 1);
+        newGame.rollDice(values,1);
+        assertEquals(3, newGame.getRolls());
 
     }
 
-    @Test
-    public void testSetPlayer1Score() throws Exception {
-        YahtzeeGameState game = new YahtzeeGameState(1,5,2);
-        int score[] = {1,2,3};
-        game.setPlayer1Score(score);
-        assertEquals(score, game.getPlayer1Score());
 
-    }
 
     @Test
-    public void testSetPlayer2Score() throws Exception {
-        YahtzeeGameState game = new YahtzeeGameState(1,5,2);
-        int score[] = {1,2,3};
-        game.setPlayer2Score(score);
-        assertEquals(score,game.getPlayer2Score());
+    public void testSelectScore() throws Exception {
+        YahtzeeGameState newGame = new YahtzeeGameState(1);
+        int playerID = 1;
+        int values[] = {1,2,3,4,5};
+        newGame.selectScore(10, 5, 1, false);
+        assertNotEquals(playerID, newGame.getCurrentPlayerID());
+        assertEquals(10, newGame.getPlayer1Score()[5]);
+        assertEquals(1, newGame.getRolls());
+        assertEquals(1, newGame.getPlayer1turns());
+        newGame.selectScore(15, 2, 2, false);
+        assertEquals(1, newGame.getCurrentPlayerID());
+        assertEquals(1,newGame.getPlayer2turns());
+        int curplayer = newGame.getCurrentPlayerID();
+        newGame.selectScore(15,2,3,false);
+        assertEquals(curplayer,newGame.getCurrentPlayerID());
 
-    }
 
-    @Test
-    public void testSetDiceValue() throws Exception {
-        YahtzeeGameState game = new YahtzeeGameState(1,5,2);
-        int score[] = {1,2,3,4,5};
-        game.setDiceValue(score);
-        assertEquals(score,game.getDiceValue());
 
-    }
-
-    @Test
-    public void testplayerID() throws Exception {
-
-        YahtzeeGameState game = new YahtzeeGameState(1,5,2);
-        int id = 1;
-        game.setPlayer1Id(id);
-        assertEquals(id,game.getPlayer1Id());
 
     }
 }
