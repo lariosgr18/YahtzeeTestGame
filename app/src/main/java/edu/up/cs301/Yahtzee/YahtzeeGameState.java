@@ -32,7 +32,7 @@ public class YahtzeeGameState extends GameState {
         this.buttonsPressed = state.getButtonsPressed();
     }
 
-    public YahtzeeGameState(boolean[] buttonsPressed, int playerId, int turns, int rolls) {
+    public YahtzeeGameState(int playerId, int turns, int rolls) {
         for (int i=0; i < buttonsPressed.length ;i++)
         {
             buttonsPressed[i]= false;
