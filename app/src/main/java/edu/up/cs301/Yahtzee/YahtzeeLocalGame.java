@@ -9,13 +9,21 @@ import android.util.Log;
  * Created by Michael on 10/20/2015.
  */
 public class YahtzeeLocalGame extends LocalGame {
+    YahtzeeGameState currentGame;
+
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
+
 
     }
 
     @Override
     protected boolean canMove(int playerIdx) {
+        if(playerIdx == currentGame.getCurrentPlayerID())
+        {
+            return true;
+        }
+
         return false;
     }
 
