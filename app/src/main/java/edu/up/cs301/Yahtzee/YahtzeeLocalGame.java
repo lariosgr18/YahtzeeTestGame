@@ -29,6 +29,9 @@ public class YahtzeeLocalGame extends LocalGame {
 
     @Override
     protected String checkIfGameOver() {
+        if((currentGame.getPlayer1turns() > 12) && (currentGame.getPlayer2turns() > 12)){
+            return "dsdsfsfsfs";
+        }
         return null;
     }
 
