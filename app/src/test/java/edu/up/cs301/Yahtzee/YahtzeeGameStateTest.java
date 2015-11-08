@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by taylorg18 on 11/4/2015.
+ * Created by Grayson, Michael, Abhinav on 11/4/2015.
  */
 public class YahtzeeGameStateTest {
 
