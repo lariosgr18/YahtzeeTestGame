@@ -3,23 +3,25 @@ package edu.up.cs301.Yahtzee;
 import edu.up.cs301.game.infoMsg.GameState;
 
 /**
- * Created by Michael on 10/20/2015.
+ * Created by Michael, Grayson, and Abhinav on 10/20/2015.
  */
 public class YahtzeeGameState extends GameState {
 
     private int player1Id; //player 1 id
-    private int player2Id; // player 1 id
+    private int player2Id; // player 2 id
     private int player1turns; // total turns counter
     private int player2turns;//total turns counter
-    private int rolls; //tootal rolls counter
-    private int currentPlayerID;
+    private int rolls; //total rolls counter
+    private int currentPlayerID;//the current player whose turn it is
     private int[] player1Score = new int[13]; // player 1 score
-    private int[] player2Score = new int[13]; //player 1 score;
-    private int[] diceValue = new int[5]; //dice values
-    private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed
-    private boolean[] buttonsPressed2 = new boolean[13];
+    private int[] player2Score = new int[13]; //player 2 score;
+    private int[] diceValue = new int[5]; //latest dice values
+    private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed for player 1
+    private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
 
-
+    /*
+        Constructor for a previous game state, sets all the values to the previous gamestate values
+     */
     public YahtzeeGameState( YahtzeeGameState state) {
         this.player1Id = state.getPlayer1Id();
         this.player2Id = state.getPlayer2Id();
@@ -33,7 +35,9 @@ public class YahtzeeGameState extends GameState {
         this.buttonsPressed2 = state.getButtonsPressed2();
         this.currentPlayerID = state.getCurrentPlayerID();
     }
-
+       /*
+            new game state that takes the player ID of who goes first
+         */
     public YahtzeeGameState(int playerId) {
         for (int i=0; i < buttonsPressed.length ;i++)
         {
@@ -49,15 +53,20 @@ public class YahtzeeGameState extends GameState {
         this.currentPlayerID = playerId;
     }
 
+    /*
+        When player rolls it updates the dice values and roll count
+     */
     public void rollDice(int DiceValues[],int rollerID)
     {
+        //if the number of rolls is greater than 3 or it is not the players turn then don't do anything
         if(rolls < 3 && rollerID == currentPlayerID)
         {
+            //update the dice values
             for(int i = 0; i < diceValue.length; i++)
             {
                 diceValue[i]= DiceValues[i];
             }
-            rolls++;
+            rolls++;//increment rolls
         }
         else
         {
@@ -65,9 +74,14 @@ public class YahtzeeGameState extends GameState {
         }
     }
 
+    /*
+        when a player selects a score, update their score, the round, and switch players
+     */
     public void selectScore(int score, int index, int player, boolean buttonPressed)
     {
+        //if its not the players turn don't do anything
         if(player == currentPlayerID) {
+            //if its the 1st player update their score else do the other player
             if (player == player1Id) {
                 player1Score[index] = score;
                 buttonsPressed[index] = buttonPressed;
@@ -81,10 +95,15 @@ public class YahtzeeGameState extends GameState {
                 player2turns++;
             }
             rolls = 1;
+            //set rolls back to 1, switch players, and increment turns
         }
     }
 
 
+
+    /*
+        GETTER AND SETTER METHODS FOR VARIABLES
+     */
 
     public int getPlayer1Id() {
         return player1Id;
