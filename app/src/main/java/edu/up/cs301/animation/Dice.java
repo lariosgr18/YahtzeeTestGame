@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.widget.ImageButton;
 
 /**
- * Created by Grayson on 11/8/2015.
+ * Created by Grayson, Michael, Abhinav on 11/8/2015.
  */
 public class Dice extends ImageButton {
 
