@@ -15,7 +15,9 @@ import android.view.View.OnClickListener;
 /**
  * Created by Michael on 10/20/2015.
  */
-public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener {
+public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener, View.OnLongClickListener {
+
+    GameMainActivity mainActivity = null;
     /**
      * constructor
      *
@@ -36,10 +38,21 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     }
 
     public void setAsGui(GameMainActivity activity) {
+        // remember the activity
+        mainActivity = activity;
+
+        // Load the layout resource for the new configuration
+        activity.setContentView(R.layout.yahtzee_game);
+
+
 
     }
 
     public void onClick(View view) {
 
+    }
+
+    public boolean onLongClick(View view) {
+        return false;
     }
 }
