@@ -125,6 +125,14 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     @Override
     public void receiveInfo(GameInfo info) {
+        if(info == null)
+        {
+            state = new YahtzeeGameState(0);
+        }
+        else
+        {
+            state = (YahtzeeGameState)info;
+        }
 
     }
 
@@ -132,12 +140,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         // remember the activity
         mainActivity = activity;
 
+
         // Load the layout resource for the new configuration
         activity.setContentView(R.layout.yahtzee_game);
         initializeButtons();
-
-        // intialize the array of padding objects
-        //initializePaddingObjects();
 
         // put the player names into the GUI
         updatePlayerNames();
@@ -161,10 +167,36 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     }
 
     public void onClick(View view) {
+        if(view == roll)
+        {
+            if(state.getRolls() <= 3) {
+                int diceValues[] = new int[5];
+                for (int i = 0; i < thedice.length; i++) {
+                    thedice[i].roll();
+                    thedice[i].invalidate();
+                    diceValues[i] = thedice[i].dieNum;
+                }
+                state.rollDice(diceValues, this.playerNum);
+            }
+        }
+        else
+        {
+
+        }
 
     }
 
     public boolean onLongClick(View view) {
-        return false;
+        if(((Dice)view).keep == true) {
+            ((Dice) view).keep = false;
+            ((Dice)view).setBackgroundColor(Color.BLUE);
+            return false;
+        }
+        else
+        {
+            ((Dice)view).keep = true;
+            ((Dice)view).setBackgroundColor(Color.WHITE);
+            return true;
+        }
     }
 }
