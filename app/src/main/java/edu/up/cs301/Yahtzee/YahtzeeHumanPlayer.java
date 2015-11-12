@@ -201,13 +201,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     public boolean onLongClick(View view) {
         if(((Dice)view).keep == true) {
             ((Dice) view).keep = false;
-            ((Dice)view).setBackgroundColor(Color.BLUE);
+            ((Dice)view).setBackgroundColor(Color.WHITE);
             return false;
         }
         else
         {
             ((Dice)view).keep = true;
-            ((Dice)view).setBackgroundColor(Color.WHITE);
+            ((Dice)view).setBackgroundColor(Color.BLUE);
             return true;
         }
     }
