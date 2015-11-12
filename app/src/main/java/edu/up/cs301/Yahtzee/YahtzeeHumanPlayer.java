@@ -16,20 +16,22 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 
 /**
- * Created by Michael on 10/20/2015.
+ * Created by Michael, Abhinav, Grayson on 10/20/2015.
+ *
+ * Creates a interactive GUI so the player can play the game
  */
 public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener, View.OnLongClickListener {
 
-    GameMainActivity mainActivity = null;
+    GameMainActivity mainActivity = null; //game activity
 
     // the game's state
-    YahtzeeGameState state = null;
+    YahtzeeGameState state = null;//the state to load
 
-    int round;
-    int rollNum;
-    private int[] scores = new int[13];
+    int round; // what round it is
+    int rollNum; // the number of rolls the player has done
+    private int[] scores = new int[13]; // the players scores
     private int yahtzeeCount;
-    private static final int[] buttonIndices = {
+    private static final int[] buttonIndices = { //the button ids the player can click
             R.id.p1_ace,
             R.id.p1_two,
             R.id.p1_three,
@@ -45,11 +47,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p1_chance,
     };
 
-    private Button[] numberedButtons1;
+    private Button[] numberedButtons1; // the buttons the player can click
 
-    private Button roll;
-    private Dice[] thedice;
-    private static final int[] dieID =
+    private Button roll; // the roll button
+    private Dice[] thedice; //the five dice drawn on the screen
+    private static final int[] dieID = // the ID of the imageButtons of the dice
             {
                     R.id.imageButton,
                     R.id.imageButton2,
@@ -65,9 +67,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
      */
     public YahtzeeHumanPlayer(String name) {
         super(name);
-    }
+    } // initialize the player name
 
-
+    /*
+        Initialize all the ID's to buttons
+    */
     private void initializeButtons() {
         // create the button array
         numberedButtons1 = new Button[buttonIndices.length];
@@ -90,6 +94,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         roll.setOnClickListener(this);
     }
 
+    /*
+        set the title of the activity, change the player names, and start the round and roll number
+     */
     protected void initAfterReady() {
 
         // update the title, including the player names
@@ -118,11 +125,16 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         myName.setText(allPlayerNames[playerNum]);
     }
 
+    /*
+        get the layout of the activity
+     */
     @Override
     public View getTopView() {
         return (RelativeLayout) mainActivity.findViewById(R.id.top_gui_layout);
     }
-
+    /*
+        get the gamestate info
+     */
     @Override
     public void receiveInfo(GameInfo info) {
         if(info == null)
@@ -136,6 +148,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     }
 
+    /*
+        set as an interactable gui for the user
+     */
     public void setAsGui(GameMainActivity activity) {
         // remember the activity
         mainActivity = activity;
@@ -165,27 +180,24 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
 
     }
-
+    /*
+        onClick method for the buttons
+     */
     public void onClick(View view) {
-        if(view == roll)
-        {
-            if(state.getRolls() <= 3) {
-                int diceValues[] = new int[5];
-                for (int i = 0; i < thedice.length; i++) {
-                    thedice[i].roll();
-                    thedice[i].invalidate();
-                    diceValues[i] = thedice[i].dieNum;
-                }
-                state.rollDice(diceValues, this.playerNum);
-            }
-        }
-        else
-        {
+        if(view == roll) {
 
+            int diceValues[] = new int[5];
+            for (int i = 0; i < thedice.length; i++) {
+                thedice[i].roll();
+                thedice[i].invalidate();
+                diceValues[i] = thedice[i].dieNum;
+            }
         }
 
     }
-
+    /*
+        onLong click for the dice image buttons
+     */
     public boolean onLongClick(View view) {
         if(((Dice)view).keep == true) {
             ((Dice) view).keep = false;

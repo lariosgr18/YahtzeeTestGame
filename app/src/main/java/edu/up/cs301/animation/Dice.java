@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 
 /**
  * Created by Grayson, Michael, Abhinav on 11/8/2015.
+ *
+ * Draws and gives a value to the dice on the board, inherits from image button
  */
 public class Dice extends ImageButton {
 
@@ -18,10 +20,7 @@ public class Dice extends ImageButton {
 
 
     /**
-     * Constructor for the AnimationSurface class. In order to be useful, an
-     * object must be supplied that implements the Animator interface. This
-     * can either be done by overriding the 'createAnimator' method (which by
-     * default give null, or by invoking the setAnimator method.
+     * Constructor for the Dice Class
      *
      * @param context
      *            - a reference to the activity this animation is run under
@@ -35,8 +34,7 @@ public class Dice extends ImageButton {
 
     /**
      * An alternate constructor for use when a subclass is directly specified
-     * in the layout. It is expected that the subclass will have overridden
-     * the 'createAnimator' method.
+     * in the layout.
      *
      * @param context
      *            - a reference to the activity this animation is run under
@@ -62,7 +60,9 @@ public class Dice extends ImageButton {
 
 
     }
-
+    /*
+        for when the user rolls the dice, give it another value
+     */
     public void roll()
     {
         if(this.keep == false) {
@@ -71,7 +71,9 @@ public class Dice extends ImageButton {
     }
 
 
-
+    /*
+        draw the dice based on the value
+     */
     public void onDraw(Canvas g)
     {
         Paint black = new Paint();

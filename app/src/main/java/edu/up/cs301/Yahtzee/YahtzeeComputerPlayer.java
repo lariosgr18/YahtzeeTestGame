@@ -7,7 +7,9 @@ import edu.up.cs301.game.util.Tickable;
 
 
 /**
- * Created by Michael on 10/20/2015.
+ * Created by Michael, Grayson Abhinav on 10/20/2015.
+ *
+ * Controls the Hard and Easy Computer Player
  */
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
 

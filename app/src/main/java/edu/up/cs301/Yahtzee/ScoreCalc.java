@@ -8,7 +8,9 @@ import edu.up.cs301.animation.Dice;
 import edu.up.cs301.game.R;
 
 /**
- * Created by Grayson on 11/8/2015.
+ * Created by Grayson, Michael, Abhinav on 11/8/2015.
+ *
+ * Controls the scores associated with each of the buttons.
  */
 public class ScoreCalc {
 
@@ -32,6 +34,7 @@ public class ScoreCalc {
 
     private Button[] numberedButtons1;
 
+    //Constructor for a human player
     public ScoreCalc(YahtzeeHumanPlayer player)
     {
         Activity card = player.mainActivity;
@@ -41,6 +44,7 @@ public class ScoreCalc {
         }
     }
 
+    //Updates the buttons to reflect the score
    public void updateScoreCard()
     {
         int displayCount;

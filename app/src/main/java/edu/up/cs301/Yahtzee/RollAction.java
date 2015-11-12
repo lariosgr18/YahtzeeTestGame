@@ -4,7 +4,9 @@ import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.actionMsg.GameAction;
 
 /**
- * Created by Michael on 11/8/2015.
+ * Created by Michael, Grayson, Abhinav on 11/8/2015.
+ *
+ * The action for when a player hits the roll button in order to roll the dice
  */
 public class RollAction  extends GameAction{
     /**

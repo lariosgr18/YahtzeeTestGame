@@ -10,7 +10,9 @@ import edu.up.cs301.game.config.GamePlayerType;
 
 
 /**
- * Created by Michael on 10/20/2015.
+ * Created by Michael, Grayson, Abhinav on 10/20/2015.
+ *
+ * Sets up the main activity, so the user can select the type of players to play the game
  */
 
 

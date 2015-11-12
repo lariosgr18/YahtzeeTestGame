@@ -4,6 +4,8 @@ import edu.up.cs301.game.infoMsg.GameState;
 
 /**
  * Created by Michael, Grayson, and Abhinav on 10/20/2015.
+ *
+ * Saves and Loads the game state for a game
  */
 public class YahtzeeGameState extends GameState {
 
