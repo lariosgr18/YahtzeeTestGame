@@ -21,6 +21,8 @@ public class ScoreCalc {
 
     private static final int FULLHOUSESCORE = 25;
 
+    private static final int SMALLSTRAIGHTSCORE = 30;
+
     //Constructor for a human player
     public ScoreCalc(YahtzeeHumanPlayer player)
     {
@@ -143,12 +145,25 @@ public class ScoreCalc {
         return 0;
     }
 
-
-
-
-
-
-
+    public int smallStraight(){
+        for(int i = 0; i < diceVals.length; i++){
+            if(diceVals[2] > 0 && diceVals[3] > 0){
+                if(diceVals[1] > 0){
+                    if(diceVals[0] > 0){
+                        return SMALLSTRAIGHTSCORE;
+                    }
+                    else if(diceVals[4] > 0){
+                        return SMALLSTRAIGHTSCORE;
+                    }
+                } else if(diceVals[4] > 0){
+                    if(diceVals[5] > 0){
+                        return SMALLSTRAIGHTSCORE;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
 
     public int chance()
     {
