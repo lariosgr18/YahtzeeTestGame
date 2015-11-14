@@ -33,6 +33,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     int rollNum; // the number of rolls the player has done
     private int[] scores = new int[13]; // the players scores
 
+    private ScoreCalc scoreCard;
+
 
     public int[] getDiceValues() {
         return diceValues;
@@ -56,10 +58,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p1_chance,
     };
 
-    private Button[] numberedButtons1; // the buttons the player can click
+    public Button[] numberedButtons1; // the buttons the player can click
 
     private Button roll; // the roll button
-    private Dice[] thedice; //the five dice drawn on the screen
+    public Dice[] thedice; //the five dice drawn on the screen
     private static final int[] dieID = // the ID of the imageButtons of the dice
             {
                     R.id.imageButton,
@@ -101,6 +103,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
         roll.setOnClickListener(this);
+        scoreCard = new ScoreCalc(this);
     }
 
     /*
@@ -201,6 +204,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             }
             RollAction action = new RollAction(this);
             super.game.sendAction(action);
+            scoreCard.updateScoreCard();
             rollNum++;
 
         }

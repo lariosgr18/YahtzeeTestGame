@@ -32,16 +32,16 @@ public class ScoreCalc {
 
     private Dice[] thedice;
 
-    private Button[] numberedButtons1;
+    private Button[] numberedButtons1 = new Button[13];
 
     //Constructor for a human player
     public ScoreCalc(YahtzeeHumanPlayer player)
     {
-        Activity card = player.mainActivity;
+
         for (int i = 0; i < numberedButtons1.length; i++) {
-            numberedButtons1[i] =
-                    (Button) card.findViewById(buttonIndices[i]);
+            this.numberedButtons1[i] = player.numberedButtons1[i];
         }
+        this.thedice = player.thedice;
     }
 
     //Updates the buttons to reflect the score
