@@ -188,7 +188,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     }
     /*
-        onClick method for the buttons
+        onClick method for the buttons//
      */
     public void onClick(View view) {
         if(view == roll) {
