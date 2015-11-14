@@ -23,6 +23,12 @@ public class ScoreCalc {
 
     private static final int SMALLSTRAIGHTSCORE = 30;
 
+    private static final int LARGESTRAIGHTSCORE = 40;
+
+    private static final int YAHTZEESCORE = 40;
+
+    public static boolean YAHTZEE = false;
+
     //Constructor for a human player
     public ScoreCalc(YahtzeeHumanPlayer player)
     {
@@ -66,14 +72,10 @@ public class ScoreCalc {
         numberedButtons1[6].setText("" + threeOfaKind());
         numberedButtons1[7].setText("" + fourOfaKind());
         numberedButtons1[8].setText("" + fullHouse());
-
-
-
-
-
-
+        numberedButtons1[9].setText("" + smallStraight());
+        numberedButtons1[10].setText("" + largeStraight());
+        numberedButtons1[11].setText("" + yahtzee());
         numberedButtons1[12].setText("" + chance());
-
 
         for (int j = 0; j < diceVals.length; j++) {
             diceVals[j] = 0;
@@ -164,6 +166,39 @@ public class ScoreCalc {
         }
         return 0;
     }
+
+    public int largeStraight(){
+        for(int i = 0; i < diceVals.length; i++){
+            if(diceVals[1] > 0 && diceVals[2] > 0 && diceVals[3] > 0 && diceVals[4] > 0 ){
+                if(diceVals[0] > 0){
+                    return LARGESTRAIGHTSCORE;
+                }
+                if(diceVals[5] > 0){
+                    return LARGESTRAIGHTSCORE;
+                }
+            }
+        }
+        return 0;
+    }
+
+    public int yahtzee(){
+
+        for(int i = 0; i < diceVals.length; i++){
+            if(diceVals[i] == 5){
+                if(YAHTZEE == true ){
+                    return Integer.parseInt((String)(numberedButtons1[11].getText())) + 100;
+                }
+                else
+                {
+                    YAHTZEE = true;
+                    return YAHTZEESCORE;
+                }
+            }
+        }
+        return 0;
+    }
+
+
 
     public int chance()
     {
