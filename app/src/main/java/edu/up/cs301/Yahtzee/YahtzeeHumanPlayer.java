@@ -105,6 +105,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         roll.setOnClickListener(this);
         scoreCard = new ScoreCalc(this);
     }
+    //
 
     /*
         set the title of the activity, change the player names, and start the round and roll number
