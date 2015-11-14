@@ -13,6 +13,7 @@ import edu.up.cs301.game.R;
  * Controls the scores associated with each of the buttons.
  */
 public class ScoreCalc {
+    private int[] diceVals = new int[6];
 
     private static final int[] buttonIndices = {
             R.id.p1_ace,
@@ -38,6 +39,8 @@ public class ScoreCalc {
     public ScoreCalc(YahtzeeHumanPlayer player)
     {
 
+    public ScoreCalc(YahtzeeHumanPlayer player) {
+        Activity card = player.mainActivity;
         for (int i = 0; i < numberedButtons1.length; i++) {
             this.numberedButtons1[i] = player.numberedButtons1[i];
         }
@@ -45,29 +48,86 @@ public class ScoreCalc {
     }
 
     //Updates the buttons to reflect the score
-   public void updateScoreCard()
-    {
+    public void updateScoreCard() {
         int displayCount;
-        for(int i = 0; i < numberedButtons1.length; i++)
-        {
+        for (int i = 0; i < numberedButtons1.length; i++) {
             displayCount = 0;
-            if(i<6)
-            {
-                for(int j = 0; j < thedice.length; j++)
-                {
-                    if(thedice[j].dieNum == i+1)
-                    {
+            if (i < 6) {
+                for (int j = 0; j < thedice.length; j++) {
+                    if (thedice[j].dieNum == i + 1) {
                         displayCount = displayCount + thedice[j].dieNum;
                     }
                 }
-                if(numberedButtons1[i].isEnabled()) {
+                if (numberedButtons1[i].isEnabled()) {
                     numberedButtons1[i].setText("" + displayCount);
                 }
-            }
-            else
-            {
-
+            } else {
+                for (int j = 0; j < thedice.length; j++) {
+                    diceVals[thedice[j].dieNum - 1]++;
+                }
             }
         }
     }
+
+    public int aceScore() {
+        return diceVals[0] * 1;
+    }
+
+    public int twoScore() {
+        return diceVals[1] * 2;
+    }
+
+    public int threeScore() {
+        return diceVals[2] * 3;
+    }
+
+    public int fourScore() {
+        return diceVals[3] * 4;
+    }
+
+    public int fiveScore() {
+        return diceVals[4] * 5;
+    }
+
+    public int sixScore() {
+        return diceVals[5] * 6;
+    }
+
+    public int threeOfaKind() {
+        for (int i = 0; i < diceVals.length; i++) {
+            if (diceVals[i] > 2) {
+                return sum();
+            }
+        }
+        return 0;
+    }
+
+    public int fourOfaKind(){
+        for (int i = 0; i < diceVals.length; i++) {
+            if (diceVals[i] > 2) {
+                return sum();
+            }
+        }
+        return 0;
+    }
+//
+    public int fullHouse(){
+        for (int i = 0; i < diceVals.length; i++) {
+            if (diceVals[i] == 2 || diceVals[i] == 3) {
+                if(diceVals[i] == 2){
+                    for(int j = i+1; j < diceVals.length; j++){
+
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+
+
+    public int sum(){
+        return (diceVals[0] * 1) + (diceVals[1] * 2) + (diceVals[2] * 3) + (diceVals[3] * 4) + (diceVals[4] + 5) + (diceVals[5] * 6);
+    }
 }
+
