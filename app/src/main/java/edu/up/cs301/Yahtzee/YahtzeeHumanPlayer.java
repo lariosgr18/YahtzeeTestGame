@@ -31,6 +31,12 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     int rollNum; // the number of rolls the player has done
     private int[] scores = new int[13]; // the players scores
     private int yahtzeeCount;
+
+    public int[] getDiceValues() {
+        return diceValues;
+    }
+
+    private int diceValues[] = new int[5];
     private static final int[] buttonIndices = { //the button ids the player can click
             R.id.p1_ace,
             R.id.p1_two,
@@ -186,7 +192,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     public void onClick(View view) {
         if(view == roll) {
 
-            int diceValues[] = new int[5];
+
             for (int i = 0; i < thedice.length; i++) {
                 thedice[i].roll();
                 thedice[i].invalidate();
