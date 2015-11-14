@@ -39,7 +39,7 @@ public class ScoreCalc {
     public ScoreCalc(YahtzeeHumanPlayer player)
     {
 
-    public ScoreCalc(YahtzeeHumanPlayer player) {
+
         Activity card = player.mainActivity;
         for (int i = 0; i < numberedButtons1.length; i++) {
             this.numberedButtons1[i] = player.numberedButtons1[i];
