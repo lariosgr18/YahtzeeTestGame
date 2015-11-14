@@ -1,5 +1,7 @@
 package edu.up.cs301.Yahtzee;
 
+import android.util.Log;
+
 import edu.up.cs301.game.infoMsg.GameState;
 
 /**
@@ -40,19 +42,19 @@ public class YahtzeeGameState extends GameState {
        /*
             new game state that takes the player ID of who goes first
          */
-    public YahtzeeGameState(int playerId) {
+    public YahtzeeGameState() {
         for (int i=0; i < buttonsPressed.length ;i++)
         {
             buttonsPressed[i]= false;
             buttonsPressed2[i] = false;
         }
 
-        this.player1Id = 1;
-        this.player2Id = 2;
+        this.player1Id = 0;
+        this.player2Id = 1;
         this.player1turns = 0;
         this.player2turns = 0;
         this.rolls = 1;
-        this.currentPlayerID = playerId;
+        this.currentPlayerID = player1Id;
     }
 
     /*
@@ -61,19 +63,15 @@ public class YahtzeeGameState extends GameState {
     public void rollDice(int DiceValues[],int rollerID)
     {
         //if the number of rolls is greater than 3 or it is not the players turn then don't do anything
-        if(rolls < 3 && rollerID == currentPlayerID)
-        {
+
             //update the dice values
             for(int i = 0; i < diceValue.length; i++)
             {
                 diceValue[i]= DiceValues[i];
+                Log.d("DICE VALUE " + i, "Dice Number " + diceValue[i]);
             }
             rolls++;//increment rolls
-        }
-        else
-        {
-            return;
-        }
+
     }
 
     /*

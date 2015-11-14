@@ -27,10 +27,19 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     // the game's state
     YahtzeeGameState state = null;//the state to load
 
+    RollAction rollAction; // action for rolling the dice
+
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
     private int[] scores = new int[13]; // the players scores
-    private int yahtzeeCount;
+
+
+    public int[] getDiceValues() {
+        return diceValues;
+    }
+
+    private int diceValues[] = new int[5];
+    private int yahtzeeCount; //the number of times the player has gotten a yahtzee
     private static final int[] buttonIndices = { //the button ids the player can click
             R.id.p1_ace,
             R.id.p1_two,
@@ -104,8 +113,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         // update the TextFields that contain the players' names
         updatePlayerNames();
-        round = 0;
-        rollNum = 0;
+        round = 1;
+        rollNum = 1;
     }
 
     /**
@@ -139,7 +148,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     public void receiveInfo(GameInfo info) {
         if(info == null)
         {
-            state = new YahtzeeGameState(0);
+            state = new YahtzeeGameState();
         }
         else
         {
@@ -181,17 +190,19 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     }
     /*
-        onClick method for the buttons
+        onClick method for the buttons//
      */
     public void onClick(View view) {
-        if(view == roll) {
-
-            int diceValues[] = new int[5];
+        if(view == roll && rollNum <= 3) {
             for (int i = 0; i < thedice.length; i++) {
                 thedice[i].roll();
                 thedice[i].invalidate();
                 diceValues[i] = thedice[i].dieNum;
             }
+            RollAction action = new RollAction(this);
+            super.game.sendAction(action);
+            rollNum++;
+
         }
 
     }

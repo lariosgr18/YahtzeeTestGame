@@ -11,7 +11,7 @@ import android.util.Log;
  * Starts the game
  */
 public class YahtzeeLocalGame extends LocalGame {
-    YahtzeeGameState currentGame;
+    YahtzeeGameState currentGame = new YahtzeeGameState();
 
     /*
         state sent to player
@@ -36,6 +36,18 @@ public class YahtzeeLocalGame extends LocalGame {
     }
 
     /*
+        if the current player is allowed to make a move
+     */
+    protected boolean canRoll(int playerIdx) {
+        if(playerIdx == currentGame.getCurrentPlayerID() && currentGame.getRolls() != 3)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /*
         check for when the game is over
      */
     @Override
@@ -51,6 +63,20 @@ public class YahtzeeLocalGame extends LocalGame {
      */
     @Override
     protected boolean makeMove(GameAction action) {
+        if(canMove(getPlayerIdx(action.getPlayer())))
+        {
+            if(action instanceof RollAction)
+            {
+                currentGame.rollDice(((YahtzeeHumanPlayer)(action.getPlayer())).getDiceValues(),getPlayerIdx(action.getPlayer()));
+            }
+
+            if(action instanceof SelectScoreAction)
+            {
+
+            }
+            return true;
+        }
+
         return false;
     }
 }
