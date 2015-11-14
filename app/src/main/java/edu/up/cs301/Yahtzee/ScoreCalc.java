@@ -107,7 +107,7 @@ public class ScoreCalc {
         }
         return 0;
     }
-
+//
     public int fullHouse(){
         for (int i = 0; i < diceVals.length; i++) {
             if (diceVals[i] == 2 || diceVals[i] == 3) {
