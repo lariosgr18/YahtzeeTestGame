@@ -15,25 +15,11 @@ import edu.up.cs301.game.R;
 public class ScoreCalc {
     private int[] diceVals = new int[6];
 
-    private static final int[] buttonIndices = {
-            R.id.p1_ace,
-            R.id.p1_two,
-            R.id.p1_three,
-            R.id.p1_four,
-            R.id.p1_five,
-            R.id.p1_six,
-            R.id.p1_3kind,
-            R.id.p1_4kind,
-            R.id.p1_house,
-            R.id.p1_smstraight,
-            R.id.p1_lgstraight,
-            R.id.p1_yahtzee,
-            R.id.p1_chance,
-    };
-
     private Dice[] thedice;
 
     private Button[] numberedButtons1 = new Button[13];
+
+    private static final int FULLHOUSESCORE = 25;
 
     //Constructor for a human player
     public ScoreCalc(YahtzeeHumanPlayer player)
@@ -49,7 +35,7 @@ public class ScoreCalc {
 
     //Updates the buttons to reflect the score
     public void updateScoreCard() {
-        int displayCount;
+        /*int displayCount;
         for (int i = 0; i < numberedButtons1.length; i++) {
             displayCount = 0;
             if (i < 6) {
@@ -62,11 +48,35 @@ public class ScoreCalc {
                     numberedButtons1[i].setText("" + displayCount);
                 }
             } else {
-                for (int j = 0; j < thedice.length; j++) {
-                    diceVals[thedice[j].dieNum - 1]++;
-                }
+
             }
+        }*/
+
+        for (int j = 0; j < thedice.length; j++) {
+            diceVals[thedice[j].dieNum - 1]++;
         }
+        numberedButtons1[0].setText("" + aceScore());
+        numberedButtons1[1].setText("" + twoScore());
+        numberedButtons1[2].setText("" + threeScore());
+        numberedButtons1[3].setText("" + fourScore());
+        numberedButtons1[4].setText("" + fiveScore());
+        numberedButtons1[5].setText("" + sixScore());
+        numberedButtons1[6].setText("" + threeOfaKind());
+        numberedButtons1[7].setText("" + fourOfaKind());
+        numberedButtons1[8].setText("" + fullHouse());
+
+
+
+
+
+
+        numberedButtons1[12].setText("" + chance());
+
+
+        for (int j = 0; j < diceVals.length; j++) {
+            diceVals[j] = 0;
+        }
+
     }
 
     public int aceScore() {
@@ -104,7 +114,7 @@ public class ScoreCalc {
 
     public int fourOfaKind(){
         for (int i = 0; i < diceVals.length; i++) {
-            if (diceVals[i] > 2) {
+            if (diceVals[i] > 3) {
                 return sum();
             }
         }
@@ -116,7 +126,16 @@ public class ScoreCalc {
             if (diceVals[i] == 2 || diceVals[i] == 3) {
                 if(diceVals[i] == 2){
                     for(int j = i+1; j < diceVals.length; j++){
-
+                        if(diceVals[j] == 3) {
+                            return FULLHOUSESCORE;
+                        }
+                    }
+                }
+                if(diceVals[i] == 3){
+                    for(int j = i+1; j < diceVals.length; j++){
+                        if(diceVals[j] == 2) {
+                            return FULLHOUSESCORE;
+                        }
                     }
                 }
             }
@@ -126,8 +145,17 @@ public class ScoreCalc {
 
 
 
+
+
+
+
+
+    public int chance()
+    {
+        return sum();
+    }
     public int sum(){
-        return (diceVals[0] * 1) + (diceVals[1] * 2) + (diceVals[2] * 3) + (diceVals[3] * 4) + (diceVals[4] + 5) + (diceVals[5] * 6);
+        return ((diceVals[0] * 1) + (diceVals[1] * 2) + (diceVals[2] * 3) + (diceVals[3] * 4) + (diceVals[4] * 5) + (diceVals[5] * 6));
     }
 }
 
