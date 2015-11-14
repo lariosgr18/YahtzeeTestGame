@@ -25,7 +25,7 @@ public class ScoreCalc {
 
     private static final int LARGESTRAIGHTSCORE = 40;
 
-    private static final int YAHTZEESCORE = 40;
+    private static final int YAHTZEESCORE = 50;
 
     public static boolean YAHTZEE = false;
 
@@ -43,22 +43,6 @@ public class ScoreCalc {
 
     //Updates the buttons to reflect the score
     public void updateScoreCard() {
-        /*int displayCount;
-        for (int i = 0; i < numberedButtons1.length; i++) {
-            displayCount = 0;
-            if (i < 6) {
-                for (int j = 0; j < thedice.length; j++) {
-                    if (thedice[j].dieNum == i + 1) {
-                        displayCount = displayCount + thedice[j].dieNum;
-                    }
-                }
-                if (numberedButtons1[i].isEnabled()) {
-                    numberedButtons1[i].setText("" + displayCount);
-                }
-            } else {
-
-            }
-        }*/
 
         for (int j = 0; j < thedice.length; j++) {
             diceVals[thedice[j].dieNum - 1]++;
@@ -197,7 +181,6 @@ public class ScoreCalc {
         }
         return 0;
     }
-
 
 
     public int chance()
