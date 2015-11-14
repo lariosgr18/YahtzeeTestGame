@@ -11,7 +11,7 @@ import android.util.Log;
  * Starts the game
  */
 public class YahtzeeLocalGame extends LocalGame {
-    YahtzeeGameState currentGame;
+    YahtzeeGameState currentGame = new YahtzeeGameState();
 
     /*
         state sent to player

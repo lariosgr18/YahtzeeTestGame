@@ -1,5 +1,7 @@
 package edu.up.cs301.Yahtzee;
 
+import android.util.Log;
+
 import edu.up.cs301.game.infoMsg.GameState;
 
 /**
@@ -61,19 +63,15 @@ public class YahtzeeGameState extends GameState {
     public void rollDice(int DiceValues[],int rollerID)
     {
         //if the number of rolls is greater than 3 or it is not the players turn then don't do anything
-        if(rolls < 3 && rollerID == currentPlayerID)
-        {
+
             //update the dice values
             for(int i = 0; i < diceValue.length; i++)
             {
                 diceValue[i]= DiceValues[i];
+                Log.d("DICE VALUE " + i, "Dice Number " + diceValue[i]);
             }
             rolls++;//increment rolls
-        }
-        else
-        {
-            return;
-        }
+
     }
 
     /*
