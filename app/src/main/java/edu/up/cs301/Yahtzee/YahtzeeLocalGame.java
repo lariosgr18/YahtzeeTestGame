@@ -63,6 +63,20 @@ public class YahtzeeLocalGame extends LocalGame {
      */
     @Override
     protected boolean makeMove(GameAction action) {
+        if(canMove(getPlayerIdx(action.getPlayer())))
+        {
+            if(action instanceof RollAction)
+            {
+                currentGame.rollDice(((YahtzeeHumanPlayer)(action.getPlayer())).getDiceValues(),getPlayerIdx(action.getPlayer()));
+            }
+
+            if(action instanceof SelectScoreAction)
+            {
+
+            }
+            return true;
+        }
+
         return false;
     }
 }

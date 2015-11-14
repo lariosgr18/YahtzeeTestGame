@@ -14,7 +14,7 @@ public class YahtzeeGameStateTest {
     public void testConstructor() throws Exception {
 
         //Create a gamestate
-        YahtzeeGameState newGame = new YahtzeeGameState(1);
+        YahtzeeGameState newGame = new YahtzeeGameState();
         newGame.setPlayer1turns(12);
         newGame.setCurrentPlayerID(2);
         int Values[] = {1,2,3,4,5};
@@ -33,7 +33,7 @@ public class YahtzeeGameStateTest {
     //test the roll method for the gamestate
     @Test
     public void testRoll() throws Exception {
-        YahtzeeGameState newGame = new YahtzeeGameState(1);
+        YahtzeeGameState newGame = new YahtzeeGameState();
         int curRolls = newGame.getRolls();
         int values[] = {1,2,3,4,5};
         newGame.rollDice(values,1);
@@ -58,7 +58,7 @@ public class YahtzeeGameStateTest {
     //test the selectScore method for the game state
     @Test
     public void testSelectScore() throws Exception {
-        YahtzeeGameState newGame = new YahtzeeGameState(1);
+        YahtzeeGameState newGame = new YahtzeeGameState();
         int playerID = 1;
         int values[] = {1,2,3,4,5};
         newGame.selectScore(10, 5, 1, false);

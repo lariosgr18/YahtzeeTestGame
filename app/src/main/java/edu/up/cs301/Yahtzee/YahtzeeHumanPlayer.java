@@ -27,10 +27,12 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     // the game's state
     YahtzeeGameState state = null;//the state to load
 
+    RollAction rollAction; // action for rolling the dice
+
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
     private int[] scores = new int[13]; // the players scores
-    private int yahtzeeCount;
+    private int numberOfRolls=1;
 
     public int[] getDiceValues() {
         return diceValues;
@@ -146,7 +148,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     public void receiveInfo(GameInfo info) {
         if(info == null)
         {
-            state = new YahtzeeGameState(0);
+            state = new YahtzeeGameState();
         }
         else
         {
@@ -191,14 +193,17 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         onClick method for the buttons//
      */
     public void onClick(View view) {
-        if(view == roll) {
-
+        if(view == roll && numberOfRolls > 3) {
             int diceValues[] = new int[5];
             for (int i = 0; i < thedice.length; i++) {
                 thedice[i].roll();
                 thedice[i].invalidate();
                 diceValues[i] = thedice[i].dieNum;
             }
+            RollAction action = new RollAction(this);
+            super.game.sendAction(action);
+            numberOfRolls++;
+
         }
 
     }
