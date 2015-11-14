@@ -36,6 +36,18 @@ public class YahtzeeLocalGame extends LocalGame {
     }
 
     /*
+        if the current player is allowed to make a move
+     */
+    protected boolean canRoll(int playerIdx) {
+        if(playerIdx == currentGame.getCurrentPlayerID() && currentGame.getRolls() != 3)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /*
         check for when the game is over
      */
     @Override
