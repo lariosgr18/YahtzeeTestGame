@@ -63,46 +63,19 @@ public class ScoreCalc {
         for (int j = 0; j < thedice.length; j++) {
             diceVals[thedice[j].dieNum - 1]++;
         }
-        if(numberedButtons1[0].isEnabled())
-        {
-            numberedButtons1[0].setText("" + aceScore());
-        }
-        if(numberedButtons1[1].isEnabled()) {
-            numberedButtons1[1].setText("" + twoScore());
-        }
-        if(numberedButtons1[2].isEnabled()) {
-            numberedButtons1[2].setText("" + threeScore());
-        }
-        if(numberedButtons1[3].isEnabled()) {
-            numberedButtons1[3].setText("" + fourScore());
-        }
-        if(numberedButtons1[4].isEnabled()) {
-            numberedButtons1[4].setText("" + fiveScore());
-        }
-        if(numberedButtons1[5].isEnabled()) {
-            numberedButtons1[5].setText("" + sixScore());
-        }
-        if(numberedButtons1[6].isEnabled()) {
-            numberedButtons1[6].setText("" + threeOfaKind());
-        }
-        if(numberedButtons1[7].isEnabled()) {
-            numberedButtons1[7].setText("" + fourOfaKind());
-        }
-        if(numberedButtons1[8].isEnabled()) {
-            numberedButtons1[8].setText("" + fullHouse());
-        }
-        if(numberedButtons1[9].isEnabled()) {
-            numberedButtons1[9].setText("" + smallStraight());
-        }
-        if(numberedButtons1[10].isEnabled()) {
-            numberedButtons1[10].setText("" + largeStraight());
-        }
-        if(numberedButtons1[11].isEnabled()) {
-            numberedButtons1[11].setText("" + yahtzee());
-        }
-        if(numberedButtons1[12].isEnabled()) {
-            numberedButtons1[12].setText("" + chance());
-        }
+        numberedButtons1[0].setText("" + aceScore());
+        numberedButtons1[1].setText("" + twoScore());
+        numberedButtons1[2].setText("" + threeScore());
+        numberedButtons1[3].setText("" + fourScore());
+        numberedButtons1[4].setText("" + fiveScore());
+        numberedButtons1[5].setText("" + sixScore());
+        numberedButtons1[6].setText("" + threeOfaKind());
+        numberedButtons1[7].setText("" + fourOfaKind());
+        numberedButtons1[8].setText("" + fullHouse());
+        numberedButtons1[9].setText("" + smallStraight());
+        numberedButtons1[10].setText("" + largeStraight());
+        numberedButtons1[11].setText("" + yahtzee());
+        numberedButtons1[12].setText("" + chance());
 
         for (int j = 0; j < diceVals.length; j++) {
             diceVals[j] = 0;
@@ -225,11 +198,12 @@ public class ScoreCalc {
         return 0;
     }
 
+
+
     public int chance()
     {
         return sum();
     }
-
     public int sum(){
         return ((diceVals[0] * 1) + (diceVals[1] * 2) + (diceVals[2] * 3) + (diceVals[3] * 4) + (diceVals[4] * 5) + (diceVals[5] * 6));
     }
