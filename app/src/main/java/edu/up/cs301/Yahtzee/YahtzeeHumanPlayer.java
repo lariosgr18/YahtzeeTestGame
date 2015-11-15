@@ -8,6 +8,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -32,14 +33,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
     private int[] scores = new int[13]; // the players scores
-
     private ScoreCalc scoreCard;
-
-
-    public int[] getDiceValues() {
-        return diceValues;
-    }
-
+    private int currentScoreIndex;
+    private int scoreChosen;
     private int diceValues[] = new int[5];
     private int yahtzeeCount; //the number of times the player has gotten a yahtzee
     private static final int[] buttonIndices = { //the button ids the player can click
@@ -150,14 +146,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
      */
     @Override
     public void receiveInfo(GameInfo info) {
-        if(info == null)
-        {
-            state = new YahtzeeGameState();
-        }
-        else
-        {
-            state = (YahtzeeGameState)info;
-        }
+
+
 
     }
 
@@ -197,17 +187,42 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         onClick method for the buttons//
      */
     public void onClick(View view) {
-        if(view == roll && rollNum <= 3) {
-            for (int i = 0; i < thedice.length; i++) {
-                thedice[i].roll();
-                thedice[i].invalidate();
-                diceValues[i] = thedice[i].dieNum;
-            }
-            RollAction action = new RollAction(this);
-            super.game.sendAction(action);
-            scoreCard.updateScoreCard();
-            rollNum++;
+        if(((YahtzeeLocalGame)super.game).canMove(playerNum))
+        {
+            Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
+            if (view == roll && rollNum <= 3) {
+                for (int i = 0; i < thedice.length; i++) {
+                    thedice[i].roll();
+                    thedice[i].invalidate();
+                    diceValues[i] = thedice[i].dieNum;
+                }
+                RollAction action = new RollAction(this);
+                super.game.sendAction(action);
+                scoreCard.updateScoreCard();
+                rollNum++;
 
+            }
+
+            if (view != roll) {
+
+                for (int i = 0; i < numberedButtons1.length; i++) {
+                    if (numberedButtons1[i] == view) {
+                        if (view != numberedButtons1[11]) {
+                            numberedButtons1[i].setEnabled(false);
+                            numberedButtons1[i].setBackgroundColor(Color.MAGENTA);
+
+                        }
+                        scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
+                        currentScoreIndex = i;
+                        scoreChosen = scores[i];
+                    }
+
+                }
+                rollNum = 1;
+                SelectScoreAction select = new SelectScoreAction(this);
+                super.game.sendAction(select);
+
+            }
         }
 
     }
@@ -226,5 +241,17 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             ((Dice)view).setBackgroundColor(Color.BLUE);
             return true;
         }
+    }
+
+    public int[] getDiceValues() {
+        return diceValues;
+    }
+
+    public int getCurrentScoreIndex() {
+        return currentScoreIndex;
+    }
+
+    public int getScoreChosen() {
+        return scoreChosen;
     }
 }

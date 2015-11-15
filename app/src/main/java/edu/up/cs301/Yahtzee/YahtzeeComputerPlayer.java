@@ -1,5 +1,7 @@
 package edu.up.cs301.Yahtzee;
 
+import android.util.Log;
+
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.actionMsg.GameAction;
 import edu.up.cs301.game.infoMsg.GameInfo;
@@ -31,6 +33,9 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
      */
     @Override
     protected void receiveInfo(GameInfo info) {
+        Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
+        SelectScoreAction selectScoreAction = new SelectScoreAction(this);
+        super.game.sendAction(selectScoreAction);
 
     }
 }
