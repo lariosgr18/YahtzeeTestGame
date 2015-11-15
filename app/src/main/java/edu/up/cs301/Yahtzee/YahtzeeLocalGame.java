@@ -50,7 +50,7 @@ public class YahtzeeLocalGame extends LocalGame {
     }
 
     /*
-        check for when the game is over
+        check for when the game is over//
      */
     @Override
     protected String checkIfGameOver() {
