@@ -1,8 +1,10 @@
 package edu.up.cs301.Yahtzee;
 
+import android.app.Activity;
 import android.util.Log;
 
 import edu.up.cs301.game.GameComputerPlayer;
+import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.actionMsg.GameAction;
 import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.util.Tickable;
@@ -14,7 +16,6 @@ import edu.up.cs301.game.util.Tickable;
  * Controls the Hard and Easy Computer Player
  */
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
-
 
     /**
      * constructor

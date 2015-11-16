@@ -85,10 +85,9 @@ public class YahtzeeGameState extends GameState {
             if (player == player1Id) {
                 player1Score[index] = score;
                 buttonsPressed[index] = buttonPressed;
-               // currentPlayerID = player2Id;
+                currentPlayerID = player2Id;
                 Log.d("SCORE",""+player1Score[index]);
                 player1turns++;
-                player2turns++;
             } else
             {
                 player2Score[index] = score;
