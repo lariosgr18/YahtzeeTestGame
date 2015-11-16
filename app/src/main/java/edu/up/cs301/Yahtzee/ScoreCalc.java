@@ -198,7 +198,7 @@ public class ScoreCalc {
     }
 
     public int yahtzee(){
-
+//
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
                 if(YAHTZEE == true ){
