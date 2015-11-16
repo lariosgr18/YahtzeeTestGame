@@ -17,6 +17,8 @@ public class ScoreCalc {
 
     private Dice[] thedice;
 
+    private int currentYahtzeeScore = 0;
+
     private Button[] numberedButtons1 = new Button[13];
 
     private static final int FULLHOUSESCORE = 25;
@@ -43,26 +45,12 @@ public class ScoreCalc {
 
     //Updates the buttons to reflect the score
     public void updateScoreCard() {
-        /*int displayCount;
-        for (int i = 0; i < numberedButtons1.length; i++) {
-            displayCount = 0;
-            if (i < 6) {
-                for (int j = 0; j < thedice.length; j++) {
-                    if (thedice[j].dieNum == i + 1) {
-                        displayCount = displayCount + thedice[j].dieNum;
-                    }
-                }
-                if (numberedButtons1[i].isEnabled()) {
-                    numberedButtons1[i].setText("" + displayCount);
-                }
-            } else {
-
-            }
-        }*/
 
         for (int j = 0; j < thedice.length; j++) {
             diceVals[thedice[j].dieNum - 1]++;
         }
+
+
         if(numberedButtons1[0].isEnabled())
         {
             numberedButtons1[0].setText("" + aceScore());
@@ -214,16 +202,16 @@ public class ScoreCalc {
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
                 if(YAHTZEE == true ){
-                    return Integer.parseInt((String)(numberedButtons1[11].getText())) + 100;
+                    currentYahtzeeScore += 100;
                 }
                 else
                 {
                     YAHTZEE = true;
-                    return YAHTZEESCORE;
+                    currentYahtzeeScore = YAHTZEESCORE;
                 }
             }
         }
-        return 0;
+        return currentYahtzeeScore;
     }
 
 

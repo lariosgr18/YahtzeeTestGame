@@ -203,7 +203,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
             }
 
-            if (view != roll) {
+            if (view != roll && rollNum >= 2) {
 
                 for (int i = 0; i < numberedButtons1.length; i++) {
                     if (numberedButtons1[i] == view) {
@@ -215,12 +215,19 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
                         currentScoreIndex = i;
                         scoreChosen = scores[i];
+
+
                     }
 
                 }
                 rollNum = 1;
                 SelectScoreAction select = new SelectScoreAction(this);
                 super.game.sendAction(select);
+
+                for (int i = 0; i < thedice.length; i++) {
+                    thedice[i].keep = false;
+                    thedice[i].setBackgroundColor(Color.WHITE);
+                }
 
             }
         }
@@ -230,17 +237,18 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         onLong click for the dice image buttons
      */
     public boolean onLongClick(View view) {
-        if(((Dice)view).keep == true) {
-            ((Dice) view).keep = false;
-            ((Dice)view).setBackgroundColor(Color.WHITE);
-            return false;
+        if( rollNum >= 2) {
+            if (((Dice) view).keep == true) {
+                ((Dice) view).keep = false;
+                ((Dice) view).setBackgroundColor(Color.WHITE);
+                return false;
+            } else {
+                ((Dice) view).keep = true;
+                ((Dice) view).setBackgroundColor(Color.BLUE);
+                return true;
+            }
         }
-        else
-        {
-            ((Dice)view).keep = true;
-            ((Dice)view).setBackgroundColor(Color.BLUE);
-            return true;
-        }
+        return false;
     }
 
     public int[] getDiceValues() {
