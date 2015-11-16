@@ -57,4 +57,3 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     }//receiveInfo
 
     }
-}
