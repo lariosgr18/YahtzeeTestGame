@@ -34,8 +34,27 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     @Override
     protected void receiveInfo(GameInfo info) {
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
-        SelectScoreAction selectScoreAction = new SelectScoreAction(this);
-        super.game.sendAction(selectScoreAction);
+
+
+        // TODO  You will implement this method
+        int move = (int) ((Math.random() *2 )+1);
+
+        if(move ==1){
+
+            SelectScoreAction selectScoreAction = new SelectScoreAction(this);
+            super.game.sendAction(selectScoreAction);
+
+        }
+        else{
+
+
+            SelectScoreAction selectScoreAction = new SelectScoreAction(this);
+            super.game.sendAction(selectScoreAction);
+
+        }
+
+
+    }//receiveInfo
 
     }
 }
