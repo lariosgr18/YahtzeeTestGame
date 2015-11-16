@@ -35,14 +35,18 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     protected void receiveInfo(GameInfo info) {
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
+        RollAction rollAction1 = new RollAction(this);
+        super.game.sendAction(rollAction1);
 
         // TODO  You will implement this method
         int move = (int) ((Math.random() *2 )+1);
 
         if(move ==1){
 
-            SelectScoreAction selectScoreAction = new SelectScoreAction(this);
-            super.game.sendAction(selectScoreAction);
+            RollAction rollAction = new RollAction(this);
+            super.game.sendAction(rollAction);
+
+
 
         }
         else{
@@ -56,4 +60,4 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
     }//receiveInfo
 
-    }
+}
