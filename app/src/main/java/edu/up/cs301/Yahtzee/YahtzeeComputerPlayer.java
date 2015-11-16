@@ -40,23 +40,27 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
         // TODO  You will implement this method
         int move = (int) ((Math.random() *2 )+1);
+        int counter = 1;
+        while ( counter < 3) {
+            if (move == 1) {
 
-        if(move ==1){
-
-            RollAction rollAction = new RollAction(this);
-            super.game.sendAction(rollAction);
+                RollAction rollAction = new RollAction(this);
+                super.game.sendAction(rollAction);
 
 
+            } else {
 
+
+                SelectScoreAction selectScoreAction = new SelectScoreAction(this);
+                super.game.sendAction(selectScoreAction);
+
+            }
+
+            counter++;
         }
-        else{
 
-
-            SelectScoreAction selectScoreAction = new SelectScoreAction(this);
-            super.game.sendAction(selectScoreAction);
-
-        }
-
+        SelectScoreAction selectScoreAction1 = new SelectScoreAction(this);
+        super.game.sendAction(selectScoreAction1);
 
     }//receiveInfo
 
