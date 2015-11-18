@@ -164,7 +164,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="1"
+                android:text="0"
                 android:id="@+id/p1_ace"
                 android:layout_row="1"
                 android:layout_column="1" />
@@ -172,7 +172,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="8"
+                android:text="0"
                 android:id="@+id/p1_two"
                 android:layout_row="2"
                 android:layout_column="1" />
@@ -205,7 +205,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="6"
+                android:text="0"
                 android:id="@+id/p1_six"
                 android:layout_row="6"
                 android:layout_column="1" />
@@ -213,7 +213,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="15"
+                android:text="0"
                 android:id="@+id/p1_3kind"
                 android:layout_row="7"
                 android:layout_column="1" />
@@ -229,7 +229,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="25"
+                android:text="0"
                 android:id="@+id/p1_house"
                 android:layout_row="9"
                 android:layout_column="1"
@@ -246,7 +246,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="40"
+                android:text="0"
                 android:id="@+id/p1_lgstraight"
                 android:layout_row="11"
                 android:layout_column="1"
@@ -263,7 +263,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="12"
+                android:text="0"
                 android:id="@+id/p1_chance"
                 android:layout_row="13"
                 android:layout_column="1" />
@@ -271,7 +271,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="3"
+                android:text="0"
                 android:id="@+id/p2_ace"
                 android:layout_row="1"
                 android:layout_column="2" />
@@ -295,7 +295,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="4"
+                android:text="0"
                 android:id="@+id/p2_four"
                 android:layout_row="4"
                 android:layout_column="2" />
@@ -303,7 +303,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="15"
+                android:text="0"
                 android:id="@+id/p2_five"
                 android:layout_row="5"
                 android:layout_column="2" />
@@ -311,7 +311,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="6"
+                android:text="0"
                 android:id="@+id/p2_six"
                 android:layout_row="6"
                 android:layout_column="2" />
@@ -319,7 +319,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="7"
+                android:text="0"
                 android:id="@+id/p2_3kind"
                 android:layout_row="7"
                 android:layout_column="2" />
@@ -327,7 +327,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="20"
+                android:text="0"
                 android:id="@+id/p2_4kind"
                 android:layout_row="8"
                 android:layout_column="2" />
@@ -360,7 +360,7 @@
             <Button
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:text="50"
+                android:text="0"
                 android:id="@+id/p2_yahtzee"
                 android:layout_row="12"
                 android:layout_column="2"

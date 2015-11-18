@@ -23,6 +23,9 @@ public class YahtzeeGameState extends GameState {
     private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed for player 1
     private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
 
+
+    public YahtzeeHumanPlayer player1;
+
     /*
         Constructor for a previous game state, sets all the values to the previous gamestate values
      */
@@ -192,6 +195,15 @@ public class YahtzeeGameState extends GameState {
 
     public void setButtonsPressed2(boolean[] buttonsPressed2) {
         this.buttonsPressed2 = buttonsPressed2;
+    }
+
+
+    public YahtzeeHumanPlayer getPlayer1() {
+        return player1;
+    }
+
+    public void setPlayer1(YahtzeeHumanPlayer player1) {
+        this.player1 = player1;
     }
 }
 

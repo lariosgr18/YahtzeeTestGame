@@ -72,6 +72,11 @@ public class YahtzeeLocalGame extends LocalGame {
     protected boolean makeMove(GameAction action) {
         if(canMove(getPlayerIdx(action.getPlayer())))
         {
+            if(getPlayerIdx(action.getPlayer()) == 0)
+            {
+                currentGame.setPlayer1((YahtzeeHumanPlayer) action.getPlayer());
+
+            }
             if(action instanceof RollAction)
             {
                 currentGame.rollDice(((YahtzeeHumanPlayer)(action.getPlayer())).getDiceValues(),getPlayerIdx(action.getPlayer()));

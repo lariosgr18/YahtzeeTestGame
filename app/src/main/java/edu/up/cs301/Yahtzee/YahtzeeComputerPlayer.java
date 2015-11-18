@@ -17,6 +17,8 @@ import edu.up.cs301.game.util.Tickable;
  */
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
+    private YahtzeeHumanPlayer opponent;
+
     /**
      * constructor
      *
@@ -35,6 +37,10 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     @Override
     protected void receiveInfo(GameInfo info) {
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
+
+
+        opponent = ((YahtzeeGameState)(info)).getPlayer1();
+
 
         RollAction rollAction1 = new RollAction(this);
         super.game.sendAction(rollAction1);
