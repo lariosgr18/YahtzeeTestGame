@@ -398,7 +398,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pause"
                 android:id="@+id/pauseButton"
-                android:onClick="pauseGame"/>
+                android:onClick=""/>
         </LinearLayout>
 
         <GridLayout
