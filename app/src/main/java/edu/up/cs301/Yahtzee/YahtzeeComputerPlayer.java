@@ -53,28 +53,32 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
         }
         thedice = opponent.thedice;
 
-
         calc = new ScoreCalc(computerButtons,thedice);
-
         this.roll();
+        Thread.sleep(1000);
         this.roll();
+        Thread.sleep(1000);
         this.roll();
+        Thread.sleep(1000);
 
     }catch (NullPointerException NPE)
     {
         Log.d("******ERROR*****","ERROR");
+    } catch (InterruptedException e) {
+        e.printStackTrace();
     }
 
     }//receiveInfo
 
 
-    public void roll()
-    {
+    public void roll() throws InterruptedException {
         if(rollNum <= 3) {
             for (int i = 0; i < thedice.length; i++) {
+                Thread.sleep(1000);
                 thedice[i].roll();
                 thedice[i].invalidate();
                 diceValues[i] = thedice[i].dieNum;
+                Thread.sleep(1000);
             }
             RollAction action = new RollAction(this);
             super.game.sendAction(action);
