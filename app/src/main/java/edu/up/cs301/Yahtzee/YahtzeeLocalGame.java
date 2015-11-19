@@ -22,6 +22,7 @@ public class YahtzeeLocalGame extends LocalGame {
      */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
+        //sends info
         stateInfo = new YahtzeeGameState(currentGame);
         p.sendInfo(stateInfo);
 
