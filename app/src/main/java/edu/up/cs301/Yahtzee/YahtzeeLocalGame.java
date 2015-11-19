@@ -15,12 +15,15 @@ import android.util.Log;
 public class YahtzeeLocalGame extends LocalGame {
     YahtzeeGameState currentGame = new YahtzeeGameState();
 
+    YahtzeeGameState stateInfo;
+
     /*
         state sent to player
      */
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
-
+        stateInfo = new YahtzeeGameState(currentGame);
+        p.sendInfo(stateInfo);
 
     }
 
