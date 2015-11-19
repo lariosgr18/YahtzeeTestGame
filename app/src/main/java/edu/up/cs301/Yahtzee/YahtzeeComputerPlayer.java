@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Button;
 
+import edu.up.cs301.animation.Dice;
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.actionMsg.GameAction;
@@ -19,7 +20,11 @@ import edu.up.cs301.game.util.Tickable;
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
     private YahtzeeHumanPlayer opponent;
-    private Button[] computerButtons;
+    private Button[] computerButtons = new Button[13];
+    private Dice[] thedice;
+    private ScoreCalc calc;
+    private int[] diceValues;
+    private int rollNum;
 
     /**
      * constructor
@@ -42,43 +47,42 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
 
         opponent = ((YahtzeeGameState)(info)).getPlayer1();
-
-        computerButtons = opponent.computerButtons;
-        ScoreCalc calc = new ScoreCalc(computerButtons,opponent.thedice);
-        opponent.onClick(opponent.roll);
-        RollAction rollAction1 = new RollAction(this);
-        super.game.sendAction(rollAction1);
-        opponent.onClick(opponent.roll);
-        RollAction rollAction2 = new RollAction(this);
-        super.game.sendAction(rollAction1);
-        opponent.onClick(opponent.roll);
-        RollAction rollAction3 = new RollAction(this);
-        super.game.sendAction(rollAction1);
-
-        // TODO  You will implement this method
-        int move = (int) ((Math.random() *2 )+1);
-        int counter = 1;
-        while ( counter < 3) {
-            if (move == 1) {
-
-                RollAction rollAction = new RollAction(this);
-                super.game.sendAction(rollAction);
-
-
-            } else {
-
-
-                SelectScoreAction selectScoreAction = new SelectScoreAction(this);
-                super.game.sendAction(selectScoreAction);
-
-            }
-
-            counter++;
+    try {
+        for (int i = 0; i < computerButtons.length; i++) {
+            computerButtons[i] = opponent.computerButtons[i];
         }
+        thedice = opponent.thedice;
 
-        SelectScoreAction selectScoreAction1 = new SelectScoreAction(this);
-        super.game.sendAction(selectScoreAction1);
+
+        calc = new ScoreCalc(computerButtons,thedice);
+
+        this.roll();
+        this.roll();
+        this.roll();
+
+    }catch (NullPointerException NPE)
+    {
+        Log.d("******ERROR*****","ERROR");
+    }
 
     }//receiveInfo
+
+
+    public void roll()
+    {
+        if(rollNum <= 3) {
+            for (int i = 0; i < thedice.length; i++) {
+                thedice[i].roll();
+                thedice[i].invalidate();
+                diceValues[i] = thedice[i].dieNum;
+            }
+            RollAction action = new RollAction(this);
+            super.game.sendAction(action);
+            calc.updateScoreCard();
+            rollNum++;
+
+        }
+
+    }
 
 }

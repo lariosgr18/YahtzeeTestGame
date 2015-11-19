@@ -71,7 +71,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     };
 
      public Button[] numberedButtons1; // the buttons the player can click
-    public Button[] computerButtons; // the buttons the player can click
+    public Button[] computerButtons = {null}; // the buttons the player can click
 
     public Button roll; // the roll button
     public Dice[] thedice; //the five dice drawn on the screen
