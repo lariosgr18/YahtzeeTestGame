@@ -32,15 +32,15 @@ public class ScoreCalc {
     public static boolean YAHTZEE = false;
 
     //Constructor for a human player
-    public ScoreCalc(YahtzeeHumanPlayer player)
+    public ScoreCalc(Button[] buttons, Dice[] dice)
     {
 
 
-        Activity card = player.mainActivity;
+        //Activity card = player.mainActivity;
         for (int i = 0; i < numberedButtons1.length; i++) {
-            this.numberedButtons1[i] = player.numberedButtons1[i];
+            this.numberedButtons1[i] = buttons[i];
         }
-        this.thedice = player.thedice;
+        this.thedice = dice;
     }
 
     //Updates the buttons to reflect the score
