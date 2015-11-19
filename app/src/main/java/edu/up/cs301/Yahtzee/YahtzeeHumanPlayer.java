@@ -54,9 +54,26 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p1_chance,
     };
 
-    public Button[] numberedButtons1; // the buttons the player can click
+    private static final int[] computerButtonIndices = { //the button ids the player can click
+            R.id.p2_ace,
+            R.id.p2_two,
+            R.id.p2_three,
+            R.id.p2_four,
+            R.id.p2_five,
+            R.id.p2_six,
+            R.id.p2_3kind,
+            R.id.p2_4kind,
+            R.id.p2_house,
+            R.id.p2_smstraight,
+            R.id.p2_lgstraight,
+            R.id.p2_yahtzee,
+            R.id.p2_chance,
+    };
 
-    private Button roll; // the roll button
+     public Button[] numberedButtons1; // the buttons the player can click
+    public Button[] computerButtons; // the buttons the player can click
+
+    public Button roll; // the roll button
     public Dice[] thedice; //the five dice drawn on the screen
     private static final int[] dieID = // the ID of the imageButtons of the dice
             {
@@ -88,6 +105,17 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             numberedButtons1[i] =
                     (Button) mainActivity.findViewById(buttonIndices[i]);
         }
+
+        // create the button array
+        computerButtons = new Button[computerButtonIndices.length];
+
+        // fill the array using the indices in the buttonIndices array
+        for (int i = 0; i < computerButtons.length; i++) {
+            computerButtons[i] =
+                    (Button) mainActivity.findViewById(computerButtonIndices[i]);
+        }
+
+
         thedice = new Dice[dieID.length];
 
         // fill the array using the indices in the buttonIndices array
@@ -99,7 +127,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
         roll.setOnClickListener(this);
-        scoreCard = new ScoreCalc(this);
+        scoreCard = new ScoreCalc(numberedButtons1, thedice);
     }
     //
 

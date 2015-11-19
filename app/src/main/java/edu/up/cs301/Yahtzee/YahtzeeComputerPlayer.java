@@ -2,6 +2,7 @@ package edu.up.cs301.Yahtzee;
 
 import android.app.Activity;
 import android.util.Log;
+import android.widget.Button;
 
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.GameMainActivity;
@@ -18,6 +19,7 @@ import edu.up.cs301.game.util.Tickable;
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
     private YahtzeeHumanPlayer opponent;
+    private Button[] computerButtons;
 
     /**
      * constructor
@@ -41,8 +43,16 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
         opponent = ((YahtzeeGameState)(info)).getPlayer1();
 
-
+        computerButtons = opponent.computerButtons;
+        ScoreCalc calc = new ScoreCalc(computerButtons,opponent.thedice);
+        opponent.onClick(opponent.roll);
         RollAction rollAction1 = new RollAction(this);
+        super.game.sendAction(rollAction1);
+        opponent.onClick(opponent.roll);
+        RollAction rollAction2 = new RollAction(this);
+        super.game.sendAction(rollAction1);
+        opponent.onClick(opponent.roll);
+        RollAction rollAction3 = new RollAction(this);
         super.game.sendAction(rollAction1);
 
         // TODO  You will implement this method
