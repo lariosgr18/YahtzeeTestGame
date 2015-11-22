@@ -281,6 +281,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
 
     public void computerClick(){
+        //method
         computerButtons[0].setText("" + 5);
         computerButtons[0].setEnabled(false);
     }
