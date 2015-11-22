@@ -49,7 +49,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
-        for(int i = 0; i < thedice.length; i++)
+        for(int i = 0; i < diceValues.length; i++)
         {
             diceValues[i] = (int) (Math.random() * 6 + 1);
         }
@@ -58,7 +58,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
         int move = (int) ((Math.random() *2 )+1);
 
-            for(int i = 0; i < thedice.length; i++)
+            for(int i = 0; i < diceValues.length; i++)
             {
                 diceValues[i] = (int) (Math.random() * 6 + 1);
             }
