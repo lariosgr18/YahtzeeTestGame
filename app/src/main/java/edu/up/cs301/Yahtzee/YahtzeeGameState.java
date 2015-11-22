@@ -19,7 +19,7 @@ public class YahtzeeGameState extends GameState {
     private int currentPlayerID;//the current player whose turn it is
     private int[] player1Score = new int[13]; // player 1 score
     private int[] player2Score = new int[13]; //player 2 score
-    private int[] diceValue = new int[5]; //latest dice values
+    private int[] diceValue = {1,2,3,4,5}; //latest dice values
     private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed for player 1
     private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
     public YahtzeeHumanPlayer player1;
@@ -56,6 +56,7 @@ public class YahtzeeGameState extends GameState {
         this.player2turns = 0;
         this.rolls = 1;
         this.currentPlayerID = player1Id;
+
     }
 
     /*

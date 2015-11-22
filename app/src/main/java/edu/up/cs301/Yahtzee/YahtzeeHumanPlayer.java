@@ -175,8 +175,15 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     @Override
     public void receiveInfo(GameInfo info) {
 
-        state= (YahtzeeGameState) info;
+        state = (YahtzeeGameState) info;
 
+        for(int i = 0; i < thedice.length; i++)
+        {
+            thedice[i].dieNum = state.getDiceValue()[i];
+            thedice[i].invalidate();
+        }
+
+        scoreCard.updateComputerCard();
 
     }
 

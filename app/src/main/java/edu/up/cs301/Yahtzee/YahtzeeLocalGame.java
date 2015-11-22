@@ -77,7 +77,6 @@ public class YahtzeeLocalGame extends LocalGame {
             if(getPlayerIdx(action.getPlayer()) == 0)
             {
                 currentGame.setPlayer1((YahtzeeHumanPlayer) action.getPlayer());
-
             }
             if(action instanceof RollAction)
             {
