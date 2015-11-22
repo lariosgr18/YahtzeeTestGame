@@ -13,7 +13,7 @@ import edu.up.cs301.game.util.Tickable;
 
 
 /**
- * Created by Michael, Grayson Abhinav on 10/20/2015.
+ * Created by Michael, Grayson, Abhinav on 10/20/2015.
  *
  * Controls the Hard and Easy Computer Player
  */
@@ -54,13 +54,15 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
         thedice = opponent.thedice;
 
         calc = new ScoreCalc(computerButtons,thedice);
-        this.roll();
+       // this.roll();
         Thread.sleep(1000);
-        this.roll();
+       // this.roll();
         Thread.sleep(1000);
-        this.roll();
-        Thread.sleep(1000);
+       // this.roll();
+        Thread.sleep(10000);
 
+            SelectScoreAction select = new SelectScoreAction(this);
+            super.game.sendAction(select);
     }catch (NullPointerException NPE)
     {
         Log.d("******ERROR*****","ERROR");
