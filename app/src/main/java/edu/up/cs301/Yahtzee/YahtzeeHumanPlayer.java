@@ -175,6 +175,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     @Override
     public void receiveInfo(GameInfo info) {
 
+        state= (YahtzeeGameState) info;
 
 
     }
@@ -280,11 +281,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     }
 
 
-    public void computerClick(){
-        //method
-        computerButtons[0].setText("" + 5);
-        computerButtons[0].setEnabled(false);
-    }
     public int[] getDiceValues() {
         return diceValues;
     }
