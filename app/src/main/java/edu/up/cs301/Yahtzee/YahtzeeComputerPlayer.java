@@ -23,7 +23,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     private Button[] computerButtons = new Button[13];
     private Dice[] thedice;
     private ScoreCalc calc;
-    private int[] diceValues;
+    private int[] diceValues = new int[5];
     private int rollNum;
     private int move;
 
@@ -47,20 +47,32 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     protected void receiveInfo(GameInfo info) {
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
+        for(int i = 0; i < thedice.length; i++)
+        {
+            diceValues[i] = (int) (Math.random() * 6 + 1);
+        }
+        RollAction rollMove = new RollAction(this);
+        super.game.sendAction(rollMove);
+
         int move = (int) ((Math.random() *2 )+1);
 
-        if(move ==1){
-
-            RollAction rollMove = new RollAction(this);
-            super.game.sendAction(rollMove);
+            for(int i = 0; i < thedice.length; i++)
+            {
+                diceValues[i] = (int) (Math.random() * 6 + 1);
+            }
+        for(int i = 0; i < 50; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            RollAction rollMove2 = new RollAction(this);
+            super.game.sendAction(rollMove2);
         }
-        else{
-
 
             SelectScoreAction selectMove = new SelectScoreAction(this);
             super.game.sendAction(selectMove);
 
-        }
 
 
 
@@ -69,5 +81,12 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
     }//receiveInfo
 
+    public int[] getDiceValues() {
+        return diceValues;
+    }
+
+    public void setDiceValues(int[] diceValues) {
+        this.diceValues = diceValues;
+    }
 
 }

@@ -177,13 +177,16 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         state = (YahtzeeGameState) info;
 
+
         for(int i = 0; i < thedice.length; i++)
         {
             thedice[i].dieNum = state.getDiceValue()[i];
             thedice[i].invalidate();
         }
 
-        scoreCard.updateComputerCard();
+        if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
+            scoreCard.updateComputerCard();
+        }
 
     }
 

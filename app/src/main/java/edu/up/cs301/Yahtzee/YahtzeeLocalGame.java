@@ -74,6 +74,30 @@ public class YahtzeeLocalGame extends LocalGame {
     protected boolean makeMove(GameAction action) {
         if(canMove(getPlayerIdx(action.getPlayer())))
         {
+            if(getPlayerIdx(action.getPlayer()) == 1)
+            {
+                if(action instanceof RollAction)
+                {
+
+                    currentGame.rollDice(((YahtzeeComputerPlayer)(action.getPlayer())).getDiceValues(),getPlayerIdx(action.getPlayer()));
+                    Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
+                }
+
+                if(action instanceof SelectScoreAction)
+                {
+
+                    if(getPlayerIdx(action.getPlayer()) == 0) {
+                        currentGame.selectScore(((YahtzeeHumanPlayer) (action.getPlayer())).getScoreChosen(), ((YahtzeeHumanPlayer) (action.getPlayer())).getCurrentScoreIndex(), getPlayerIdx(action.getPlayer()), false);
+                        Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
+                    }
+                    else
+                    {
+                        currentGame.selectScore(5,1,getPlayerIdx(action.getPlayer()),false);
+                        Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
+                    }
+                }
+                return true;
+            }
             if(getPlayerIdx(action.getPlayer()) == 0)
             {
                 currentGame.setPlayer1((YahtzeeHumanPlayer) action.getPlayer());
