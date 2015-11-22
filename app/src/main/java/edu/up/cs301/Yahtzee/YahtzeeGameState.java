@@ -24,6 +24,10 @@ public class YahtzeeGameState extends GameState {
     private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
     public YahtzeeHumanPlayer player1;
 
+    public int whichButton;
+
+    public boolean select = false;
+
     public int[] diceValues= new int[6];
 
     /*
@@ -204,6 +208,22 @@ public class YahtzeeGameState extends GameState {
 
     public void setPlayer1(YahtzeeHumanPlayer player1) {
         this.player1 = player1;
+    }
+
+    public boolean getSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
+    }
+
+    public int getWhichButton() {
+        return whichButton;
+    }
+
+    public void setWhichButton(int whichButton) {
+        this.whichButton = whichButton;
     }
 }
 

@@ -45,6 +45,8 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
      */
     @Override
     protected void receiveInfo(GameInfo info) {
+        YahtzeeGameState state = (YahtzeeGameState) info;
+
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
         for(int i = 0; i < thedice.length; i++)
@@ -60,9 +62,9 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
             {
                 diceValues[i] = (int) (Math.random() * 6 + 1);
             }
-        for(int i = 0; i < 50; i++) {
+        for(int i = 0; i < 3; i++) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -71,6 +73,8 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
         }
 
             SelectScoreAction selectMove = new SelectScoreAction(this);
+            state.setSelect(true);
+            state.setWhichButton(1);
             super.game.sendAction(selectMove);
 
 

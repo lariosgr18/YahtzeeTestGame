@@ -84,6 +84,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     R.id.imageButton5,
             };
 
+
+    public int whichButton;
+
     /**
      * constructor
      *
@@ -186,6 +189,14 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
             scoreCard.updateComputerCard();
+        }
+
+        if( state.getSelect())
+        {
+            this.whichButton=state.getWhichButton();
+            //computerButtons[whichButton-1].setEnabled(false);
+            computerButtons[whichButton-1].setText("" + 5);
+            state.setSelect(false);
         }
 
     }
