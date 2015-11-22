@@ -25,6 +25,8 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     private ScoreCalc calc;
     private int[] diceValues;
     private int rollNum;
+    private int move;
+
 
     /**
      * constructor
@@ -44,6 +46,22 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     @Override
     protected void receiveInfo(GameInfo info) {
         Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
+
+        int move = (int) ((Math.random() *2 )+1);
+
+        if(move ==1){
+
+            RollAction rollMove = new RollAction(this);
+            super.game.sendAction(rollMove);
+        }
+        else{
+
+
+            SelectScoreAction selectMove = new SelectScoreAction(this);
+            super.game.sendAction(selectMove);
+
+        }
+
 
 
 

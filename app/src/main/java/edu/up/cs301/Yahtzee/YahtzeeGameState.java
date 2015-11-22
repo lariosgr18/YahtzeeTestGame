@@ -24,6 +24,8 @@ public class YahtzeeGameState extends GameState {
     private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
     public YahtzeeHumanPlayer player1;
 
+    public int[] diceValues= new int[6];
+
     /*
         Constructor for a previous game state, sets all the values to the previous gamestate values
      */
