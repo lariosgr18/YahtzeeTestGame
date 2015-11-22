@@ -127,7 +127,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
         roll.setOnClickListener(this);
-        scoreCard = new ScoreCalc(numberedButtons1, thedice);
+        scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
     }
     //
 

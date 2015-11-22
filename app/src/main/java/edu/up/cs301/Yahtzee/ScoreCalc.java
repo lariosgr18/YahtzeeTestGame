@@ -21,6 +21,8 @@ public class ScoreCalc {
 
     private Button[] numberedButtons1 = new Button[13];
 
+    private Button[] computerButtons = new Button[13];
+
     private static final int FULLHOUSESCORE = 25;
 
     private static final int SMALLSTRAIGHTSCORE = 30;
@@ -32,14 +34,15 @@ public class ScoreCalc {
     public static boolean YAHTZEE = false;
 
     //Constructor for a human player
-    public ScoreCalc(Button[] buttons, Dice[] dice)
+    public ScoreCalc(Button[] buttons, Dice[] dice, Button[] computerButtons1)
     {
-
-
         //Activity card = player.mainActivity;
         for (int i = 0; i < numberedButtons1.length; i++) {
             this.numberedButtons1[i] = buttons[i];
+            this.computerButtons[i] = computerButtons1[i];
         }
+
+
         this.thedice = dice;
     }
 
@@ -99,9 +102,63 @@ public class ScoreCalc {
 
     }
 
-    public int aceScore() {
-        return diceVals[0] * 1;
+    public  void updateComputerCard(){
+
+        for (int j = 0; j < thedice.length; j++) {
+            diceVals[thedice[j].dieNum - 1]++;
+        }
+
+
+        if(computerButtons[0].isEnabled())
+        {
+            computerButtons[0].setText("" + aceScore());
+        }
+        if(computerButtons[1].isEnabled()) {
+            computerButtons[1].setText("" + twoScore());
+        }
+        if(computerButtons[2].isEnabled()) {
+            computerButtons[2].setText("" + threeScore());
+        }
+        if(computerButtons[3].isEnabled()) {
+            computerButtons[3].setText("" + fourScore());
+        }
+        if(computerButtons[4].isEnabled()) {
+            computerButtons[4].setText("" + fiveScore());
+        }
+        if(computerButtons[5].isEnabled()) {
+            computerButtons[5].setText("" + sixScore());
+        }
+        if(computerButtons[6].isEnabled()) {
+            computerButtons[6].setText("" + threeOfaKind());
+        }
+        if(computerButtons[7].isEnabled()) {
+            computerButtons[7].setText("" + fourOfaKind());
+        }
+        if(computerButtons[8].isEnabled()) {
+            computerButtons[8].setText("" + fullHouse());
+        }
+        if(computerButtons[9].isEnabled()) {
+            computerButtons[9].setText("" + smallStraight());
+        }
+        if(computerButtons[10].isEnabled()) {
+            computerButtons[10].setText("" + largeStraight());
+        }
+        if(computerButtons[11].isEnabled()) {
+            computerButtons[11].setText("" + yahtzee());
+        }
+        if(computerButtons[12].isEnabled()) {
+            computerButtons[12].setText("" + chance());
+        }
+
+
+        for (int j = 0; j < diceVals.length; j++) {
+            diceVals[j] = 0;
+        }
+
+
     }
+
+    public int aceScore() {return diceVals[0] * 1; }
 
     public int twoScore() {
         return diceVals[1] * 2;
