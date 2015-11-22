@@ -279,6 +279,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         return false;
     }
 
+
+    public void computerClick(){
+        computerButtons[0].setText("" + 5);
+        computerButtons[0].setEnabled(false);
+    }
     public int[] getDiceValues() {
         return diceValues;
     }
