@@ -330,5 +330,17 @@ public class ScoreCalc {
     public int sum(){
         return ((diceVals[0] * 1) + (diceVals[1] * 2) + (diceVals[2] * 3) + (diceVals[3] * 4) + (diceVals[4] * 5) + (diceVals[5] * 6));
     }
+
+
+
+    public Dice[] getThedice() {
+        return thedice;
+    }
+
+    public void setThedice(Dice[] thedice) {
+        for(int i = 0; i < thedice.length; i++) {
+            this.thedice[i] = thedice[i];
+        }
+    }
 }
 
