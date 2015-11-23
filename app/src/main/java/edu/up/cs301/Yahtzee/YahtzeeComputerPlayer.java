@@ -77,8 +77,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                         index = select;
                         break;
                     }
-                }
-
+                }//
                 ScoreCalc calc = new ScoreCalc(diceValues);
                 scoreSelected = calc.scoreValues[index];
                 SelectScoreAction selectMove = new SelectScoreAction(this);
