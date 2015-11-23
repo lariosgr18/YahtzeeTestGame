@@ -57,12 +57,20 @@ public class YahtzeeLocalGame extends LocalGame {
     @Override
     protected String checkIfGameOver() {
         if((currentGame.getPlayer1turns() > 12) && (currentGame.getPlayer2turns() > 12)){
-            int totalScore=0;
+            int totalScore1=0;
+            int totalScore2=0;
             for(int i = 0; i < 13; i++)
             {
-               totalScore +=  currentGame.getPlayer1Score()[i];
+               totalScore1 +=  currentGame.getPlayer1Score()[i];
+                totalScore2 += currentGame.getPlayer2Score()[i];
             }
-            return "PLAYER 1 WINS " + totalScore;
+            if(totalScore1 > totalScore2) {
+                return "PLAYER 1 WINS " + totalScore1;
+            }
+            else
+            {
+                return "Player 2 WINS " + totalScore2;
+            }
         }
         return null;
     }
