@@ -45,37 +45,42 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
      */
     @Override
     protected void receiveInfo(GameInfo info) {
-        YahtzeeGameState state = (YahtzeeGameState) info;
 
-        Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
+        try {
+            YahtzeeGameState state = (YahtzeeGameState) info;
 
-        for(int i = 0; i < diceValues.length; i++)
-        {
-            diceValues[i] = (int) (Math.random() * 6 + 1);
-        }
-        RollAction rollMove = new RollAction(this);
-        super.game.sendAction(rollMove);
+            Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
-        int move = (int) ((Math.random() *2 )+1);
-
-            for(int i = 0; i < diceValues.length; i++)
-            {
+            for (int i = 0; i < diceValues.length; i++) {
                 diceValues[i] = (int) (Math.random() * 6 + 1);
             }
-        for(int i = 0; i < 3; i++) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            RollAction rollMove = new RollAction(this);
+            super.game.sendAction(rollMove);
+
+            int move = (int) ((Math.random() * 2) + 1);
+
+            for (int i = 0; i < 5; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                for (int j = 0; j < diceValues.length; j++) {
+                    diceValues[j] = (int) (Math.random() * 6 + 1);
+                }
+                RollAction rollMove2 = new RollAction(this);
+                super.game.sendAction(rollMove2);
             }
-            RollAction rollMove2 = new RollAction(this);
-            super.game.sendAction(rollMove2);
-        }
 
             SelectScoreAction selectMove = new SelectScoreAction(this);
             state.setSelect(true);
             state.setWhichButton(1);
             super.game.sendAction(selectMove);
+        }
+        catch (ClassCastException cast)
+        {
+            Log.d("Error","ClassCast");
+        }
 
 
 

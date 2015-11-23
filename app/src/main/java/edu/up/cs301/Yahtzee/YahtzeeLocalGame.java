@@ -81,6 +81,7 @@ public class YahtzeeLocalGame extends LocalGame {
 
                     currentGame.rollDice(((YahtzeeComputerPlayer)(action.getPlayer())).getDiceValues(),getPlayerIdx(action.getPlayer()));
                     Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
+                    return true;
                 }
 
                 if(action instanceof SelectScoreAction)
@@ -95,8 +96,9 @@ public class YahtzeeLocalGame extends LocalGame {
                         currentGame.selectScore(5,1,getPlayerIdx(action.getPlayer()),false);
                         Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
                     }
+                    return true;
                 }
-                return true;
+                return false;
             }
             if(getPlayerIdx(action.getPlayer()) == 0)
             {

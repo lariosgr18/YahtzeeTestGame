@@ -195,7 +195,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         {
             this.whichButton=state.getWhichButton();
             //computerButtons[whichButton-1].setEnabled(false);
-            computerButtons[whichButton-1].setText("" + 5);
+            computerButtons[whichButton-1].setText("" + 200);
             state.setSelect(false);
         }
 
