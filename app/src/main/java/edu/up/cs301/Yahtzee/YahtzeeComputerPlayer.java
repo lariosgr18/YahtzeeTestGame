@@ -19,13 +19,10 @@ import edu.up.cs301.game.util.Tickable;
  */
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
-    private YahtzeeHumanPlayer opponent;
-    private Button[] computerButtons = new Button[13];
-    private Dice[] thedice;
-    private ScoreCalc calc;
     private int[] diceValues = new int[5];
-    private int rollNum;
-    private int move;
+    private int scoreSelected;
+    private int index;
+    private int scoreCalc[] = new int[5];
 
 
     /**
@@ -58,24 +55,35 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
             super.game.sendAction(rollMove);
 
             int move = (int) ((Math.random() * 2) + 1);
-
-            for (int i = 0; i < 5; i++) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            if(move == 1)
+            {
+                for (int i = 0; i < 2; i++) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    for (int j = 0; j < diceValues.length; j++) {
+                        diceValues[j] = (int) (Math.random() * 6 + 1);
+                    }
+                    RollAction rollMove2 = new RollAction(this);
+                    super.game.sendAction(rollMove2);
                 }
-                for (int j = 0; j < diceValues.length; j++) {
-                    diceValues[j] = (int) (Math.random() * 6 + 1);
-                }
-                RollAction rollMove2 = new RollAction(this);
-                super.game.sendAction(rollMove2);
             }
+                int select;
+                while(true) {
+                    select = (int) ((Math.random() * 12) + 1);
+                    if(((YahtzeeGameState) info).getButtonsPressed2()[select] == false) {
+                        index = select;
+                        break;
+                    }
+                }
 
-            SelectScoreAction selectMove = new SelectScoreAction(this);
-            state.setSelect(true);
-            state.setWhichButton(1);
-            super.game.sendAction(selectMove);
+                ScoreCalc calc = new ScoreCalc(diceValues);
+                scoreSelected = calc.scoreValues[index];
+                SelectScoreAction selectMove = new SelectScoreAction(this);
+                super.game.sendAction(selectMove);
+
         }
         catch (ClassCastException cast)
         {
@@ -97,5 +105,24 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     public void setDiceValues(int[] diceValues) {
         this.diceValues = diceValues;
     }
+
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+
+    public int getScoreSelected() {
+        return scoreSelected;
+    }
+
+    public void setScoreSelected(int scoreSelected) {
+        this.scoreSelected = scoreSelected;
+    }
+
 
 }

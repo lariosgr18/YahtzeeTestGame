@@ -94,16 +94,8 @@ public class YahtzeeLocalGame extends LocalGame {
 
                 if(action instanceof SelectScoreAction)
                 {
-
-                    if(getPlayerIdx(action.getPlayer()) == 0) {
-                        currentGame.selectScore(((YahtzeeHumanPlayer) (action.getPlayer())).getScoreChosen(), ((YahtzeeHumanPlayer) (action.getPlayer())).getCurrentScoreIndex(), getPlayerIdx(action.getPlayer()), false);
-                        Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
-                    }
-                    else
-                    {
-                        currentGame.selectScore(5,1,getPlayerIdx(action.getPlayer()),false);
-                        Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
-                    }
+                    currentGame.selectScore(((YahtzeeComputerPlayer)(action.getPlayer())).getScoreSelected(),((YahtzeeComputerPlayer)(action.getPlayer())).getIndex(),getPlayerIdx(action.getPlayer()),false);
+                    Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
                     return true;
                 }
                 return false;
@@ -121,16 +113,10 @@ public class YahtzeeLocalGame extends LocalGame {
             if(action instanceof SelectScoreAction)
             {
 
-                if(getPlayerIdx(action.getPlayer()) == 0) {
-                    currentGame.selectScore(((YahtzeeHumanPlayer) (action.getPlayer())).getScoreChosen(), ((YahtzeeHumanPlayer) (action.getPlayer())).getCurrentScoreIndex(), getPlayerIdx(action.getPlayer()), false);
-                    Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
-                }
-                else
-                {
-                    currentGame.selectScore(5,1,getPlayerIdx(action.getPlayer()),false);
-                    Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
-                }
-                }
+                currentGame.selectScore(((YahtzeeHumanPlayer) (action.getPlayer())).getScoreChosen(), ((YahtzeeHumanPlayer) (action.getPlayer())).getCurrentScoreIndex(), getPlayerIdx(action.getPlayer()), false);
+                Log.d("PLAYER ID", "" + getPlayerIdx(action.getPlayer()));
+
+            }
             return true;
         }
 

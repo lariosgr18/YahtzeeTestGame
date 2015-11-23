@@ -33,6 +33,8 @@ public class ScoreCalc {
 
     public static boolean YAHTZEE = false;
 
+    public int scoreValues[] = new int[13];
+
     //Constructor for a human player
     public ScoreCalc(Button[] buttons, Dice[] dice, Button[] computerButtons1)
     {
@@ -44,6 +46,15 @@ public class ScoreCalc {
 
 
         this.thedice = dice;
+    }
+
+
+    public ScoreCalc(int Values[])
+    {
+
+        for (int j = 0; j < Values.length; j++) {
+            diceVals[Values[j] - 1]++;
+        }
     }
 
     //Updates the buttons to reflect the score
@@ -158,6 +169,43 @@ public class ScoreCalc {
 
     }
 
+    public void computerCalculator() {
+
+        for(int i = 0; i < scoreValues.length; i++)
+        {
+            switch (i)
+            {
+                case 0: scoreValues[i] = aceScore();
+                        break;
+                case 1: scoreValues[i] = twoScore();
+                    break;
+                case 2: scoreValues[i] = threeScore();
+                    break;
+                case 3: scoreValues[i] = fourScore();
+                    break;
+                case 4: scoreValues[i] = fiveScore();
+                    break;
+                case 5: scoreValues[i] = sixScore();
+                    break;
+                case 6: scoreValues[i] = threeOfaKind();
+                    break;
+                case 7: scoreValues[i] = fourOfaKind();
+                    break;
+                case 8: scoreValues[i] = fullHouse();
+                    break;
+                case 9: scoreValues[i] = smallStraight();
+                    break;
+                case 10: scoreValues[i] = largeStraight();
+                    break;
+                case 11: scoreValues[i] = yahtzee();
+                    break;
+                case 12: scoreValues[i] = chance();
+                    break;
+            }
+        }
+
+    }
+
     public int aceScore() {return diceVals[0] * 1; }
 
     public int twoScore() {
@@ -239,6 +287,8 @@ public class ScoreCalc {
         }
         return 0;
     }
+
+
 
     public int largeStraight(){
         for(int i = 0; i < diceVals.length; i++){
