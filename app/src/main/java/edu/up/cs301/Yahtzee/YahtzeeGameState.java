@@ -52,8 +52,8 @@ public class YahtzeeGameState extends GameState {
     public YahtzeeGameState() {
         for (int i=0; i < buttonsPressed.length ;i++)
         {
-            buttonsPressed[i]= false;
-            buttonsPressed2[i] = false;
+            buttonsPressed[i]= true;
+            buttonsPressed2[i] = true;
         }
 
         this.player1Id = 0;

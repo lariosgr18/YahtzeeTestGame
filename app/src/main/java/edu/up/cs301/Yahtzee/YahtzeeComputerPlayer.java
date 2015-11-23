@@ -53,6 +53,11 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
             }
             RollAction rollMove = new RollAction(this);
             super.game.sendAction(rollMove);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             int move = (int) ((Math.random() * 2) + 1);
             if(move == 1)
@@ -73,12 +78,13 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                 int select;
                 while(true) {
                     select = (int) ((Math.random() * 12) + 1);
-                    if(((YahtzeeGameState) info).getButtonsPressed2()[select] == false) {
+                    if(((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
                         index = select;
                         break;
                     }
                 }//
                 ScoreCalc calc = new ScoreCalc(diceValues);
+                calc.computerCalculator();
                 scoreSelected = calc.scoreValues[index];
                 SelectScoreAction selectMove = new SelectScoreAction(this);
                 super.game.sendAction(selectMove);
@@ -86,7 +92,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
         }
         catch (ClassCastException cast)
         {
-            Log.d("Error","ClassCast");
+            Log.d("Error", "ClassCast");
         }
 
 
