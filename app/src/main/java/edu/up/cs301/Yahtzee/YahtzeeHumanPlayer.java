@@ -191,15 +191,16 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             scoreCard.updateComputerCard();
         }
 
-        if( state.getSelect())
-        {   if ( state.getWhichButton() == 1 && computerButtons[state.getWhichButton() -1].isEnabled()) {
-                this.whichButton = state.getWhichButton();
-                //computerButtons[whichButton-1].setEnabled(false);
-                computerButtons[whichButton - 1].setText("" + 200);
-                computerButtons[whichButton - 1].setEnabled(false);
-                computerButtons[whichButton - 1].setBackgroundColor(Color.MAGENTA);
-                state.setSelect(false);
-
+        if( state.getSelect()) {
+            for(int i = 0; i<13;i++ ) {
+                if (state.getWhichButton() == i && computerButtons[state.getWhichButton()].isEnabled()) {
+                    this.whichButton = state.getWhichButton();
+                    //computerButtons[whichButton].setEnabled(false);
+                    //computerButtons[whichButton].setText("" + 200);
+                    computerButtons[whichButton].setEnabled(false);
+                    computerButtons[whichButton].setBackgroundColor(Color.MAGENTA);
+                    state.setSelect(false);
+                }
             }
         }
 
