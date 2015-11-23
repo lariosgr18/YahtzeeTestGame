@@ -77,7 +77,11 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
             }
                 int select;
                 while(true) {
-                    select = (int) ((Math.random() * 12) + 1);
+                    select = (int) ((Math.random() * 13));
+                    if(select == 13)
+                    {
+                        select = 12;
+                    }
                     if(((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
                         index = select;
                         break;
