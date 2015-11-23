@@ -99,7 +99,7 @@ public class YahtzeeGameState extends GameState {
             } else
             {
                 player2Score[index] = score;
-                buttonsPressed[index] = buttonPressed;
+                buttonsPressed2[index] = buttonPressed;
                 currentPlayerID = player1Id;
                 player2turns++;
             }
