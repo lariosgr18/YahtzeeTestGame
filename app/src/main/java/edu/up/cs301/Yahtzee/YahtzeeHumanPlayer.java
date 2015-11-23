@@ -191,6 +191,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             scoreCard.updateComputerCard();
         }
 
+        //push comment
         if( state.getSelect()) {
             for(int i = 0; i<13;i++ ) {
                 if (state.getWhichButton() == i && computerButtons[state.getWhichButton()].isEnabled()) {
