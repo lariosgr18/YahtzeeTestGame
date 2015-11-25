@@ -65,7 +65,7 @@ public class YahtzeeLocalGame extends LocalGame {
                 totalScore2 += currentGame.getPlayer2Score()[i];
             }
             if(totalScore1 > totalScore2) {
-                return "PLAYER 1 WINS " + totalScore1;
+                return "PLAYER 1 WINS " + totalScore1 + " " + totalScore2;
             }
             else
             {
@@ -100,10 +100,7 @@ public class YahtzeeLocalGame extends LocalGame {
                 }
                 return false;
             }
-            if(getPlayerIdx(action.getPlayer()) == 0)
-            {
-                currentGame.setPlayer1((YahtzeeHumanPlayer) action.getPlayer());
-            }
+
             if(action instanceof RollAction)
             {
                 currentGame.rollDice(((YahtzeeHumanPlayer)(action.getPlayer())).getDiceValues(),getPlayerIdx(action.getPlayer()));
