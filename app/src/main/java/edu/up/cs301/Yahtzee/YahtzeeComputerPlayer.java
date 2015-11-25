@@ -45,54 +45,56 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
         try {
             YahtzeeGameState state = (YahtzeeGameState) info;
+            if(state.getCurrentPlayerID()== 1) {
+                Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
-            Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
-
-            for (int i = 0; i < diceValues.length; i++) {
-                diceValues[i] = (int) (Math.random() * 6 + 1);
-            }
-            RollAction rollMove = new RollAction(this);
-            super.game.sendAction(rollMove);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            int move = (int) ((Math.random() * 2) + 1);
-            //if(move == 1)
-            //{
-                for (int i = 0; i < 2; i++) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    for (int j = 0; j < diceValues.length; j++) {
-                        diceValues[j] = (int) (Math.random() * 6 + 1);
-                    }
-                    RollAction rollMove2 = new RollAction(this);
-                    super.game.sendAction(rollMove2);
+                for (int i = 0; i < diceValues.length; i++) {
+                    diceValues[i] = (int) (Math.random() * 6 + 1);
                 }
-            //}
+                RollAction rollMove = new RollAction(this);
+                super.game.sendAction(rollMove);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                int move = (int) ((Math.random() * 2) + 1);
+                //if (move == 1) {
+                    for (int i = 0; i < 2; i++) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        for (int j = 0; j < diceValues.length; j++) {
+                            diceValues[j] = (int) (Math.random() * 6 + 1);
+
+                        }
+                        RollAction rollMove2 = new RollAction(this);
+                        super.game.sendAction(rollMove2);
+                    }
+               // }
                 int select;
-                while(true) {
+                while (true) {
                     select = (int) ((Math.random() * 13));
-                    if(select == 13)
-                    {
+                    if (select == 13) {
                         select = 12;
                     }
-                    if(((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
+                    if (((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
                         index = select;
                         break;
                     }
                 }//
+                for (int i = 0; i < diceValues.length; i++) {
+                    Log.d("diceValues: ", "" + diceValues[i]);
+                }
                 ScoreCalc calc = new ScoreCalc(diceValues);
                 calc.computerCalculator();
                 scoreSelected = calc.scoreValues[index];
                 SelectScoreAction selectMove = new SelectScoreAction(this);
                 super.game.sendAction(selectMove);
-
+            }
         }
         catch (ClassCastException cast)
         {

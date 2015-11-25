@@ -63,6 +63,7 @@ public class YahtzeeLocalGame extends LocalGame {
             {
                totalScore1 +=  currentGame.getPlayer1Score()[i];
                 totalScore2 += currentGame.getPlayer2Score()[i];
+                Log.d("gameOver scores:", "" + currentGame.getPlayer2Score()[i]);
             }
             if(totalScore1 > totalScore2) {
                 return "PLAYER 1 WINS " + totalScore1 + " " + totalScore2;

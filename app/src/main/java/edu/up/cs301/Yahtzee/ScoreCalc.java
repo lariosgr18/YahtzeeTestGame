@@ -1,6 +1,7 @@
 package edu.up.cs301.Yahtzee;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.SeekBar;
 
@@ -15,7 +16,7 @@ import edu.up.cs301.game.R;
 public class ScoreCalc {
     private int[] diceVals = new int[6];
 
-    private Dice[] thedice;
+    private Dice[] thedice = new Dice[6];
 
     private int currentYahtzeeScore = 0;
 
@@ -54,6 +55,7 @@ public class ScoreCalc {
 
         for (int j = 0; j < Values.length; j++) {
             diceVals[Values[j] - 1]++;
+            Log.d("score constructor:", ""+ Values[j]);
         }
     }
 
@@ -117,6 +119,7 @@ public class ScoreCalc {
 
         for (int j = 0; j < thedice.length; j++) {
             diceVals[thedice[j].dieNum - 1]++;
+            Log.d("updateComputerCard: ", "" + thedice[j]);
         }
 
 
@@ -175,31 +178,44 @@ public class ScoreCalc {
         {
             switch (i)
             {
-                case 0: scoreValues[i] = aceScore();
-                        break;
-                case 1: scoreValues[i] = twoScore();
+                case 0:
+                    scoreValues[i] = aceScore();
                     break;
-                case 2: scoreValues[i] = threeScore();
+                case 1:
+                    scoreValues[i] = twoScore();
                     break;
-                case 3: scoreValues[i] = fourScore();
+                case 2:
+                    scoreValues[i] = threeScore();
                     break;
-                case 4: scoreValues[i] = fiveScore();
+                case 3:
+                    scoreValues[i] = fourScore();
                     break;
-                case 5: scoreValues[i] = sixScore();
+                case 4:
+                    scoreValues[i] = fiveScore();
                     break;
-                case 6: scoreValues[i] = threeOfaKind();
+                case 5:
+                    scoreValues[i] = sixScore();
                     break;
-                case 7: scoreValues[i] = fourOfaKind();
+                case 6:
+                    scoreValues[i] = threeOfaKind();
                     break;
-                case 8: scoreValues[i] = fullHouse();
+                case 7:
+                    scoreValues[i] = fourOfaKind();
                     break;
-                case 9: scoreValues[i] = smallStraight();
+                case 8:
+                    scoreValues[i] = fullHouse();
                     break;
-                case 10: scoreValues[i] = largeStraight();
+                case 9:
+                    scoreValues[i] = smallStraight();
                     break;
-                case 11: scoreValues[i] = yahtzee();
+                case 10:
+                    scoreValues[i] = largeStraight();
                     break;
-                case 12: scoreValues[i] = chance();
+                case 11:
+                    scoreValues[i] = yahtzee();
+                    break;
+                case 12:
+                    scoreValues[i] = chance();
                     break;
             }
         }

@@ -185,8 +185,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         {
             thedice[i].dieNum = state.getDiceValue()[i];
             thedice[i].invalidate();
+            Log.d("recieveInfo: ", "" + state.getDiceValue()[i]);
+
         }
-        scoreCard.setThedice(thedice);
+       scoreCard.setThedice(thedice);
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
             scoreCard.updateComputerCard();
         }
@@ -194,9 +196,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         //push comment
 
             for(int i = 0; i<13;i++ ) {
-
-                    //computerButtons[whichButton].setEnabled(false);
-                    //computerButtons[whichButton].setText("" + 200);
                     computerButtons[i].setEnabled(((YahtzeeGameState) info).getButtonsPressed2()[i]);
                 if(((YahtzeeGameState) info).getButtonsPressed2()[i] == false) {
                     computerButtons[i].setBackgroundColor(Color.MAGENTA);
