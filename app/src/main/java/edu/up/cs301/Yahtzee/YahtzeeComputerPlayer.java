@@ -60,10 +60,10 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                 }
 
                 int move = (int) ((Math.random() * 2) + 1);
-                //if (move == 1) {
+                if (move == 1) {
                     for (int i = 0; i < 2; i++) {
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(2000*(i+1));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -74,7 +74,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                         RollAction rollMove2 = new RollAction(this);
                         super.game.sendAction(rollMove2);
                     }
-               // }
+                }
                 int select;
                 while (true) {
                     select = (int) ((Math.random() * 13));
@@ -88,6 +88,11 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                 }//
                 for (int i = 0; i < diceValues.length; i++) {
                     Log.d("diceValues: ", "" + diceValues[i]);
+                }
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
                 ScoreCalc calc = new ScoreCalc(diceValues);
                 calc.computerCalculator();
