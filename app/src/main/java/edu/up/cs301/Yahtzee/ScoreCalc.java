@@ -1,13 +1,10 @@
 package edu.up.cs301.Yahtzee;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.SeekBar;
 
 import edu.up.cs301.animation.Dice;
-import edu.up.cs301.game.R;
 
 /**
  * Created by Grayson, Michael, Abhinav on 11/8/2015.
@@ -15,42 +12,48 @@ import edu.up.cs301.game.R;
  * Controls the scores associated with each of the buttons.
  */
 public class ScoreCalc {
-    private int[] diceVals = new int[6];
+    private int[] diceVals = new int[6];//the number of values of each dice
 
-    private Dice[] thedice = new Dice[6];
+    private Dice[] diceObjects = new Dice[6];// the dice objects passed in
 
-    private int currentYahtzeeScore = 0;
+    private int currentYahtzeeScore = 0;//the current score of the yahtzee category
 
-    private Button[] numberedButtons1 = new Button[13];
+    private Button[] playerButtons = new Button[13];//the players buttons
 
-    private Button[] computerButtons = new Button[13];
+    private Button[] computerButtons = new Button[13];//the buttons used by the computer
 
-    private static final int FULLHOUSESCORE = 25;
+    private static final int FULLHOUSESCORE = 25;//value of a fullhouse
 
-    private static final int SMALLSTRAIGHTSCORE = 30;
+    private static final int SMALLSTRAIGHTSCORE = 30;//value of a small straight
 
-    private static final int LARGESTRAIGHTSCORE = 40;
+    private static final int LARGESTRAIGHTSCORE = 40;//value of a large straight
 
-    private static final int YAHTZEESCORE = 50;
+    private static final int YAHTZEESCORE = 50;//value of a yahtzee
 
-    public static boolean YAHTZEE = false;
+    public static boolean YAHTZEE = false;//check to see if a player has gotten at least one yahtzee
 
-    public int scoreValues[] = new int[13];
+    public int scoreValues[] = new int[13];//values of each of the scores available
 
-    //Constructor for a human player
+    /*
+    Constructor for the Human player
+    Takes in an array of buttons, dice objects, and the computers buttons
+     */
     public ScoreCalc(Button[] buttons, Dice[] dice, Button[] computerButtons1)
     {
         //Activity card = player.mainActivity;
-        for (int i = 0; i < numberedButtons1.length; i++) {
-            this.numberedButtons1[i] = buttons[i];
+        for (int i = 0; i < playerButtons.length; i++) {
+            this.playerButtons[i] = buttons[i];
             this.computerButtons[i] = computerButtons1[i];
         }
 
 
-        this.thedice = dice;
+        this.diceObjects = dice;
     }
 
-
+    /*
+    Constructor for the computer player
+    Takes in array of integer values
+     */
     public ScoreCalc(int Values[])
     {
 
@@ -60,59 +63,61 @@ public class ScoreCalc {
         }
     }
 
-    //Updates the buttons to reflect the score
+    /*
+    Updates the Human Player Score card/buttons
+     */
     public void updateScoreCard() {
 
-        for (int j = 0; j < thedice.length; j++) {
-            diceVals[thedice[j].dieNum - 1]++;
+        for (int j = 0; j < diceObjects.length; j++) {
+            diceVals[diceObjects[j].dieNum - 1]++;
         }
 
 
-        if(numberedButtons1[0].isEnabled())
+        if(playerButtons[0].isEnabled())
         {
-            numberedButtons1[0].setText("" + aceScore());
+            playerButtons[0].setText("" + aceScore());
         }
-        if(numberedButtons1[1].isEnabled()) {
-            numberedButtons1[1].setText("" + twoScore());
+        if(playerButtons[1].isEnabled()) {
+            playerButtons[1].setText("" + twoScore());
         }
-        if(numberedButtons1[2].isEnabled()) {
-            numberedButtons1[2].setText("" + threeScore());
+        if(playerButtons[2].isEnabled()) {
+            playerButtons[2].setText("" + threeScore());
         }
-        if(numberedButtons1[3].isEnabled()) {
-            numberedButtons1[3].setText("" + fourScore());
+        if(playerButtons[3].isEnabled()) {
+            playerButtons[3].setText("" + fourScore());
         }
-        if(numberedButtons1[4].isEnabled()) {
-            numberedButtons1[4].setText("" + fiveScore());
+        if(playerButtons[4].isEnabled()) {
+            playerButtons[4].setText("" + fiveScore());
         }
-        if(numberedButtons1[5].isEnabled()) {
-            numberedButtons1[5].setText("" + sixScore());
+        if(playerButtons[5].isEnabled()) {
+            playerButtons[5].setText("" + sixScore());
         }
-        if(numberedButtons1[6].isEnabled()) {
-            numberedButtons1[6].setText("" + threeOfaKind());
+        if(playerButtons[6].isEnabled()) {
+            playerButtons[6].setText("" + threeOfaKind());
         }
-        if(numberedButtons1[7].isEnabled()) {
-            numberedButtons1[7].setText("" + fourOfaKind());
+        if(playerButtons[7].isEnabled()) {
+            playerButtons[7].setText("" + fourOfaKind());
         }
-        if(numberedButtons1[8].isEnabled()) {
-            numberedButtons1[8].setText("" + fullHouse());
+        if(playerButtons[8].isEnabled()) {
+            playerButtons[8].setText("" + fullHouse());
         }
-        if(numberedButtons1[9].isEnabled()) {
-            numberedButtons1[9].setText("" + smallStraight());
+        if(playerButtons[9].isEnabled()) {
+            playerButtons[9].setText("" + smallStraight());
         }
-        if(numberedButtons1[10].isEnabled()) {
-            numberedButtons1[10].setText("" + largeStraight());
+        if(playerButtons[10].isEnabled()) {
+            playerButtons[10].setText("" + largeStraight());
         }
         if(CheckYahtzee())
         {
-            numberedButtons1[11].setBackgroundColor(Color.LTGRAY);
-            numberedButtons1[11].setEnabled(true);
-            numberedButtons1[11].setTextSize(15);
+            playerButtons[11].setBackgroundColor(Color.LTGRAY);
+            playerButtons[11].setEnabled(true);
+            playerButtons[11].setTextSize(15);
         }
-        if(numberedButtons1[11].isEnabled()) {
-            numberedButtons1[11].setText("" + yahtzee());
+        if(playerButtons[11].isEnabled()) {
+            playerButtons[11].setText("" + yahtzee());
         }
-        if(numberedButtons1[12].isEnabled()) {
-            numberedButtons1[12].setText("" + chance());
+        if(playerButtons[12].isEnabled()) {
+            playerButtons[12].setText("" + chance());
         }
 
 
@@ -122,11 +127,14 @@ public class ScoreCalc {
 
     }
 
+    /*
+   Updates the Computer Player Score card/buttons
+    */
     public  void updateComputerCard(){
 
-        for (int j = 0; j < thedice.length; j++) {
-            diceVals[thedice[j].dieNum - 1]++;
-            Log.d("updateComputerCard: ", "" + thedice[j]);
+        for (int j = 0; j < diceObjects.length; j++) {
+            diceVals[diceObjects[j].dieNum - 1]++;
+            Log.d("updateComputerCard: ", "" + diceObjects[j]);
         }
 
 
@@ -179,6 +187,9 @@ public class ScoreCalc {
 
     }
 
+    /*
+   Calculates the available scores for the computer player to pick from
+    */
     public void computerCalculator() {
 
         for(int i = 0; i < scoreValues.length; i++)
@@ -229,6 +240,9 @@ public class ScoreCalc {
 
     }
 
+    /*
+    updates the values of the dice
+     */
     public void updateDiceVals( int diceV[])
     {
         for (int j = 0; j < diceV.length; j++) {
@@ -237,29 +251,49 @@ public class ScoreCalc {
 
 
     }
-
+    /*
+       Calculates the number of aces rolled
+        */
     public int aceScore() {return diceVals[0] * 1; }
 
+    /*
+    Calculates the number of twos rolled
+    */
     public int twoScore() {
         return diceVals[1] * 2;
     }
 
+    /*
+   Calculates the number of threes rolled
+   */
     public int threeScore() {
         return diceVals[2] * 3;
     }
 
+    /*
+   Calculates the number of fours rolled
+   */
     public int fourScore() {
         return diceVals[3] * 4;
     }
 
+    /*
+   Calculates the number of fives rolled
+   */
     public int fiveScore() {
         return diceVals[4] * 5;
     }
 
+    /*
+   Calculates the number of sixes rolled
+   */
     public int sixScore() {
         return diceVals[5] * 6;
     }
 
+    /*
+   Calculates if a three of a kind is rolled
+   */
     public int threeOfaKind() {
         for (int i = 0; i < diceVals.length; i++) {
             if (diceVals[i] > 2) {
@@ -269,6 +303,9 @@ public class ScoreCalc {
         return 0;
     }
 
+    /*
+   Calculates if a four of a kind is rolled
+   */
     public int fourOfaKind(){
         for (int i = 0; i < diceVals.length; i++) {
             if (diceVals[i] > 3) {
@@ -277,7 +314,10 @@ public class ScoreCalc {
         }
         return 0;
     }
-//
+
+    /*
+   Calculates if a full house is rolled
+   */
     public int fullHouse(){
         for (int i = 0; i < diceVals.length; i++) {
             if (diceVals[i] == 2 || diceVals[i] == 3) {
@@ -300,6 +340,9 @@ public class ScoreCalc {
         return 0;
     }
 
+    /*
+   Calculates if a small straight is rolled
+   */
     public int smallStraight(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[2] > 0 && diceVals[3] > 0){
@@ -321,7 +364,9 @@ public class ScoreCalc {
     }
 
 
-
+    /*
+       Calculates if a large straight is rolled
+       */
     public int largeStraight(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[1] > 0 && diceVals[2] > 0 && diceVals[3] > 0 && diceVals[4] > 0 ){
@@ -336,6 +381,9 @@ public class ScoreCalc {
         return 0;
     }
 
+    /*
+   Calculates if a yahtzee is rolled
+   */
     public int yahtzee(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
@@ -353,6 +401,9 @@ public class ScoreCalc {
         return 0;
     }
 
+    /*
+    Checks if a yahtzee is rolled
+   */
     public boolean CheckYahtzee(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
@@ -363,23 +414,33 @@ public class ScoreCalc {
     }
 
 
+    /*
+   Calculates the chance category - sum of all the dice values
+   */
     public int chance()
     {
         return sum();
     }
+
+    /*
+   Calculates the sum of the dice
+   */
     public int sum(){
         return ((diceVals[0] * 1) + (diceVals[1] * 2) + (diceVals[2] * 3) + (diceVals[3] * 4) + (diceVals[4] * 5) + (diceVals[5] * 6));
     }
 
 
 
-    public Dice[] getThedice() {
-        return thedice;
+    /*
+    Setter/Getter for the Dice Objects
+   */
+    public Dice[] getDiceObjects() {
+        return diceObjects;
     }
 
-    public void setThedice(Dice[] thedice) {
-        for(int i = 0; i < thedice.length; i++) {
-            this.thedice[i] = thedice[i];
+    public void setDiceObjects(Dice[] diceObjects) {
+        for(int i = 0; i < diceObjects.length; i++) {
+            this.diceObjects[i] = diceObjects[i];
         }
     }
 }
