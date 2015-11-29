@@ -13,6 +13,7 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
     private int scoreSelected;
     private int index;
     private int scoreCalc[] = new int[5];
+    private int counter;
 
 
     /**
@@ -40,6 +41,7 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
             if(state.getCurrentPlayerID()== 1) {
                 Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
+
                 for (int i = 0; i < diceValues.length; i++) {
                     diceValues[i] = (int) (Math.random() * 6 + 1);
                 }
@@ -56,70 +58,99 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
                 calc.updateDiceVals(diceValues);
                 calc.computerCalculator();
 
-                for ( int i = 0; i < calc.scoreValues.length ; i++)
-                {
-                    if ( calc.scoreValues[i] > 20 && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                    {
-                        scoreSelected = calc.scoreValues[index];
-                        SelectScoreAction selectMove = new SelectScoreAction(this);
-                        super.game.sendAction(selectMove);
-                    }
-                    else
-                    {
-                        for (int j = 0; j < diceValues.length; j++)
-                        {
-                            diceValues[j] = (int) (Math.random() * 6 + 1);
+               counter = 0;
+
+                while (counter == 0 ) {
+
+                    for (int i = 0; i < calc.scoreValues.length; i++) {
+                        if (calc.scoreValues[i] > 20 && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
+                            scoreSelected = calc.scoreValues[index];
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            SelectScoreAction selectMove = new SelectScoreAction(this);
+                            super.game.sendAction(selectMove);
+                            counter = 1;
                         }
+
+                    }
+                    if ( counter !=1){
+
+                        for (int i = 0; i < diceValues.length; i++)
+                        {
+                            diceValues[i] = (int) (Math.random() * 6 + 1);
+                        }
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+
                         RollAction rollMove2 = new RollAction(this);
                         super.game.sendAction(rollMove2);
 
-                        if ( calc.scoreValues[i] > 20 && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                        {
-                            scoreSelected = calc.scoreValues[index];
-                            SelectScoreAction selectMove = new SelectScoreAction(this);
-                            super.game.sendAction(selectMove);
-                        }
-                        else
-                        {
-                            for (int j = 0; j < diceValues.length; j++)
-                            {
-                                diceValues[j] = (int) (Math.random() * 6 + 1);
-                            }
-                            RollAction rollMove3 = new RollAction(this);
-                            super.game.sendAction(rollMove3);
-
-                            if ( calc.scoreValues[i] > 20 && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                            {
+                        for (int i = 0; i < calc.scoreValues.length; i++) {
+                            if (calc.scoreValues[i] > 20 && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
                                 scoreSelected = calc.scoreValues[index];
-                                SelectScoreAction selectMove = new SelectScoreAction(this);
-                                super.game.sendAction(selectMove);
-                            }
-                            else
-                            {
-                                int select;
-                                while (true) {
-                                    select = (int) ((Math.random() * 13));
-                                    if (select == 13) {
-                                        select = 12;
-                                    }
-                                    if (((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
-                                        index = select;
-                                        break;
-                                    }
+
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
                                 }
 
-                                scoreSelected = calc.scoreValues[select];
                                 SelectScoreAction selectMove = new SelectScoreAction(this);
                                 super.game.sendAction(selectMove);
-
+                                counter = 1;
                             }
 
                         }
+                    }
+
+                    if ( counter !=1){
+
+                        for (int i = 0; i < diceValues.length; i++)
+                        {
+                            diceValues[i] = (int) (Math.random() * 6 + 1);
+                        }
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
 
+                        RollAction rollMove3 = new RollAction(this);
+                        super.game.sendAction(rollMove3);
+
+                        for (int i = 0; i < calc.scoreValues.length; i++) {
+                            if (calc.scoreValues[i] > 20 && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
+                                scoreSelected = calc.scoreValues[index];
+
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                                SelectScoreAction selectMove = new SelectScoreAction(this);
+                                super.game.sendAction(selectMove);
+                                counter = 1;
+                            }
+
+                        }
                     }
 
                 }
+
+
                 // scoreSelected = calc.scoreValues[index];
 
 
