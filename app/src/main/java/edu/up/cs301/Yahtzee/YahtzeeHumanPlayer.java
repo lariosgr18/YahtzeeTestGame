@@ -262,11 +262,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
                 for (int i = 0; i < numberedButtons1.length; i++) {
                     if (numberedButtons1[i] == view) {
-                        if (view != numberedButtons1[11]) {
-                            numberedButtons1[i].setEnabled(false);
-                            numberedButtons1[i].setBackgroundColor(Color.MAGENTA);
-
-                        }
+                        numberedButtons1[i].setEnabled(false);
+                        numberedButtons1[i].setBackgroundColor(Color.MAGENTA);
+                        scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
+                        currentScoreIndex = i;
+                        scoreChosen = scores[i];
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
                         currentScoreIndex = i;
                         scoreChosen = scores[i];

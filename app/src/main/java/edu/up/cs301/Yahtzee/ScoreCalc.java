@@ -1,6 +1,7 @@
 package edu.up.cs301.Yahtzee;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -100,6 +101,12 @@ public class ScoreCalc {
         }
         if(numberedButtons1[10].isEnabled()) {
             numberedButtons1[10].setText("" + largeStraight());
+        }
+        if(CheckYahtzee())
+        {
+            numberedButtons1[11].setBackgroundColor(Color.LTGRAY);
+            numberedButtons1[11].setEnabled(true);
+            numberedButtons1[11].setTextSize(15);
         }
         if(numberedButtons1[11].isEnabled()) {
             numberedButtons1[11].setText("" + yahtzee());
@@ -330,7 +337,6 @@ public class ScoreCalc {
     }
 
     public int yahtzee(){
-//
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
                 if(YAHTZEE == true ){
@@ -341,11 +347,20 @@ public class ScoreCalc {
                     YAHTZEE = true;
                     currentYahtzeeScore = YAHTZEESCORE;
                 }
+                return currentYahtzeeScore;
             }
         }
-        return currentYahtzeeScore;
+        return 0;
     }
 
+    public boolean CheckYahtzee(){
+        for(int i = 0; i < diceVals.length; i++){
+            if(diceVals[i] == 5){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     public int chance()
