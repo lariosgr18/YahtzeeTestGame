@@ -7,11 +7,9 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -188,7 +186,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             Log.d("recieveInfo: ", "" + state.getDiceValue()[i]);
 
         }
-       scoreCard.setThedice(thedice);
+       scoreCard.setDiceObjects(thedice);
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
             scoreCard.updateComputerCard();
         }
