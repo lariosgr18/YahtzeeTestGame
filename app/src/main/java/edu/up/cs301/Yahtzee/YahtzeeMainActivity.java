@@ -40,14 +40,19 @@ public class YahtzeeMainActivity extends GameMainActivity{
             public GamePlayer createPlayer(String name) {
                 return new YahtzeeHumanPlayer(name);
             }});
-        playerTypes.add(new GamePlayerType("Computer Player") {
+        playerTypes.add(new GamePlayerType("Computer Player (Easy)") {
             public GamePlayer createPlayer(String name) {
                 return new YahtzeeComputerPlayer(name);
+            }});
+        playerTypes.add(new GamePlayerType("Computer Player (Hard)") {
+            public GamePlayer createPlayer(String name) {
+                return new YahtzeeHardComputerPlayer(name);
             }});
 
         // Create a game configuration class for Counter:
         GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Yahtzee", PORT_NUMBER);
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
+        defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
         defaultConfig.setRemoteData("Remote Player", "", 2);
 
