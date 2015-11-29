@@ -259,7 +259,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             }
 
             if (view != roll && rollNum >= 2) {
-
                 for (int i = 0; i < numberedButtons1.length; i++) {
                     if (numberedButtons1[i] == view) {
                         numberedButtons1[i].setEnabled(false);
@@ -270,8 +269,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
                         currentScoreIndex = i;
                         scoreChosen = scores[i];
-
-
                     }
 
                 }
