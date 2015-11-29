@@ -38,14 +38,26 @@ public class YahtzeeMainActivity extends GameMainActivity{
         // Pig has two player types:  human and computer
         playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
+                if(name.length()>14)
+                {
+                    name = "HUMAN";
+                }
                 return new YahtzeeHumanPlayer(name);
             }});
         playerTypes.add(new GamePlayerType("Computer Player (Easy)") {
             public GamePlayer createPlayer(String name) {
+                if(name.length()>20)
+                {
+                    name = "COMPUTER";
+                }
                 return new YahtzeeComputerPlayer(name);
             }});
         playerTypes.add(new GamePlayerType("Computer Player (Hard)") {
             public GamePlayer createPlayer(String name) {
+                if(name.length()>20)
+                {
+                    name = "COMPUTER";
+                }
                 return new YahtzeeHardComputerPlayer(name);
             }});
 
