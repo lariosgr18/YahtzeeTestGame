@@ -222,6 +222,15 @@ public class ScoreCalc {
 
     }
 
+    public void updateDiceVals( int diceV[])
+    {
+        for (int j = 0; j < diceV.length; j++) {
+            diceVals[diceV[j] - 1]++;
+        }
+
+
+    }
+
     public int aceScore() {return diceVals[0] * 1; }
 
     public int twoScore() {
