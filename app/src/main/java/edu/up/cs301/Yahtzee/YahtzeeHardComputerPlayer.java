@@ -8,7 +8,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 /**
  * Created by Michael on 11/29/2015.
  */
-public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
+public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     private int[] diceValues = new int[5];
     private int scoreSelected;
     private int index;
@@ -66,7 +66,7 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
                 while (counter == 0 ) {
 
                     for (int i = 0; i < calc.scoreValues.length; i++) {
-                        if (calc.scoreValues[i] > LIMIT && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
+                        if ((calc.scoreValues[i] > LIMIT) && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
 
                             try {
                                 Thread.sleep(1000);
@@ -74,9 +74,10 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
                                 e.printStackTrace();
                             }
 
-                            calc.updateDiceVals(diceValues);
-                            calc.computerCalculator();
+                            //calc.updateDiceVals(diceValues);
+                            //calc.computerCalculator();
                             scoreSelected = calc.scoreValues[i];
+                            index = i;
                             SelectScoreAction selectMove = new SelectScoreAction(this);
                             super.game.sendAction(selectMove);
                             counter = 1;
@@ -113,6 +114,7 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
                                     e.printStackTrace();
                                 }
 
+                                index=i;
                                 calc.updateDiceVals(diceValues);
                                 calc.computerCalculator();
                                 scoreSelected = calc.scoreValues[i];
@@ -152,6 +154,8 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
+
+                                index=1;
                                 calc.updateDiceVals(diceValues);
                                 calc.computerCalculator();
                                 scoreSelected = calc.scoreValues[i];
@@ -172,7 +176,7 @@ public class YahtzeeHardComputerPlayer extends GameComputerPlayer {
                                     }
                                 }//
 
-
+                                    //random
                                 calc.updateDiceVals(diceValues);
                                 calc.computerCalculator();
                                 scoreSelected = calc.scoreValues[index];
