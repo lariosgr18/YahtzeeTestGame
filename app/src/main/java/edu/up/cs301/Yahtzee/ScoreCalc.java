@@ -245,7 +245,12 @@ public class ScoreCalc {
      */
     public void updateDiceVals( int diceV[])
     {
+        for (int j = 0; j < diceVals.length; j++) {
+
+            diceVals[j] = 0;
+        }
         for (int j = 0; j < diceV.length; j++) {
+
             diceVals[diceV[j] - 1]++;
         }
 
