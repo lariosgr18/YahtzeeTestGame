@@ -24,7 +24,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     GameMainActivity mainActivity = null; //game activity
 
     // the game's state
-    YahtzeeGameState state = null;//the state to load
+    YahtzeeGameState state = null;
 
     RollAction rollAction; // action for rolling the dice
 
@@ -170,38 +170,31 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     public View getTopView() {
         return (RelativeLayout) mainActivity.findViewById(R.id.top_gui_layout);
     }
+
     /*
         get the gamestate info
      */
     @Override
     public void receiveInfo(GameInfo info) {
-
         state = (YahtzeeGameState) info;
 
-
-        for(int i = 0; i < thedice.length; i++)
-        {
+        for(int i = 0; i < thedice.length; i++) {
             thedice[i].dieNum = state.getDiceValue()[i];
             thedice[i].invalidate();
             Log.d("recieveInfo: ", "" + state.getDiceValue()[i]);
 
         }
+
        scoreCard.setDiceObjects(thedice);
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
             scoreCard.updateComputerCard();
         }
-
-        //push comment
-
             for(int i = 0; i<13;i++ ) {
                     computerButtons[i].setEnabled(((YahtzeeGameState) info).getButtonsPressed2()[i]);
                 if(((YahtzeeGameState) info).getButtonsPressed2()[i] == false) {
                     computerButtons[i].setBackgroundColor(Color.MAGENTA);
                 }
-
             }
-
-
     }
 
     /*

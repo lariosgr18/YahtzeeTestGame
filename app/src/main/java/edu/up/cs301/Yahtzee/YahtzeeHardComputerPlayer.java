@@ -9,12 +9,16 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * Created by Michael on 11/29/2015.
  */
 public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
+
     private int[] diceValues = new int[5];
     private int scoreSelected;
     private int index;
     private int scoreCalc[] = new int[5];
     private int counter;
     private int LIMIT = 10;
+
+
+
 
     /**
      * constructor

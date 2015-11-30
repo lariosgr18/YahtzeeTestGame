@@ -35,7 +35,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        // Pig has two player types:  human and computer
+        // Yahtzee has three player types:  human, easy computer and hard computer
         playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 if(name.length()>14)
@@ -61,7 +61,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
                 return new YahtzeeHardComputerPlayer(name);
             }});
 
-        // Create a game configuration class for Counter:
+        //Create a game configuration class for Yahtzee
         GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Yahtzee", PORT_NUMBER);
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
