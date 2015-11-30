@@ -22,13 +22,6 @@ public class YahtzeeGameState extends GameState {
     private int[] diceValue = {1,2,3,4,5}; //latest dice values
     private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed for player 1
     private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
-    public YahtzeeHumanPlayer player1;
-
-    public int whichButton;
-
-    public boolean select = false;
-
-    public int[] diceValues= new int[6];
 
     /*
         Constructor for a previous game state, sets all the values to the previous gamestate values
@@ -47,7 +40,7 @@ public class YahtzeeGameState extends GameState {
         this.currentPlayerID = state.getCurrentPlayerID();
     }
        /*
-            new game state that takes the player ID of who goes first
+            new game state that takes 0 input and sets up a new gameState
          */
     public YahtzeeGameState() {
         for (int i=0; i < buttonsPressed.length ;i++)
@@ -62,7 +55,6 @@ public class YahtzeeGameState extends GameState {
         this.player2turns = 0;
         this.rolls = 1;
         this.currentPlayerID = player1Id;
-
     }
 
     /*
@@ -202,28 +194,5 @@ public class YahtzeeGameState extends GameState {
         this.buttonsPressed2 = buttonsPressed2;
     }
 
-    public YahtzeeHumanPlayer getPlayer1() {
-        return player1;
-    }
-
-    public void setPlayer1(YahtzeeHumanPlayer player1) {
-        this.player1 = player1;
-    }
-
-    public boolean getSelect() {
-        return select;
-    }
-
-    public void setSelect(boolean select) {
-        this.select = select;
-    }
-
-    public int getWhichButton() {
-        return whichButton;
-    }
-
-    public void setWhichButton(int whichButton) {
-        this.whichButton = whichButton;
-    }
 }
 

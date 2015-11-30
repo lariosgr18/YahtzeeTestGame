@@ -1,10 +1,6 @@
 package edu.up.cs301.Yahtzee;
 
-import android.app.Activity;
 import android.util.Log;
-import android.widget.Button;
-
-import edu.up.cs301.animation.Dice;
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.actionMsg.GameAction;
@@ -15,7 +11,7 @@ import edu.up.cs301.game.util.Tickable;
 /**
  * Created by Michael, Grayson, Abhinav on 10/20/2015.
  *
- * Controls the Hard and Easy Computer Player
+ * Controls the Easy Computer Player
  */
 public class YahtzeeComputerPlayer extends GameComputerPlayer{
 
@@ -45,26 +41,19 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
             YahtzeeGameState state = (YahtzeeGameState) info;
             if(state.getCurrentPlayerID()== 1) {
                 Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
-
+                //Give random values for the dice
                 for (int i = 0; i < diceValues.length; i++) {
                     diceValues[i] = (int) (Math.random() * 6 + 1);
                 }
+                //send in the roll action
                 RollAction rollMove = new RollAction(this);
                 super.game.sendAction(rollMove);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
+                Thread.sleep(1000);
+                //decide whether to roll twice or select a score randomly
                 int move = (int) ((Math.random() * 2) + 1);
                 if (move == 1) {
                     for (int i = 0; i < 2; i++) {
-                        try {
-                            Thread.sleep(2000*(i+1));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                        Thread.sleep(2000*(i+1));
                         for (int j = 0; j < diceValues.length; j++) {
                             diceValues[j] = (int) (Math.random() * 6 + 1);
 
@@ -73,17 +62,19 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                         super.game.sendAction(rollMove2);
                     }
                 }
+                //print dice to the log for testing purposes
                 for (int i = 0; i < diceValues.length; i++) {
                     Log.d("diceValues: ", "" + diceValues[i]);
                 }
-                try {
-                    Thread.sleep(4000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+                Thread.sleep(4000);
+
+                //create score calculator that decides the scores available
                 ScoreCalc calc = new ScoreCalc(diceValues);
                 calc.computerCalculator();
                 scoreSelected = 0;
+
+                //picks the highest available score
                 for(int i = 0; i < calc.scoreValues.length; i++)
                 {
                     if(calc.scoreValues[i] >= scoreSelected && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
@@ -92,23 +83,28 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                         scoreSelected = calc.scoreValues[index];
                     }
                 }
+                //send the select score action
                 SelectScoreAction selectMove = new SelectScoreAction(this);
                 super.game.sendAction(selectMove);
             }
         }
+        //catch if the gameState is not a gameState
         catch (ClassCastException cast)
         {
             Log.d("Error", "ClassCast");
         }
-
-
-
-
-
-
+        //catch for Thread.Sleep
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }//receiveInfo
 
+
+    /*
+    GETTER AND SETTER METHODS
+
+     */
     public int[] getDiceValues() {
         return diceValues;
     }
