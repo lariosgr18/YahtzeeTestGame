@@ -24,7 +24,7 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     private int index;
     private int scoreCalc[] = new int[5];
 
-    private int limit = 10;
+
 
 
     /**
