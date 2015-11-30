@@ -34,6 +34,7 @@ public class ScoreCalc {
 
     public int scoreValues[] = new int[13];//values of each of the scores available
 
+    public int highest; // represents the highest score available
     /*
     Constructor for the Human player
     Takes in an array of buttons, dice objects, and the computers buttons
@@ -57,6 +58,7 @@ public class ScoreCalc {
     public ScoreCalc(int Values[])
     {
 
+        //Sets our array of integer values based on the array taken in
         for (int j = 0; j < Values.length; j++) {
             diceVals[Values[j] - 1]++;
             Log.d("score constructor:", ""+ Values[j]);
@@ -73,54 +75,68 @@ public class ScoreCalc {
         }
 
 
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[0].isEnabled())
         {
             playerButtons[0].setText("" + aceScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[1].isEnabled()) {
             playerButtons[1].setText("" + twoScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[2].isEnabled()) {
             playerButtons[2].setText("" + threeScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[3].isEnabled()) {
             playerButtons[3].setText("" + fourScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[4].isEnabled()) {
             playerButtons[4].setText("" + fiveScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[5].isEnabled()) {
             playerButtons[5].setText("" + sixScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[6].isEnabled()) {
             playerButtons[6].setText("" + threeOfaKind());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[7].isEnabled()) {
             playerButtons[7].setText("" + fourOfaKind());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[8].isEnabled()) {
             playerButtons[8].setText("" + fullHouse());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[9].isEnabled()) {
             playerButtons[9].setText("" + smallStraight());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[10].isEnabled()) {
             playerButtons[10].setText("" + largeStraight());
         }
+        //Updates the button if it has not been chosen yet.
         if(CheckYahtzee())
         {
             playerButtons[11].setBackgroundColor(Color.LTGRAY);
             playerButtons[11].setEnabled(true);
             playerButtons[11].setTextSize(15);
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[11].isEnabled()) {
             playerButtons[11].setText("" + yahtzee());
         }
+        //Updates the button if it has not been chosen yet.
         if(playerButtons[12].isEnabled()) {
             playerButtons[12].setText("" + chance());
         }
 
-
+        //Resets our values to zero to get ready to take in the next roll
         for (int j = 0; j < diceVals.length; j++) {
             diceVals[j] = 0;
         }
@@ -137,49 +153,61 @@ public class ScoreCalc {
             Log.d("updateComputerCard: ", "" + diceObjects[j]);
         }
 
-
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[0].isEnabled())
         {
             computerButtons[0].setText("" + aceScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[1].isEnabled()) {
             computerButtons[1].setText("" + twoScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[2].isEnabled()) {
             computerButtons[2].setText("" + threeScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[3].isEnabled()) {
             computerButtons[3].setText("" + fourScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[4].isEnabled()) {
             computerButtons[4].setText("" + fiveScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[5].isEnabled()) {
             computerButtons[5].setText("" + sixScore());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[6].isEnabled()) {
             computerButtons[6].setText("" + threeOfaKind());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[7].isEnabled()) {
             computerButtons[7].setText("" + fourOfaKind());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[8].isEnabled()) {
             computerButtons[8].setText("" + fullHouse());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[9].isEnabled()) {
             computerButtons[9].setText("" + smallStraight());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[10].isEnabled()) {
             computerButtons[10].setText("" + largeStraight());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[11].isEnabled()) {
             computerButtons[11].setText("" + yahtzee());
         }
+        //Updates the button if it has not been chosen yet.
         if(computerButtons[12].isEnabled()) {
             computerButtons[12].setText("" + chance());
         }
 
-
+        //Resets all the values to get ready for the next roll
         for (int j = 0; j < diceVals.length; j++) {
             diceVals[j] = 0;
         }
@@ -195,43 +223,55 @@ public class ScoreCalc {
         for(int i = 0; i < scoreValues.length; i++)
         {
             switch (i)
-            {
+            {   //Updates the scoreValue index based on its associated score
                 case 0:
                     scoreValues[i] = aceScore();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 1:
                     scoreValues[i] = twoScore();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 2:
                     scoreValues[i] = threeScore();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 3:
                     scoreValues[i] = fourScore();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 4:
                     scoreValues[i] = fiveScore();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 5:
                     scoreValues[i] = sixScore();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 6:
                     scoreValues[i] = threeOfaKind();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 7:
                     scoreValues[i] = fourOfaKind();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 8:
                     scoreValues[i] = fullHouse();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 9:
                     scoreValues[i] = smallStraight();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 10:
                     scoreValues[i] = largeStraight();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 11:
                     scoreValues[i] = yahtzee();
                     break;
+                //Updates the scoreValue index based on its associated score
                 case 12:
                     scoreValues[i] = chance();
                     break;
@@ -245,10 +285,12 @@ public class ScoreCalc {
      */
     public void updateDiceVals( int diceV[])
     {
+        //Resets to zero to be ready to be updated
         for (int j = 0; j < diceVals.length; j++) {
 
             diceVals[j] = 0;
         }
+        //Updates based on the array taken in
         for (int j = 0; j < diceV.length; j++) {
 
             diceVals[diceV[j] - 1]++;
@@ -256,6 +298,8 @@ public class ScoreCalc {
 
 
     }
+
+
     /*
        Calculates the number of aces rolled
         */
@@ -301,6 +345,7 @@ public class ScoreCalc {
    */
     public int threeOfaKind() {
         for (int i = 0; i < diceVals.length; i++) {
+            //Checks if there are an three of a kind
             if (diceVals[i] > 2) {
                 return sum();
             }
