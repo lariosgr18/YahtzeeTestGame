@@ -147,7 +147,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                         for (int i = 0; i < calc.scoreValues.length; i++) {
 
                             if (calc.scoreValues[i] > LIMIT && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
-
+//
 
                                 try {
                                     Thread.sleep(1000);
