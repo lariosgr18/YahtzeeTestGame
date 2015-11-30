@@ -22,11 +22,8 @@ import android.view.View.OnClickListener;
 public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener, View.OnLongClickListener {
 
     GameMainActivity mainActivity = null; //game activity
-
     // the game's state
-    YahtzeeGameState state = null;
-
-    RollAction rollAction; // action for rolling the dice
+    YahtzeeGameState state = null;//the state to load
 
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
@@ -51,7 +48,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p1_yahtzee,
             R.id.p1_chance,
     };
-
     private static final int[] computerButtonIndices = { //the button ids the player can click
             R.id.p2_ace,
             R.id.p2_two,
@@ -68,7 +64,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p2_chance,
     };
 
-     public Button[] numberedButtons1; // the buttons the player can click
+    public Button[] numberedButtons1; // the buttons the player can click
     public Button[] computerButtons = {null}; // the buttons the player can click
 
     public Button roll; // the roll button
@@ -81,9 +77,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     R.id.imageButton4,
                     R.id.imageButton5,
             };
-
-
-    public int whichButton;
 
     /**
      * constructor
@@ -176,25 +169,33 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
      */
     @Override
     public void receiveInfo(GameInfo info) {
+
         state = (YahtzeeGameState) info;
 
-        for(int i = 0; i < thedice.length; i++) {
+        //Set the dice to the inputted values
+        for(int i = 0; i < thedice.length; i++)
+        {
             thedice[i].dieNum = state.getDiceValue()[i];
             thedice[i].invalidate();
             Log.d("recieveInfo: ", "" + state.getDiceValue()[i]);
 
         }
-
+        //change the dice objects int the score calculator
        scoreCard.setDiceObjects(thedice);
+        //update the computer score card
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
             scoreCard.updateComputerCard();
         }
-            for(int i = 0; i<13;i++ ) {
-                    computerButtons[i].setEnabled(((YahtzeeGameState) info).getButtonsPressed2()[i]);
-                if(((YahtzeeGameState) info).getButtonsPressed2()[i] == false) {
-                    computerButtons[i].setBackgroundColor(Color.MAGENTA);
-                }
+
+        //update the computers buttons depending if they have been pressed or not
+        for(int i = 0; i<13;i++ ) {
+            computerButtons[i].setEnabled(((YahtzeeGameState) info).getButtonsPressed2()[i]);
+            if(((YahtzeeGameState) info).getButtonsPressed2()[i] == false) {
+                computerButtons[i].setBackgroundColor(Color.MAGENTA);
             }
+        }
+
+
     }
 
     /*
@@ -217,6 +218,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             numberedButtons1[i].setOnClickListener(this);
         }
 
+        //set the long click for the dice
         for (int i = 0; i < thedice.length; i++) {
             thedice[i].setOnLongClickListener(this);
         }
@@ -236,6 +238,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         if(((YahtzeeLocalGame)super.game).canMove(playerNum))
         {
             Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
+            //if the user clicks the roll button and hasnt rolled 3 times, change dice values and send to gamestate
             if (view == roll && rollNum <= 3) {
                 for (int i = 0; i < thedice.length; i++) {
                     thedice[i].roll();
@@ -249,6 +252,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
             }
 
+            //if the user selects a score and they have at least rolled once
             if (view != roll && rollNum >= 2) {
                 for (int i = 0; i < numberedButtons1.length; i++) {
                     if (numberedButtons1[i] == view) {
@@ -263,10 +267,12 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     }
 
                 }
+                //set rolls back to 1
                 rollNum = 1;
                 SelectScoreAction select = new SelectScoreAction(this);
                 super.game.sendAction(select);
 
+                //reset the dice from being held
                 for (int i = 0; i < thedice.length; i++) {
                     thedice[i].keep = false;
                     thedice[i].setBackgroundColor(Color.WHITE);
@@ -280,6 +286,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         onLong click for the dice image buttons
      */
     public boolean onLongClick(View view) {
+        //change the dice hold/color when the user long clicks
         if( rollNum >= 2) {
             if (((Dice) view).keep == true) {
                 ((Dice) view).keep = false;
@@ -294,6 +301,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         return false;
     }
 
+    /*
+    GETTER AND SETTER METHODS
+     */
 
     public int[] getDiceValues() {
         return diceValues;
