@@ -176,7 +176,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                                     }
                                 }//
 
-
+                                    //random
                                 calc.updateDiceVals(diceValues);
                                 calc.computerCalculator();
                                 scoreSelected = calc.scoreValues[index];
