@@ -86,7 +86,6 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                 scoreSelected = 0;
                 for(int i = 0; i < calc.scoreValues.length; i++)
                 {
-                   // select = i;
                     if(calc.scoreValues[i] >= scoreSelected && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
                     {
                         index = i;
