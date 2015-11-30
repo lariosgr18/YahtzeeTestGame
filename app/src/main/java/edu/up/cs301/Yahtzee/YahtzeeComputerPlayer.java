@@ -22,10 +22,6 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
     private int[] diceValues = new int[5];
     private int scoreSelected;
     private int index;
-    private int scoreCalc[] = new int[5];
-
-    private int limit = 10;
-
 
     /**
      * constructor
@@ -77,17 +73,6 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                         super.game.sendAction(rollMove2);
                     }
                 }
-                int select;
-                while (true) {
-                    select = (int) ((Math.random() * 13));
-                    if (select == 13) {
-                        select = 12;
-                    }
-                    if (((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
-                        index = select;
-                        break;
-                    }
-                }//
                 for (int i = 0; i < diceValues.length; i++) {
                     Log.d("diceValues: ", "" + diceValues[i]);
                 }
@@ -98,7 +83,16 @@ public class YahtzeeComputerPlayer extends GameComputerPlayer{
                 }
                 ScoreCalc calc = new ScoreCalc(diceValues);
                 calc.computerCalculator();
-                scoreSelected = calc.scoreValues[index];
+                scoreSelected = 0;
+                for(int i = 0; i < calc.scoreValues.length; i++)
+                {
+                   // select = i;
+                    if(calc.scoreValues[i] >= scoreSelected && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
+                    {
+                        index = i;
+                        scoreSelected = calc.scoreValues[index];
+                    }
+                }
                 SelectScoreAction selectMove = new SelectScoreAction(this);
                 super.game.sendAction(selectMove);
             }
