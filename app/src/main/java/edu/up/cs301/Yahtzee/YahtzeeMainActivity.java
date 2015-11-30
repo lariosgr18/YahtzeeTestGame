@@ -35,7 +35,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        // Yahtzee has three player types:  human, easy computer and hard computer
+        // Yahtzee has three player types:  human player, easy computer and hard computer
         playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 if(name.length()>14)
