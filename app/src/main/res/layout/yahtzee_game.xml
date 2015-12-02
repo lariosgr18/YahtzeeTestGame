@@ -436,6 +436,14 @@
                 android:layout_column="2" />
         </GridLayout>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quit to Menu"
+            android:id="@+id/quit"
+            android:layout_gravity="right|top"
+            android:background="#ff0055ff" />
+
 
     </FrameLayout>
 

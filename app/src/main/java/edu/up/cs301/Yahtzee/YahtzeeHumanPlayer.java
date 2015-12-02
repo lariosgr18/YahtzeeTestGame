@@ -3,7 +3,9 @@ package edu.up.cs301.Yahtzee;
 import edu.up.cs301.animation.Dice;
 import edu.up.cs301.game.GameHumanPlayer;
 import edu.up.cs301.game.GameMainActivity;
+import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.R;
+import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 import android.graphics.Color;
@@ -78,6 +80,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     R.id.imageButton5,
             };
 
+    public Button quit;
+
     /**
      * constructor
      *
@@ -122,6 +126,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
         roll.setOnClickListener(this);
         scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
+        quit = (Button) mainActivity.findViewById(R.id.quit);
+        quit.setOnClickListener(this);
     }
     //
 
@@ -235,6 +241,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         onClick method for the buttons//
      */
     public void onClick(View view) {
+
+        if(view == quit)
+        {
+
+        }
         if(((YahtzeeLocalGame)super.game).canMove(playerNum))
         {
             Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
