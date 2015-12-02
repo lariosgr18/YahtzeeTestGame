@@ -8,6 +8,7 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
@@ -211,7 +212,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         // remember the activity
         mainActivity = activity;
 
-
+        mainActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         // Load the layout resource for the new configuration
         activity.setContentView(R.layout.yahtzee_game);
         initializeButtons();
