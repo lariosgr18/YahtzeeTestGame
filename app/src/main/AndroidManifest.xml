@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.up.cs301.game"
     android:versionCode="1"
@@ -6,23 +7,35 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="15" />
-    
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <android:uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:icon="@drawable/yahtzeeicon"
         android:label="Yahtzee"
         android:theme="@style/AppTheme" >
-        
-        <activity android:name="edu.up.cs301.Yahtzee.YahtzeeMainActivity"
+        <activity
+            android:name="edu.up.cs301.Yahtzee.YahtzeeMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+        <activity
+            android:name="edu.up.cs301.Yahtzee.HowToPlayActivity"
+            android:label="@string/title_activity_how_to_play" >
+        </activity>
     </application>
 
 </manifest>

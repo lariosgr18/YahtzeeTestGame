@@ -20,4 +20,6 @@
     <string name="dialog_quit_question">Do you really want to quit?</string>
     <string name="local_tab">Local Game</string>
     <string name="remote_tab">Remote Game</string>
+    <string name="title_activity_how_to_play">HowToPlayActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
