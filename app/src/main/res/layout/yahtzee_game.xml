@@ -460,6 +460,14 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How To Play"
+            android:id="@+id/howtoplay_button"
+            android:layout_gravity="center_horizontal|bottom" />
+
 
     </FrameLayout>
 

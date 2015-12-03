@@ -9,6 +9,7 @@ import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -90,6 +91,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             };
 
     public Button quit;
+    public Button howToPlay;
 
     public TextView humanName;
     public TextView computerName;
@@ -146,9 +148,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
         quit = (Button) mainActivity.findViewById(R.id.quit);
         quit.setOnClickListener(this);
+        howToPlay = (Button) mainActivity.findViewById(R.id.howtoplay_button);
+        howToPlay.setOnClickListener(this);
 
         rollingSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
         sound = rollingSound.load(mainActivity.getApplicationContext(),R.raw.diceroll,1);
+
+
     }
     //
 
@@ -300,6 +306,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         {
             return;
         }
+        if(view == howToPlay){
+            Intent intent = new Intent(mainActivity, HowToPlayActivity.class);
+            mainActivity.startActivity(intent);
+        }
         if(((YahtzeeLocalGame)super.game).canMove(playerNum))
         {
             Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
@@ -317,6 +327,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                 rollNum++;
 
             }
+
 
             //if the user selects a score and they have at least rolled once
             if (view != roll && rollNum >= 2) {
