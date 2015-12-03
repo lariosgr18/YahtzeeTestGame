@@ -11,6 +11,8 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 import android.app.ActionBar;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +31,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     GameMainActivity mainActivity = null; //game activity
     // the game's state
-    YahtzeeGameState state = null;//the state to load
+    YahtzeeGameState state = null;//the state to
+
+    private SoundPool rollingSound;
+    private int sound;
 
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
@@ -141,6 +146,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
         quit = (Button) mainActivity.findViewById(R.id.quit);
         quit.setOnClickListener(this);
+
+        rollingSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        sound = rollingSound.load(mainActivity.getApplicationContext(),R.raw.diceroll,1);
     }
     //
 
@@ -214,6 +222,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
        scoreCard.setDiceObjects(thedice);
         //update the computer score card
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
+            rollingSound.play(sound,1.0f,1.0f,0,0,1.5f);
             scoreCard.updateComputerCard();
         }
 
@@ -296,6 +305,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
             //if the user clicks the roll button and hasnt rolled 3 times, change dice values and send to gamestate
             if (view == roll && rollNum <= 3) {
+                rollingSound.play(sound,1.0f,1.0f,0,0,1.5f);
                 for (int i = 0; i < thedice.length; i++) {
                     thedice[i].roll();
                     thedice[i].invalidate();
