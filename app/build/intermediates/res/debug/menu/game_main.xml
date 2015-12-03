@@ -1,7 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_settings"
-        android:title="@string/menu_settings"
+    <item
+        android:id="@+id/colorMenu"
         android:orderInCategory="100"
-        android:showAsAction="never" />
+        android:title="Dice Color">
+        <menu>
+            <item
+                android:id="@+id/WhiteDiceeMenuItem"
+                android:orderInCategory="310"
+                android:title="White/Blue"/>
+            <item
+                android:id="@+id/redDiceMenuItem"
+                android:orderInCategory="320"
+                android:title="Red/Yellow"/>
+            <item
+                android:id="@+id/CyanDiceMenuItem"
+                android:orderInCategory="330"
+                android:title="Cyan/Magenta"/>
+        </menu>
+    </item>
 </menu>
 <!-- From: file:/P:/CS%20301/YahtzeeTestGame/app/src/main/res/menu/game_main.xml -->
