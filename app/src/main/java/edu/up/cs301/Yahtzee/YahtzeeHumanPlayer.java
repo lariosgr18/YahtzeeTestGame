@@ -133,6 +133,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             thedice[i].setBackgroundColor(Color.WHITE);
         }
 
+        //comment
         humanName = (TextView) mainActivity.findViewById(R.id.player1_title);
         computerName =(TextView) mainActivity.findViewById(R.id.player2_title);
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
@@ -228,7 +229,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         DICE_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_COLOR;
         for(int i = 0; i < thedice.length; i++)
         {
-            thedice[i].setBackgroundColor(DICE_COLOR);
+            if(thedice[i].keep == false) {
+                thedice[i].setBackgroundColor(DICE_COLOR);
+            }
+            else
+            {
+                thedice[i].setBackgroundColor(DICE_HOLD_COLOR);
+            }
         }
     }
 
