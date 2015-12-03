@@ -1,10 +1,15 @@
 package edu.up.cs301.Yahtzee;
 
+import android.graphics.Color;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import java.util.ArrayList;
 
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
+import edu.up.cs301.game.R;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
 
@@ -20,6 +25,9 @@ import edu.up.cs301.game.config.GamePlayerType;
 public class YahtzeeMainActivity extends GameMainActivity{
     // the port number that this game will use when playing over the network
     private static final int PORT_NUMBER = 2278;
+
+    public int DICE_COLOR = Color.WHITE;
+    public int DICE_HOLD_COLOR = Color.BLUE;
 
     /**
      * Create the default configuration for this game:
@@ -81,4 +89,32 @@ public class YahtzeeMainActivity extends GameMainActivity{
     public LocalGame createLocalGame() {
         return new YahtzeeLocalGame();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.game_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // respond to menu item selection
+        int itemId = item.getItemId();
+        if (itemId == R.id.WhiteDiceeMenuItem) {
+            this.DICE_COLOR = Color.WHITE;
+            this.DICE_HOLD_COLOR = Color.BLUE;
+            return true;
+        } else if (itemId == R.id.redDiceMenuItem) {
+            this.DICE_COLOR = Color.RED;
+            this.DICE_HOLD_COLOR = Color.YELLOW;
+            return true;
+        } else if (itemId == R.id.CyanDiceMenuItem) {
+            this.DICE_COLOR = Color.CYAN;
+            this.DICE_HOLD_COLOR = Color.MAGENTA;
+            return true;
+        }
+
+        return false;
+    }// onOptionsItemSelected
+
 }

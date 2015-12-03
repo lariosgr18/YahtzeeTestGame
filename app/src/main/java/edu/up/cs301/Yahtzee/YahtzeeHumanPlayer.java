@@ -8,9 +8,12 @@ import edu.up.cs301.game.R;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
+import android.app.ActionBar;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -83,6 +86,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     public Button quit;
 
+    public int DICE_COLOR;
+    public int DICE_HOLD_COLOR;
+    public Menu settings;
     /**
      * constructor
      *
@@ -202,7 +208,12 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             }
         }
 
-
+        DICE_HOLD_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_HOLD_COLOR;
+        DICE_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_COLOR;
+        for(int i = 0; i < thedice.length; i++)
+        {
+            thedice[i].setBackgroundColor(DICE_COLOR);
+        }
     }
 
     /*
@@ -231,6 +242,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         }
 
 
+        DICE_HOLD_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_HOLD_COLOR;
+        DICE_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_COLOR;
+        for(int i = 0; i < thedice.length; i++)
+        {
+            thedice[i].setBackgroundColor(DICE_COLOR);
+
+        }
         // if we have state, update the GUI based on the state
         if (state != null) {
             receiveInfo(state);
@@ -238,6 +256,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
 
     }
+
+
+
     /*//
         onClick method for the buttons//
      */
@@ -245,7 +266,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         if(view == quit)
         {
-
+            return;
         }
         if(((YahtzeeLocalGame)super.game).canMove(playerNum))
         {
@@ -287,7 +308,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                 //reset the dice from being held
                 for (int i = 0; i < thedice.length; i++) {
                     thedice[i].keep = false;
-                    thedice[i].setBackgroundColor(Color.WHITE);
+                    thedice[i].setBackgroundColor(DICE_COLOR);
                 }
 
             }
@@ -302,11 +323,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         if( rollNum >= 2) {
             if (((Dice) view).keep == true) {
                 ((Dice) view).keep = false;
-                ((Dice) view).setBackgroundColor(Color.WHITE);
+                ((Dice) view).setBackgroundColor(DICE_COLOR);
                 return false;
             } else {
                 ((Dice) view).keep = true;
-                ((Dice) view).setBackgroundColor(Color.BLUE);
+                ((Dice) view).setBackgroundColor(DICE_HOLD_COLOR);
                 return true;
             }
         }

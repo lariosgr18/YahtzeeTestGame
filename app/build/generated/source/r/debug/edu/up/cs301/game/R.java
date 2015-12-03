@@ -30,10 +30,13 @@ public final class R {
         public static final int yahtzeeicon=0x7f020003;
     }
     public static final class id {
+        public static final int CyanDiceMenuItem=0x7f09004d;
+        public static final int WhiteDiceeMenuItem=0x7f09004b;
         public static final int aces_title=0x7f09001c;
         public static final int addPlayerButton=0x7f09000e;
         public static final int backButton2=0x7f090003;
         public static final int chance_title=0x7f090028;
+        public static final int colorMenu=0x7f09004a;
         public static final int configTableLayout=0x7f090008;
         public static final int delPlayerButton=0x7f090012;
         public static final int fives_title=0x7f090020;
@@ -50,7 +53,6 @@ public final class R {
         public static final int lgstraight_title=0x7f090026;
         public static final int localGameTab=0x7f090004;
         public static final int localTabLayout=0x7f090005;
-        public static final int menu_settings=0x7f09004a;
         public static final int p1_3kind=0x7f09002f;
         public static final int p1_4kind=0x7f090030;
         public static final int p1_ace=0x7f090029;
@@ -85,6 +87,7 @@ public final class R {
         public static final int playerTypeHeadingText=0x7f09000d;
         public static final int playerTypeSpinner=0x7f090011;
         public static final int quit=0x7f090049;
+        public static final int redDiceMenuItem=0x7f09004c;
         public static final int remoteGameTab=0x7f090006;
         public static final int remoteIPCodeEditText=0x7f090017;
         public static final int remoteNameEditText=0x7f090014;
