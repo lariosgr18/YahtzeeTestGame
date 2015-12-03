@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import edu.up.cs301.game.R;
 
 public class HowToPlayActivity extends Activity {
-
+//comment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
