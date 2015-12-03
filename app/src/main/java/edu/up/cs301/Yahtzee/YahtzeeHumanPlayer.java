@@ -133,6 +133,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             thedice[i].setBackgroundColor(Color.WHITE);
         }
 
+        //comment
         humanName = (TextView) mainActivity.findViewById(R.id.player1_title);
         computerName =(TextView) mainActivity.findViewById(R.id.player2_title);
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
