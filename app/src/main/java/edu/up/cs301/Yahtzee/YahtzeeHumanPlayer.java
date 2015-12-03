@@ -229,7 +229,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         DICE_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_COLOR;
         for(int i = 0; i < thedice.length; i++)
         {
-            thedice[i].setBackgroundColor(DICE_COLOR);
+            if(thedice[i].keep == false) {
+                thedice[i].setBackgroundColor(DICE_COLOR);
+            }
+            else
+            {
+                thedice[i].setBackgroundColor(DICE_HOLD_COLOR);
+            }
         }
     }
 
