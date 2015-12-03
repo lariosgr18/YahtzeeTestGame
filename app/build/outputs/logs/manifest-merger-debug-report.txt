@@ -46,12 +46,12 @@ ADDED from AndroidManifest.xml:18:9
 	android:name
 		ADDED from AndroidManifest.xml:18:19
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:20:13
+ADDED from AndroidManifest.xml:21:13
 action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:21:17
-	android:name
-		ADDED from AndroidManifest.xml:21:25
-category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:22:17
 	android:name
-		ADDED from AndroidManifest.xml:22:27
+		ADDED from AndroidManifest.xml:22:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:23:17
+	android:name
+		ADDED from AndroidManifest.xml:23:27

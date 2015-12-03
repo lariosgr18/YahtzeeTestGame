@@ -26,6 +26,7 @@
         <activity
             android:name="edu.up.cs301.Yahtzee.YahtzeeMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
+            android:screenOrientation="landscape"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

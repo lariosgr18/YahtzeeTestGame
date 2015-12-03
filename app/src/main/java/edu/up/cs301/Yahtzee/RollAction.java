@@ -12,6 +12,7 @@ public class RollAction  extends GameAction{
     /**
      * constructor for GameAction
      *
+     *
      * @param player the player who created the action
      */
     public RollAction(GamePlayer player) {
