@@ -309,6 +309,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         if(view == howToPlay){
             Intent intent = new Intent(mainActivity, HowToPlayActivity.class);
             mainActivity.startActivity(intent);
+            return;
         }
         if(((YahtzeeLocalGame)super.game).canMove(playerNum))
         {

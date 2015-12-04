@@ -26,8 +26,6 @@ import edu.up.cs301.game.config.GamePlayerType;
 public class YahtzeeMainActivity extends GameMainActivity{
     // the port number that this game will use when playing over the network
     private static final int PORT_NUMBER = 2278;
-
-
     public int DICE_COLOR = Color.WHITE;
     public int DICE_HOLD_COLOR = Color.BLUE;
 
