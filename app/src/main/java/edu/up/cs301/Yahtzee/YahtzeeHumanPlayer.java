@@ -329,6 +329,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                 super.game.sendAction(action);
                 scoreCard.updateScoreCard();
                 rollNum++;
+                return;
 
             }
 
@@ -345,6 +346,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
                         currentScoreIndex = i;
                         scoreChosen = scores[i];
+
+                        if(numberedButtons1[11] == view && Integer.parseInt((String)numberedButtons1[11].getText()) >= 50)
+                        {
+                            scoreCard.incrementYahtzee();
+                        }
                     }
 
                 }
@@ -358,6 +364,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     thedice[i].keep = false;
                     thedice[i].setBackgroundColor(DICE_COLOR);
                 }
+
 
             }
         }
