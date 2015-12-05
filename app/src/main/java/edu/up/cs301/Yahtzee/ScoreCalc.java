@@ -131,7 +131,7 @@ public class ScoreCalc {
         }
         //Updates the button if it has not been chosen yet.
         if(playerButtons[11].isEnabled()) {
-            playerButtons[11].setText("" + yahtzee());
+            playerButtons[11].setText("" + yahtzeePlayer());
         }
         //Updates the button if it has not been chosen yet.
         if(playerButtons[12].isEnabled()) {
@@ -202,7 +202,7 @@ public class ScoreCalc {
         }
         //Updates the button if it has not been chosen yet.
         if(computerButtons[11].isEnabled()) {
-            computerButtons[11].setText("" + yahtzee());
+            computerButtons[11].setText("" + yahtzeeComputer());
         }
         //Updates the button if it has not been chosen yet.
         if(computerButtons[12].isEnabled()) {
@@ -271,7 +271,7 @@ public class ScoreCalc {
                     break;
                 //Updates the scoreValue index based on its associated score
                 case 11:
-                    scoreValues[i] = yahtzee();
+                    scoreValues[i] = yahtzeeComputer();
                     break;
                 //Updates the scoreValue index based on its associated score
                 case 12:
@@ -436,7 +436,7 @@ public class ScoreCalc {
     /*
    Calculates if a yahtzee is rolled
    */
-    public int yahtzee(){
+    public int yahtzeePlayer(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
              currentYahtzeeScore = YAHTZEESCORE + 100* yahtzeeCount;
@@ -445,6 +445,17 @@ public class ScoreCalc {
         }
         return 0;
     }
+
+    public int yahtzeeComputer(){
+        for(int i = 0; i < diceVals.length; i++){
+            if(diceVals[i] == 5){
+                currentYahtzeeScore = YAHTZEESCORE;
+                return currentYahtzeeScore;
+            }
+        }
+        return 0;
+    }
+
 
     /*
     Checks if a yahtzee is rolled
