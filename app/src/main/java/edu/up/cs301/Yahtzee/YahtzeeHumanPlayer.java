@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -34,6 +35,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     // the game's state
     YahtzeeGameState state = null;//the state to
 
+    private FrameLayout layout;
     private SoundPool rollingSound;
     private int sound;
 
@@ -304,6 +306,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         if(view == quit)
         {
+            mainActivity.recreate();
             return;
         }
         if(view == howToPlay){

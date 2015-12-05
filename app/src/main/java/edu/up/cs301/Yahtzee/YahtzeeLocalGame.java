@@ -42,16 +42,41 @@ public class YahtzeeLocalGame extends LocalGame {
         if((currentGame.getPlayer1turns() > 12) && (currentGame.getPlayer2turns() > 12)){
             int totalScore1=0;
             int totalScore2=0;
+            int upperBonus=35;
+            String notifyOfBonus1="";
+            String notifyOfBonus2="";
             for(int i = 0; i < 13; i++) {
-               totalScore1 +=  currentGame.getPlayer1Score()[i];
+                totalScore1 +=  currentGame.getPlayer1Score()[i];
                 totalScore2 += currentGame.getPlayer2Score()[i];
+
+                if(i == 5)
+                {
+                    if(totalScore1 >= 63)
+                    {
+                        totalScore1 += upperBonus;
+                        notifyOfBonus1 = "\nLower Bonus Achieved: +35 points";
+                    }
+                    if(totalScore2 >= 63)
+                    {
+                        totalScore2 += upperBonus;
+                        notifyOfBonus2 = "\nLower Bonus Achieved: +35 points";
+                    }
+                }
                 Log.d("gameOver scores:", "" + currentGame.getPlayer2Score()[i]);
             }
             if(totalScore1 > totalScore2) {
-                return "PLAYER 1 WINS \n" + "Player 1 Score: "+totalScore1 + "\nPlayer 2 Score: " + totalScore2;
+
+                return playerNames[0] + " WINS \n" + playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
+                        + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
+            }
+            else if(totalScore1 == totalScore2)
+            {
+                return  "TIE! \n" +  playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
+                        + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }
             else {
-                return "PLAYER 2 WINS \n" + "Player 1 Score: "+totalScore1 + "\n Player 2 Score: " + totalScore2;
+                return playerNames[1] + " WINS \n" +  playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
+                        + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }
         }
         return null;
