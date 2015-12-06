@@ -10,7 +10,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  */
 public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     // 93, 146, 103, 113, 78, 101
-    //125, 132. 127,
+    //125, 132. 127,dg
 
     private int placement;
     private int rollDecider;
