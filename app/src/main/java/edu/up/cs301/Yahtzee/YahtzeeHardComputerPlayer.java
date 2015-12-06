@@ -180,6 +180,13 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                         super.game.sendAction(rollMove2);
                         calc.updateDiceVals(diceValues);
                         calc.computerCalculator();
+                        //Sleeps to let the dice be drawn
+                        try {
+                            Thread.sleep(1000);
+                        }
+                        catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
                         //Updates our highest score available
                         highest = 0;
@@ -198,7 +205,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                             if (calc.scoreValues[i] > LIMIT && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
 
                                 try {
-                                    Thread.sleep(1000);
+                                    Thread.sleep(2000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -230,6 +237,14 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                                         break;
                                     }
                                 }//
+
+                            //Sleeps to let the dice be drawn
+                             try {
+                                    Thread.sleep(1000);
+                                }
+                             catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
 
                                     //random
                                 calc.updateDiceVals(diceValues);
