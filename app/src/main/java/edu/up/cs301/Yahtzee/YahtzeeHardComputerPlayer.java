@@ -161,6 +161,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                     //Checks to see if we have scored something yet. Checks for our threshold condition and selects it if it is above our threshold
                     if ( counter !=1){
 
+                        rollAI();
                         //Random roll
                         for (int i = 0; i < diceValues.length; i++)
                         {
