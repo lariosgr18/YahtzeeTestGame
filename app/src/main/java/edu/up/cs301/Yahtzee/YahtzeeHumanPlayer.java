@@ -268,6 +268,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         activity.setContentView(R.layout.yahtzee_game);
         initializeButtons();
 
+
         // put the player names into the GUI
         updatePlayerNames();
 

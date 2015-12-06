@@ -1,6 +1,9 @@
 package edu.up.cs301.Yahtzee;
 
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -28,6 +31,10 @@ public class YahtzeeMainActivity extends GameMainActivity{
     private static final int PORT_NUMBER = 2278;
     public int DICE_COLOR = Color.WHITE;
     public int DICE_HOLD_COLOR = Color.BLUE;
+     public MediaPlayer mMediaPlayer = new MediaPlayer();
+
+
+
 
     /**
      * Create the default configuration for this game:
@@ -39,6 +46,12 @@ public class YahtzeeMainActivity extends GameMainActivity{
      */
     @Override
     public GameConfig createDefaultConfig() {
+
+
+        mMediaPlayer = MediaPlayer.create(this, R.raw.mouse);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
 
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
@@ -87,17 +100,23 @@ public class YahtzeeMainActivity extends GameMainActivity{
      */
     @Override
     public LocalGame createLocalGame() {
+
+        mMediaPlayer.stop();
         return new YahtzeeLocalGame();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+
         getMenuInflater().inflate(R.menu.game_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         // respond to menu item selection
         int itemId = item.getItemId();
         if (itemId == R.id.WhiteDiceeMenuItem) {
