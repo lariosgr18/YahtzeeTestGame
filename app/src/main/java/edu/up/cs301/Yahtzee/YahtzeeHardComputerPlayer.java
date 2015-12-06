@@ -225,18 +225,16 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                     if( counter !=1){
 
 
-
-                                    int select ;
-                                while (true) {
-                                    select = (int) ((Math.random() * 13));
-                                    if (select == 13) {
-                                        select = 12;
-                                    }
-                                    if (((YahtzeeGameState) info).getButtonsPressed2()[select] == true) {
-                                        index = select;
-                                        break;
-                                    }
-                                }//
+                        //Updates our highest score available
+                        highest = 0;
+                        for(int i = 0; i < calc.scoreValues.length; i++)
+                        {
+                            if(calc.scoreValues[i] >= highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
+                            {
+                                highestIndex = i;
+                                highest = calc.scoreValues[i];
+                            }
+                        }
 
                             //Sleeps to let the dice be drawn
                              try {
@@ -249,7 +247,8 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                                     //random
                                 calc.updateDiceVals(diceValues);
                                 calc.computerCalculator();
-                                scoreSelected = calc.scoreValues[index];
+                                index=highestIndex;
+                                scoreSelected = highest;
                                 SelectScoreAction selectMove = new SelectScoreAction(this);
                                 super.game.sendAction(selectMove);
                                 counter = 1;
