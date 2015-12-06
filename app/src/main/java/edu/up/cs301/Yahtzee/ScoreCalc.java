@@ -12,7 +12,7 @@ import edu.up.cs301.animation.Dice;
  * Controls the scores associated with each of the buttons.
  */
 public class ScoreCalc {
-    private int[] diceVals = new int[6];//the number of values of each dice
+    public int[] diceVals = new int[6];//the number of values of each dice
 
     private Dice[] diceObjects = new Dice[6];// the dice objects passed in
 

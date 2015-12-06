@@ -12,11 +12,8 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     // 93, 146, 103, 113, 78, 101
     //125, 132. 127,
 
-
-
-
-
-
+    private int placement;
+    private int rollDecider;
     private int[] diceValues = new int[5]; //Represents the values of a roll
     private int scoreSelected;  //Represents the value of the Score to be selected
     private int index; //Is the index of the button to be "clicked on"
@@ -54,10 +51,10 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                 Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
 
 
-                //Random Roll 1
-                for (int i = 0; i < diceValues.length; i++) {
-                    diceValues[i] = (int) (Math.random() * 6 + 1);
-                }
+
+
+                //first roll
+                rollAI();
                 //Sends the roll move
                 RollAction rollMove = new RollAction(this);
                 super.game.sendAction(rollMove);
@@ -87,12 +84,14 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                 }
 
                counter = 0;
-                highest = 0;
+               // highest = 0;
                 //Keeps track of the turn. All moves happen in the this while loop
                 while (counter == 0 ) {
 
                     // Checks for the first roll to see if any is more than our threshold. If so, the it chooses it
                     for (int i = 0; i < calc.scoreValues.length; i++) {
+
+
                         if ((calc.scoreValues[i] > LIMIT) && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
 
                             try {
@@ -111,6 +110,54 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
 
                     }
 
+                    //if we roll for a second time
+                    if(counter != 1){
+
+                        //second roll
+                        rollAI();
+                        calc.updateDiceVals(diceValues);
+                        calc.computerCalculator();
+
+
+                        //Sends the roll move
+                        RollAction rollMove1 = new RollAction(this);
+                        super.game.sendAction(rollMove1);
+
+                        //Sleeps to let the dice be drawn
+                        try {
+                            Thread.sleep(1000);
+                        }
+                        catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Checks for the first roll to see if any is more than our threshold. If so, the it chooses it
+                        for (int i = 0; i < calc.scoreValues.length; i++) {
+
+
+                            if ((calc.scoreValues[i] > LIMIT) && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
+
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                scoreSelected = highest;
+                                index = highestIndex;
+                                SelectScoreAction selectMove = new SelectScoreAction(this);
+                                super.game.sendAction(selectMove);
+                                counter = 1;
+                            }
+
+                        }
+
+
+
+                    }
+
+                    //third roll
                     //Checks to see if we have scored something yet. Checks for our threshold condition and selects it if it is above our threshold
                     if ( counter !=1){
 
@@ -168,63 +215,10 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                         }
                     }
 
-                    //Checks is computer should roll for a third time
-                    if ( counter !=1){
-
-                        //Random Roll
-                        for (int i = 0; i < diceValues.length; i++)
-                        {
-                            diceValues[i] = (int) (Math.random() * 6 + 1);
-                        }
-
-                        //Sleep
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    if( counter !=1){
 
 
-                        //Sends in our third roll
-                        RollAction rollMove3 = new RollAction(this);
-                        super.game.sendAction(rollMove3);
 
-                        calc.updateDiceVals(diceValues);
-                        calc.computerCalculator();
-
-                        //Updates our highest possible available score
-                        highest = 0;
-                        for(int i = 0; i < calc.scoreValues.length; i++)
-                        {
-                            if(calc.scoreValues[i] >= highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                            {
-                                highestIndex = i;
-                                highest = calc.scoreValues[i];
-                            }
-                        }
-
-                        for (int i = 0; i < calc.scoreValues.length; i++) {
-
-                            //Checks our condition
-                            if (calc.scoreValues[i] > LIMIT && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
-//
-
-                                //Sleep
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
-                                //If condition met, we select
-                                index=highestIndex;
-                                scoreSelected = highest;
-                                SelectScoreAction selectMove = new SelectScoreAction(this);
-                                super.game.sendAction(selectMove);
-                                counter = 1;
-                            }
-                            //else we randomly pick
-                            else{
                                     int select ;
                                 while (true) {
                                     select = (int) ((Math.random() * 13));
@@ -244,10 +238,11 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                                 SelectScoreAction selectMove = new SelectScoreAction(this);
                                 super.game.sendAction(selectMove);
                                 counter = 1;
-                            }
-
-                        }
                     }
+
+
+
+
 
                 }
 
@@ -277,6 +272,97 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
 
 
     }//receiveInfo
+
+    public void rollAI(){
+
+        rollDecider = (int) (Math.random()*20);
+
+        //fullhouse
+        if( rollDecider == 1  ){
+            diceValues[0] = (int) (Math.random() * 6 + 1);
+            diceValues[2] = (int) (Math.random() * 6 + 1);
+            diceValues[3] = diceValues[0];
+            diceValues[1] = diceValues[2];
+            diceValues[4] = diceValues[2];
+        }
+        //four of a kind
+        else if( rollDecider == 2  ){
+            diceValues[0] = (int) (Math.random() * 6 + 1);
+            diceValues[2] = (int) (Math.random() * 6 + 1);
+            diceValues[3] = diceValues[0];
+            diceValues[1] = diceValues[0];
+            diceValues[4] = diceValues[0];
+        }
+        //small straight
+        else if( rollDecider == 3  ){
+            placement = (int) (Math.random() * 3 +1);
+            if( placement == 1){
+                diceValues[0] = (int) (Math.random() * 6 + 1);
+                diceValues[2] = 2;
+                diceValues[3] = 3;
+                diceValues[1] = 4;
+                diceValues[4] = 1;
+
+            }
+            else if( placement == 2){
+                diceValues[0] = (int) (Math.random() * 6 + 1);
+                diceValues[2] = 2;
+                diceValues[3] = 4;
+                diceValues[1] = 3;
+                diceValues[4] = 5;
+
+            }
+            else
+            {
+                diceValues[0] = (int) (Math.random() * 6 + 1);
+                diceValues[2] = 6;
+                diceValues[3] = 5;
+                diceValues[1] = 3;
+                diceValues[4] = 4;
+            }
+
+        }
+        //large Straight
+        else if ( rollDecider == 3){
+            placement = (int) (Math.random() * 2 + 1);
+            if( placement == 1){
+                diceValues[0] = 2;
+                diceValues[2] = 6;
+                diceValues[3] = 5;
+                diceValues[1] = 3;
+                diceValues[4] = 4;
+            }
+            else {
+                diceValues[0] = 1;
+                diceValues[2] = 4;
+                diceValues[3] = 3;
+                diceValues[1] = 5;
+                diceValues[4] = 2;
+            }
+
+        }
+        //three of a kind
+        else if( rollDecider == 4){
+            diceValues[0] = (int) (Math.random() *6 +1);
+            diceValues[1] = (int) (Math.random() *6 +1);
+            diceValues[2] = diceValues[0] ;
+            diceValues[3] = (int) (Math.random() *6 +1);
+            diceValues[4] = diceValues[0];
+        }
+        else if( rollDecider == 5){
+            diceValues[0] = (int) (Math.random() *6 +1);
+            diceValues[1] = diceValues[0];
+            diceValues[2] = diceValues[0] ;
+            diceValues[3] = diceValues[0];
+            diceValues[4] = diceValues[0];
+        }
+        else{
+            //Random Roll 1
+            for (int i = 0; i < diceValues.length; i++) {
+                diceValues[i] = (int) (Math.random() * 6 + 1);
+            }
+        }
+    }
 
 
 
