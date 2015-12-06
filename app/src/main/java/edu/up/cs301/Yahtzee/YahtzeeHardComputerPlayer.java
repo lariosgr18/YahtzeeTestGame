@@ -261,7 +261,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                 }
 
 
-                // scoreSelected = calc.scoreValues[index];
+
 
 
 
