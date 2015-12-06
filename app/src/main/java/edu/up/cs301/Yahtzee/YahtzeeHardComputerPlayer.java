@@ -337,7 +337,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
             }
 
         }
-        //large Straight
+        //large Straighte
         else if ( rollDecider == 3){
             placement = (int) (Math.random() * 2 + 1);
             if( placement == 1){
