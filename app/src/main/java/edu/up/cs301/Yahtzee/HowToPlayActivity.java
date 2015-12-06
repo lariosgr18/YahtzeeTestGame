@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import edu.up.cs301.game.R;
 
 public class HowToPlayActivity extends Activity {
-//comment
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
+        this.setTitle("How to Play");
     }
 
     @Override
@@ -33,7 +36,10 @@ public class HowToPlayActivity extends Activity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    public void close(){
+        finish();
     }
 }

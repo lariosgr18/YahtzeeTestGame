@@ -274,6 +274,7 @@ View.OnClickListener {
 		// create the players
 		//////////////////////////////////////
 		int requiresGuiCount = 0; // the number of players that require a GUI
+		int computerPlayer = 0;
 		guiPlayer = null; // the player that will be our GUI player
 		players = new GamePlayer[config.getNumPlayers()]; // the array to contains our players
 
@@ -299,6 +300,10 @@ View.OnClickListener {
 			else if (guiPlayer == null && players[i].supportsGui()) {
 				guiPlayer = players[i];
 			}
+			else
+			{
+				computerPlayer++;
+			}
 		}
 
 		// create the game if it's remote
@@ -313,6 +318,14 @@ View.OnClickListener {
 		// if there is more than one player that requires a GUI, abort
 		if (requiresGuiCount >= 2) {
 			return "Cannot have more than one GUI player on a single device.";
+		}
+
+		if (computerPlayer >= 2) {
+			return "Cannot have more than one AI player on a single device.";
+		}
+
+		if (players[1].requiresGui()) {
+			return "Player 2 must be an AI opponent.";
 		}
 
 		// if there is a player that supports a GUI, link it to the activity,

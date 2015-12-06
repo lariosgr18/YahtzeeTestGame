@@ -9,13 +9,17 @@ import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -29,7 +33,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     GameMainActivity mainActivity = null; //game activity
     // the game's state
-    YahtzeeGameState state = null;//the state to load
+    YahtzeeGameState state = null;//the state to
+
+    private FrameLayout layout;
+    private SoundPool rollingSound;
+    private int sound;
 
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
@@ -85,6 +93,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             };
 
     public Button quit;
+    public Button howToPlay;
 
     public TextView humanName;
     public TextView computerName;
@@ -141,6 +150,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
         quit = (Button) mainActivity.findViewById(R.id.quit);
         quit.setOnClickListener(this);
+        howToPlay = (Button) mainActivity.findViewById(R.id.howtoplay_button);
+        howToPlay.setOnClickListener(this);
+
+        rollingSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        sound = rollingSound.load(mainActivity.getApplicationContext(),R.raw.diceroll,1);
+
+
     }
     //
 
@@ -214,6 +230,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
        scoreCard.setDiceObjects(thedice);
         //update the computer score card
         if(((YahtzeeGameState) info).getCurrentPlayerID() == 1) {
+            rollingSound.play(sound,1.0f,1.0f,0,0,1.5f);
             scoreCard.updateComputerCard();
         }
 
@@ -289,6 +306,12 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         if(view == quit)
         {
+            mainActivity.recreate();
+            return;
+        }
+        if(view == howToPlay){
+            Intent intent = new Intent(mainActivity, HowToPlayActivity.class);
+            mainActivity.startActivity(intent);
             return;
         }
         if(((YahtzeeLocalGame)super.game).canMove(playerNum))
@@ -296,6 +319,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
             //if the user clicks the roll button and hasnt rolled 3 times, change dice values and send to gamestate
             if (view == roll && rollNum <= 3) {
+                rollingSound.play(sound,1.0f,1.0f,0,0,1.5f);
                 for (int i = 0; i < thedice.length; i++) {
                     thedice[i].roll();
                     thedice[i].invalidate();
@@ -305,8 +329,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                 super.game.sendAction(action);
                 scoreCard.updateScoreCard();
                 rollNum++;
+                return;
 
             }
+
 
             //if the user selects a score and they have at least rolled once
             if (view != roll && rollNum >= 2) {
@@ -320,6 +346,11 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
                         currentScoreIndex = i;
                         scoreChosen = scores[i];
+
+                        if(numberedButtons1[11] == view && Integer.parseInt((String)numberedButtons1[11].getText()) >= 50)
+                        {
+                            scoreCard.incrementYahtzee();
+                        }
                     }
 
                 }
@@ -333,6 +364,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     thedice[i].keep = false;
                     thedice[i].setBackgroundColor(DICE_COLOR);
                 }
+
 
             }
         }

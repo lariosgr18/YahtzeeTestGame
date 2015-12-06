@@ -20,16 +20,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
         android:textSize="13dp"
-        android:text="     On each turn, the player can roll the dice up to three times to get the highest scoring combination for one of the 13 categories. After rolling, you must place a score or a zero in one of the 13 category boxes on your score card. The game ends when all players have filled in their 13 boxes. The player with the highest total wins."
-        android:layout_alignTop="@+id/imageView"
+        android:text="     On each turn, the player can roll the dice up to three times to get the highest scoring combination for one of the 13 categories. After rolling, you must select a score or a zero in one of the 13 category boxes on your score card. The game ends when the players have selected all 13 boxes. The player with the highest total wins."
+        android:layout_below="@+id/textView6"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="69dp"
-        android:layout_toLeftOf="@+id/imageView" />
+        android:layout_toLeftOf="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="     On your turn, you may roll the dice up to 3 times, although you may stop and score after your first or second roll. On your first roll you must roll all five dice.  After you can choose to reroll by pressing the roll button, or hold some dice by long pressing on the ones you want to keep. When a dice is held, that dice will not be rolled if you choose to reroll."
+        android:text="     On your turn, you may roll the dice up to 3 times, although you may stop and score after your first or second roll. On your first roll you must roll all five dice.  After, you can choose to reroll by pressing the roll button, or hold by long pressing on the ones you want to keep. When a dice is held, that dice will not be rolled if you choose to reroll."
         android:id="@+id/textView4"
         android:textSize="13dp"
         android:layout_below="@+id/textView3"
@@ -54,13 +53,14 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/button"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_alignLeft="@+id/textView5" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Game Rules and Summary:"
+        android:id="@+id/textView6"
+        android:layout_above="@+id/imageView"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>

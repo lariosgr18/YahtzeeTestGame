@@ -35,6 +35,8 @@ public class ScoreCalc {
     public int scoreValues[] = new int[13];//values of each of the scores available
 
     public int highest; // represents the highest score available
+
+    public int yahtzeeCount=0;
     /*
     Constructor for the Human player
     Takes in an array of buttons, dice objects, and the computers buttons
@@ -121,7 +123,7 @@ public class ScoreCalc {
             playerButtons[10].setText("" + largeStraight());
         }
         //Updates the button if it has not been chosen yet.
-        if(CheckYahtzee())
+        if(CheckYahtzee() && Integer.parseInt((String)playerButtons[11].getText()) >= 50)
         {
             playerButtons[11].setBackgroundColor(Color.LTGRAY);
             playerButtons[11].setEnabled(true);
@@ -129,7 +131,7 @@ public class ScoreCalc {
         }
         //Updates the button if it has not been chosen yet.
         if(playerButtons[11].isEnabled()) {
-            playerButtons[11].setText("" + yahtzee());
+            playerButtons[11].setText("" + yahtzeePlayer());
         }
         //Updates the button if it has not been chosen yet.
         if(playerButtons[12].isEnabled()) {
@@ -200,7 +202,7 @@ public class ScoreCalc {
         }
         //Updates the button if it has not been chosen yet.
         if(computerButtons[11].isEnabled()) {
-            computerButtons[11].setText("" + yahtzee());
+            computerButtons[11].setText("" + yahtzeeComputer());
         }
         //Updates the button if it has not been chosen yet.
         if(computerButtons[12].isEnabled()) {
@@ -269,7 +271,7 @@ public class ScoreCalc {
                     break;
                 //Updates the scoreValue index based on its associated score
                 case 11:
-                    scoreValues[i] = yahtzee();
+                    scoreValues[i] = yahtzeeComputer();
                     break;
                 //Updates the scoreValue index based on its associated score
                 case 12:
@@ -434,22 +436,26 @@ public class ScoreCalc {
     /*
    Calculates if a yahtzee is rolled
    */
-    public int yahtzee(){
+    public int yahtzeePlayer(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
-                if(YAHTZEE == true ){
-                    currentYahtzeeScore += 100;
-                }
-                else
-                {
-                    YAHTZEE = true;
-                    currentYahtzeeScore = YAHTZEESCORE;
-                }
+             currentYahtzeeScore = YAHTZEESCORE + 100* yahtzeeCount;
                 return currentYahtzeeScore;
             }
         }
         return 0;
     }
+
+    public int yahtzeeComputer(){
+        for(int i = 0; i < diceVals.length; i++){
+            if(diceVals[i] == 5){
+                currentYahtzeeScore = YAHTZEESCORE;
+                return currentYahtzeeScore;
+            }
+        }
+        return 0;
+    }
+
 
     /*
     Checks if a yahtzee is rolled
@@ -492,6 +498,11 @@ public class ScoreCalc {
         for(int i = 0; i < diceObjects.length; i++) {
             this.diceObjects[i] = diceObjects[i];
         }
+    }
+
+    public void incrementYahtzee()
+    {
+        this.yahtzeeCount++;
     }
 }
 
