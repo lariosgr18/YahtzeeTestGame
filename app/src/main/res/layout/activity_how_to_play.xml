@@ -28,7 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="     On your turn, you may roll the dice up to 3 times, although you may stop and score after your first or second roll. On your first roll you must roll all five dice.  After, you can choose to reroll by pressing the roll button, or hold by long pressing on the ones you want to keep. When a dice is held, that dice will not be rolled if you choose to reroll."
+        android:text="     On your turn, you may roll the dice up to 3 times, although you may stop and score after your first or second roll. On your first roll you must roll all five dice.  After, you can choose to reroll by pressing the roll button, or hold by selecting the ones you want to keep. When a dice is held, that dice will not be rolled if you choose to reroll."
         android:id="@+id/textView4"
         android:textSize="13dp"
         android:layout_below="@+id/textView3"
@@ -62,5 +62,14 @@
         android:id="@+id/textView6"
         android:layout_above="@+id/imageView"
         android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="     There are also bonuses that you can qualify for. In the Upper Section (which includes the categories Aces through Sixes) you get a total score of more than 63 points then you will be rewarded with a 35 point bonus. "
+        android:id="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView5"
+        android:layout_toLeftOf="@+id/textView" />
 
 </RelativeLayout>
