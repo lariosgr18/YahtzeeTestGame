@@ -189,7 +189,7 @@ public class GameConfig {
 		
 		// initialize the instance variables from the parameters
 		this.availTypes = availTypes;
-		this.minPlayers = minPlayers;
+		this.minPlayers = 2;
 		this.maxPlayers = maxPlayers;
 		this.gameName = gameName;
 		this.portNum = portNum;
