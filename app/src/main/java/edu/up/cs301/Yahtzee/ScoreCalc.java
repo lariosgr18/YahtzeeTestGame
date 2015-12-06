@@ -203,6 +203,13 @@ public class ScoreCalc {
             computerButtons[10].setText("" + largeStraight());
         }
         //Updates the button if it has not been chosen yet.
+        if(CheckYahtzee() && Integer.parseInt((String)computerButtons[11].getText()) >= 50)
+        {
+            computerButtons[11].setBackgroundColor(Color.LTGRAY);
+            computerButtons[11].setEnabled(true);
+            computerButtons[11].setTextSize(15);
+            yahtzeeCount2++;
+        }
         if(computerButtons[11].isEnabled()) {
             computerButtons[11].setText("" + yahtzeeComputer());
         }
@@ -273,13 +280,6 @@ public class ScoreCalc {
                     break;
                 //Updates the scoreValue index based on its associated score
                 case 11:
-                    if(CheckYahtzee() && Integer.parseInt((String)computerButtons[11].getText()) >= 50)
-                    {
-                        computerButtons[11].setBackgroundColor(Color.LTGRAY);
-                        computerButtons[11].setEnabled(true);
-                        computerButtons[11].setTextSize(15);
-                        yahtzeeCount2++;
-                    }
                     scoreValues[i] = yahtzeeComputer();
                     break;
                 //Updates the scoreValue index based on its associated score
