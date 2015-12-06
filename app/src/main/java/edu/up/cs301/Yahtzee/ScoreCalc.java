@@ -37,6 +37,8 @@ public class ScoreCalc {
     public int highest; // represents the highest score available
 
     public int yahtzeeCount=0;
+
+    public int yahtzeeCount2 = 0;
     /*
     Constructor for the Human player
     Takes in an array of buttons, dice objects, and the computers buttons
@@ -201,6 +203,7 @@ public class ScoreCalc {
             computerButtons[10].setText("" + largeStraight());
         }
         //Updates the button if it has not been chosen yet.
+
         if(computerButtons[11].isEnabled()) {
             computerButtons[11].setText("" + yahtzeeComputer());
         }
@@ -449,7 +452,7 @@ public class ScoreCalc {
     public int yahtzeeComputer(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
-                currentYahtzeeScore = YAHTZEESCORE;
+                currentYahtzeeScore = YAHTZEESCORE + 100* yahtzeeCount2;
                 return currentYahtzeeScore;
             }
         }
