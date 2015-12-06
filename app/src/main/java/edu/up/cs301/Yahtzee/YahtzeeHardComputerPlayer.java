@@ -237,7 +237,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                         highest = 0;
                         for(int i = 0; i < calc.scoreValues.length; i++)
                         {
-                            if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
+                            if(calc.scoreValues[i] >= highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
                             {
                                 highestIndex = i;
                                 highest = calc.scoreValues[i];
