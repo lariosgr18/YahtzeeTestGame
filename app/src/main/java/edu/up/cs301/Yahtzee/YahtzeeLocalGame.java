@@ -54,12 +54,12 @@ public class YahtzeeLocalGame extends LocalGame {
                     if(totalScore1 >= 63)
                     {
                         totalScore1 += upperBonus;
-                        notifyOfBonus1 = "\nLower Bonus Achieved: +35 points";
+                        notifyOfBonus1 = "\nUpper Bonus Achieved: +35 points";
                     }
                     if(totalScore2 >= 63)
                     {
                         totalScore2 += upperBonus;
-                        notifyOfBonus2 = "\nLower Bonus Achieved: +35 points";
+                        notifyOfBonus2 = "\nUpper Bonus Achieved: +35 points";
                     }
                 }
                 Log.d("gameOver scores:", "" + currentGame.getPlayer2Score()[i]);

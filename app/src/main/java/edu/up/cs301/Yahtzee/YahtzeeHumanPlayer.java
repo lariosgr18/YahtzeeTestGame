@@ -29,7 +29,7 @@ import android.view.View.OnClickListener;
  *
  * Creates a interactive GUI so the player can play the game
  */
-public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener, View.OnLongClickListener {
+public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener {
 
     GameMainActivity mainActivity = null; //game activity
     // the game's state
@@ -139,7 +139,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         for (int i = 0; i < thedice.length; i++) {
             thedice[i] =
                     (Dice) mainActivity.findViewById(dieID[i]);
-            thedice[i].setBackgroundColor(Color.WHITE);
+            thedice[i].setBackgroundColor(DICE_COLOR);
         }
 
         //comment
@@ -278,7 +278,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
         //set the long click for the dice
         for (int i = 0; i < thedice.length; i++) {
-            thedice[i].setOnLongClickListener(this);
+            thedice[i].setOnClickListener(this);
         }
 
 
@@ -332,7 +332,21 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                 return;
 
             }
-
+            for(int i = 0; i < thedice.length; i++) {
+                if(view == thedice[i]) {
+                    if (rollNum >= 2) {
+                        if (((Dice) view).keep == true) {
+                            ((Dice) view).keep = false;
+                            ((Dice) view).setBackgroundColor(DICE_COLOR);
+                            return;
+                        } else {
+                            ((Dice) view).keep = true;
+                            ((Dice) view).setBackgroundColor(DICE_HOLD_COLOR);
+                            return;
+                        }
+                    }
+                }
+            }
 
             //if the user selects a score and they have at least rolled once
             if (view != roll && rollNum >= 2) {
@@ -369,24 +383,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             }
         }
 
-    }
-    /*
-        onLong click for the dice image buttons
-     */
-    public boolean onLongClick(View view) {
-        //change the dice hold/color when the user long clicks
-        if( rollNum >= 2) {
-            if (((Dice) view).keep == true) {
-                ((Dice) view).keep = false;
-                ((Dice) view).setBackgroundColor(DICE_COLOR);
-                return false;
-            } else {
-                ((Dice) view).keep = true;
-                ((Dice) view).setBackgroundColor(DICE_HOLD_COLOR);
-                return true;
-            }
-        }
-        return false;
     }
 
     /*
