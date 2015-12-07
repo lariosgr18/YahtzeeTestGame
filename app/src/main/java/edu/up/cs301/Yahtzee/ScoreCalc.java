@@ -212,10 +212,8 @@ public class ScoreCalc {
     */
     public void computerCalculator() {
 
-        for(int i = 0; i < scoreValues.length; i++)
-        {
-            switch (i)
-            {   //Updates the scoreValue index based on its associated score
+        for(int i = 0; i < scoreValues.length; i++) {
+            switch (i) {   //Updates the scoreValue index based on its associated score
                 case 0:
                     scoreValues[i] = aceScore();
                     break;
