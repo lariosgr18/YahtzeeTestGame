@@ -25,11 +25,12 @@ import edu.up.cs301.game.config.GamePlayerType;
  * Sets up the main activity, so the user can select the type of players to play the game
  */
 
-
-
 public class YahtzeeMainActivity extends GameMainActivity{
+
     // the port number that this game will use when playing over the network
     private static final int PORT_NUMBER = 2278;
+
+    //set default color for dice when they are held
     public int DICE_COLOR = Color.WHITE;
     public int DICE_HOLD_COLOR = Color.BLUE;
     public MediaPlayer mMediaPlayer = new MediaPlayer();
@@ -43,8 +44,8 @@ public class YahtzeeMainActivity extends GameMainActivity{
                     R.id.menuDie5,
             };
 
-
-
+    //set up MediaPlayer to play music
+    public MediaPlayer mMediaPlayer = new MediaPlayer();
 
     /**
      * Create the default configuration for this game:
@@ -57,7 +58,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
     @Override
     public GameConfig createDefaultConfig() {
 
-
+        //start song with loop when app is opened
         mMediaPlayer = MediaPlayer.create(this, R.raw.mouse);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(true);
@@ -78,28 +79,26 @@ public class YahtzeeMainActivity extends GameMainActivity{
         // Yahtzee has three player types:  human player, easy computer and hard computer
         playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
-                if(name.length()>14)
-                {
+                if(name.length()>14) {
                     name = "HUMAN";
                 }
                 return new YahtzeeHumanPlayer(name);
             }});
         playerTypes.add(new GamePlayerType("Computer Player (Easy)") {
             public GamePlayer createPlayer(String name) {
-                if(name.length()>20)
-                {
+                if(name.length()>20) {
                     name = "COMPUTER";
                 }
                 return new YahtzeeComputerPlayer(name);
             }});
         playerTypes.add(new GamePlayerType("Computer Player (Hard)") {
             public GamePlayer createPlayer(String name) {
-                if(name.length()>20)
-                {
+                if(name.length()>20) {
                     name = "COMPUTER";
                 }
                 return new YahtzeeHardComputerPlayer(name);
-            }});
+            }
+        });
 
         //Create a game configuration class for Yahtzee
         GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Yahtzee", PORT_NUMBER);
@@ -118,26 +117,33 @@ public class YahtzeeMainActivity extends GameMainActivity{
      * 		the local game, a counter game
      */
     @Override
-    public LocalGame createLocalGame() {
 
+    /**
+     * creates local game
+     */
+    public LocalGame createLocalGame() {
+        //stop playing music when local game is created
         mMediaPlayer.stop();
         mMediaPlayer.release();
         mMediaPlayer = null;
         return new YahtzeeLocalGame();
     }
 
+
+    /**
+     * creates menu options
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-
         getMenuInflater().inflate(R.menu.game_main, menu);
         return true;
     }
 
+    /**
+     * allow users to change dice color
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         // respond to menu item selection
         int itemId = item.getItemId();
         if (itemId == R.id.WhiteDiceeMenuItem) {
@@ -153,8 +159,6 @@ public class YahtzeeMainActivity extends GameMainActivity{
             this.DICE_HOLD_COLOR = Color.MAGENTA;
             return true;
         }
-
         return false;
     }// onOptionsItemSelected
-
 }

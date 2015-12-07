@@ -2,27 +2,23 @@ package edu.up.cs301.Yahtzee;
 
 import android.util.Log;
 
-import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
  * Created by Michael on 11/29/2015.
  */
 public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
-    // 93, 146, 103, 113, 78, 101
-    //125, 132. 127,dg
 
-    private int placement;
-    private int rollDecider;
+    private int smallStraight;
+    private int categoryDecider;
     private int[] diceValues = new int[5]; //Represents the values of a roll
-    private int scoreSelected;  //Represents the value of the Score to be selected
-    private int index; //Is the index of the button to be "clicked on"
-
-    private int counter;//Keeps track if a score has been selected or not
-    private int LIMIT = 10; // A threshold to keep track of the minimum score we need to record a score
-    private int highest;   //Represents the highes score we can record durign this turn
+    private int scoreSelected;  //Represents the value of the Score selected
+    private int index; //Is the index of the score to be selected
+    private int categorySelected;//Keeps track if a score has been selected or not
+    private int LIMIT = 10; // A threshold to keep track of the minimum score the computer tries to get
+    private int highest;   //Represents the highest score we can record durign this turn
     private int highestIndex; //Represents the index of the button of the highest score
-
+    
     /**
      * constructor
      *
@@ -31,8 +27,6 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     public YahtzeeHardComputerPlayer(String name) {
         super(name);
     }
-
-
 
     /**
      * callback method--game's state has changed
@@ -44,14 +38,10 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     protected void receiveInfo(GameInfo info) {
         //Attempts to cast the GameInfo into a GameState
         try {
-
             YahtzeeGameState state = (YahtzeeGameState) info;
             //Checks if it is the computer players turn
             if(state.getCurrentPlayerID()== 1) {
                 Log.d("COMPUTER PLAYER", "COMPUTERS TURN");
-
-
-
 
                 //first roll
                 rollAI();
@@ -74,51 +64,37 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
 
                 //updates our highes score possible
                 highest = 0;
-                for(int i = 0; i < calc.scoreValues.length; i++)
-                {
-                    if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                    {
+                for(int i = 0; i < calc.scoreValues.length; i++) {
+                    if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
                         highestIndex = i;
                         highest = calc.scoreValues[i];
                     }
                 }
 
-               counter = 0;
-               // highest = 0;
-                //Keeps track of the turn. All moves happen in the this while loop
-                while (counter == 0 ) {
-
-                    // Checks for the first roll to see if any is more than our threshold. If so, the it chooses it
-                    for (int i = 0; i < calc.scoreValues.length; i++) {
-
-
-                        if ((calc.scoreValues[i] > LIMIT) && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
-
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-
-                            scoreSelected = highest;
-                            index = highestIndex;
-                            SelectScoreAction selectMove = new SelectScoreAction(this);
-                            super.game.sendAction(selectMove);
-                            counter = 1;
-                            break;
-                        }
-
-                    }
-
+               categorySelected = 0;
+               //Keeps track of the turn. All moves happen in the this while loop
+               // Checks for the first roll to see if any is more than our threshold. If so, the it chooses it
+               for (int i = 0; i < calc.scoreValues.length; i++) {
+                   if ((calc.scoreValues[i] > LIMIT) && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
+                       try {
+                           Thread.sleep(1000);
+                       } catch (InterruptedException e) {
+                           e.printStackTrace();
+                       }
+                       scoreSelected = highest;
+                       index = highestIndex;
+                       SelectScoreAction selectMove = new SelectScoreAction(this);
+                       super.game.sendAction(selectMove);
+                       categorySelected = 1;
+                       break;
+                   }
+               }
                     //if we roll for a second time
-                    if(counter != 1){
-
+                    if(categorySelected != 1){
                         //second roll
                         rollAI();
                         calc.updateDiceVals(diceValues);
                         calc.computerCalculator();
-
 
                         //Sends the roll move
                         RollAction rollMove1 = new RollAction(this);
@@ -134,10 +110,8 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
 
                         //updates our highes score possible
                         highest = 0;
-                        for(int i = 0; i < calc.scoreValues.length; i++)
-                        {
-                            if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                            {
+                        for(int i = 0; i < calc.scoreValues.length; i++) {
+                            if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
                                 highestIndex = i;
                                 highest = calc.scoreValues[i];
                             }
@@ -145,35 +119,25 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
 
                         // Checks for the first roll to see if any is more than our threshold. If so, the it chooses it
                         for (int i = 0; i < calc.scoreValues.length; i++) {
-
-
                             if ((calc.scoreValues[i] > LIMIT) && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
-
                                 try {
                                     Thread.sleep(1000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
-
                                 scoreSelected = highest;
                                 index = highestIndex;
                                 SelectScoreAction selectMove = new SelectScoreAction(this);
                                 super.game.sendAction(selectMove);
-                                counter = 1;
+                                categorySelected = 1;
                                 break;
                             }
-
                         }
-
-
-
                     }
 
                     //third roll
                     //Checks to see if we have scored something yet. Checks for our threshold condition and selects it if it is above our threshold
-                    if ( counter !=1){
-
+                    if (categorySelected !=1){
                         rollAI();
                         //Random roll
                         //Sleep so dice can be drawn
@@ -198,126 +162,89 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
 
                         //Updates our highest score available
                         highest = 0;
-                        for(int i = 0; i < calc.scoreValues.length; i++)
-                        {
-                            if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                            {
+                        for(int i = 0; i < calc.scoreValues.length; i++) {
+                            if(calc.scoreValues[i] > highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
                                 highestIndex = i;
                                 highest = calc.scoreValues[i];
                             }
                         }
-
-
                         //Checks to see if we can select a score
                         for (int i = 0; i < calc.scoreValues.length; i++) {
                             if (calc.scoreValues[i] > LIMIT && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
-
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-
                                 index=highestIndex;
-
                                 scoreSelected = highest;
                                 SelectScoreAction selectMove = new SelectScoreAction(this);
                                 super.game.sendAction(selectMove);
-                                counter = 1;
+                                categorySelected = 1;
                                 break;
                             }
-
                         }
                     }
-
-                    if( counter !=1){
-
-
+                    if( categorySelected !=1){
                         //Updates our highest score available
                         highest = 0;
-                        for(int i = 0; i < calc.scoreValues.length; i++)
-                        {
-                            if(calc.scoreValues[i] >= highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true)
-                            {
+                        for(int i = 0; i < calc.scoreValues.length; i++) {
+                            if(calc.scoreValues[i] >= highest && ((YahtzeeGameState) info).getButtonsPressed2()[i] == true) {
                                 highestIndex = i;
                                 highest = calc.scoreValues[i];
                             }
                         }
-
-                            //Sleeps to let the dice be drawn
-                             try {
-                                    Thread.sleep(1000);
-                                }
-                             catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
-                                    //random
-
-                                index=highestIndex;
-                                scoreSelected = highest;
-                                SelectScoreAction selectMove = new SelectScoreAction(this);
-                                super.game.sendAction(selectMove);
-                                counter = 1;
+                        //Sleeps to let the dice be drawn
+                        try {
+                            Thread.sleep(1000);
+                        }
+                        catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        //random
+                        index=highestIndex;
+                        scoreSelected = highest;
+                        SelectScoreAction selectMove = new SelectScoreAction(this);
+                        super.game.sendAction(selectMove);
+                        categorySelected = 1;
                     }
-
-
-
-
-
                 }
-
-
-
-
-
-
                 try {
                     Thread.sleep(4000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
-            }
         }
-        catch (ClassCastException cast)
-        {
+        catch (ClassCastException cast) {
             Log.d("Error", "ClassCast");
         }
-
-
-
-
-
-
-
     }//receiveInfo
 
     public void rollAI(){
+        categoryDecider = (int) (Math.random()*20);
 
-        rollDecider = (int) (Math.random()*20);
-
-        //fullhouse
-        if( rollDecider == 1  ){
+        //Full House
+        if( categoryDecider == 1  ){
             diceValues[0] = (int) (Math.random() * 6 + 1);
             diceValues[2] = (int) (Math.random() * 6 + 1);
             diceValues[3] = diceValues[0];
             diceValues[1] = diceValues[2];
             diceValues[4] = diceValues[2];
         }
+
         //four of a kind
-        else if( rollDecider == 2  ){
+        else if( categoryDecider == 2  ){
             diceValues[0] = (int) (Math.random() * 6 + 1);
             diceValues[2] = (int) (Math.random() * 6 + 1);
             diceValues[3] = diceValues[0];
             diceValues[1] = diceValues[0];
             diceValues[4] = diceValues[0];
         }
+
         //small straight
-        else if( rollDecider == 3  ){
-            placement = (int) (Math.random() * 3 +1);
-            if( placement == 1){
+        else if( categoryDecider == 3  ){
+            smallStraight = (int) (Math.random() * 3 +1);
+            if( smallStraight == 1){
                 diceValues[0] = (int) (Math.random() * 6 + 1);
                 diceValues[2] = 2;
                 diceValues[3] = 3;
@@ -325,7 +252,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                 diceValues[4] = 1;
 
             }
-            else if( placement == 2){
+            else if( smallStraight == 2){
                 diceValues[0] = (int) (Math.random() * 6 + 1);
                 diceValues[2] = 2;
                 diceValues[3] = 4;
@@ -333,20 +260,19 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                 diceValues[4] = 5;
 
             }
-            else
-            {
+            else {
                 diceValues[0] = (int) (Math.random() * 6 + 1);
                 diceValues[2] = 6;
                 diceValues[3] = 5;
                 diceValues[1] = 3;
                 diceValues[4] = 4;
             }
-
         }
-        //large Straighte
-        else if ( rollDecider == 3){
-            placement = (int) (Math.random() * 2 + 1);
-            if( placement == 1){
+
+        //large Straight
+        else if ( categoryDecider == 3){
+            smallStraight = (int) (Math.random() * 2 + 1);
+            if( smallStraight == 1){
                 diceValues[0] = 2;
                 diceValues[2] = 6;
                 diceValues[3] = 5;
@@ -360,18 +286,19 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
                 diceValues[1] = 5;
                 diceValues[4] = 2;
             }
-
         }
+
         //three of a kind
-        else if( rollDecider == 4){
+        else if( categoryDecider == 4){
             diceValues[0] = (int) (Math.random() *6 +1);
             diceValues[1] = (int) (Math.random() *6 +1);
             diceValues[2] = diceValues[0] ;
             diceValues[3] = (int) (Math.random() *6 +1);
             diceValues[4] = diceValues[0];
         }
+
         //four of a kind
-        else if( rollDecider == 5){
+        else if( categoryDecider == 5){
             diceValues[0] = (int) (Math.random() *6 +1);
             diceValues[1] = diceValues[0];
             diceValues[2] = diceValues[0] ;
@@ -379,14 +306,12 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
             diceValues[4] = diceValues[0];
         }
         else{
-            //Random Roll 1
-            for (int i = 0; i < diceValues.length; i++) {
-                diceValues[i] = (int) (Math.random() * 6 + 1);
+        //Random Roll 1
+        for (int i = 0; i < diceValues.length; i++) {
+            diceValues[i] = (int) (Math.random() * 6 + 1);
             }
         }
     }
-
-
 
     public int[] getDiceValues() {
         return diceValues;
@@ -396,7 +321,6 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
         this.diceValues = diceValues;
     }
 
-
     public int getIndex() {
         return index;
     }
@@ -405,7 +329,6 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
         this.index = index;
     }
 
-
     public int getScoreSelected() {
         return scoreSelected;
     }
@@ -413,5 +336,4 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     public void setScoreSelected(int scoreSelected) {
         this.scoreSelected = scoreSelected;
     }
-
 }
