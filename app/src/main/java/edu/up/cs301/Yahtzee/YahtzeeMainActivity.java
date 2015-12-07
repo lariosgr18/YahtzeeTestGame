@@ -104,7 +104,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
 
         mMediaPlayer.stop();
         mMediaPlayer.release();
-       mMediaPlayer = null;
+        mMediaPlayer = null;
         return new YahtzeeLocalGame();
     }
 

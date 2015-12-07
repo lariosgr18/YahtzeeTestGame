@@ -21,7 +21,7 @@ public class YahtzeeHardComputerPlayer extends YahtzeeComputerPlayer {
     private int counter;//Keeps track if a score has been selected or not
     private int LIMIT = 10; // A threshold to keep track of the minimum score we need to record a score
     private int highest;   //Represents the highes score we can record durign this turn
-    private int highestIndex; //Represents the index of the butto nof the highest score
+    private int highestIndex; //Represents the index of the button of the highest score
 
     /**
      * constructor

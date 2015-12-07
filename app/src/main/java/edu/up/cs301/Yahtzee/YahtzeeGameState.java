@@ -17,9 +17,11 @@ public class YahtzeeGameState extends GameState {
     private int player2turns;//total turns counter
     private int rolls; //total rolls counter
     private int currentPlayerID;//the current player whose turn it is
+
     private int[] player1Score = new int[13]; // player 1 score
     private int[] player2Score = new int[13]; //player 2 score
     private int[] diceValue = {1,2,3,4,5}; //latest dice values
+
     private boolean[] buttonsPressed = new boolean[13]; // keeps track of which buttons have been pressed for player 1
     private boolean[] buttonsPressed2 = new boolean[13];//keeps track of which buttons have been pressed for player 2
 
@@ -43,8 +45,8 @@ public class YahtzeeGameState extends GameState {
             new game state that takes 0 input and sets up a new gameState
          */
     public YahtzeeGameState() {
-        for (int i=0; i < buttonsPressed.length ;i++)
-        {
+        //sets whether buttons have been not pressed to true
+        for (int i=0; i < buttonsPressed.length ;i++) {
             buttonsPressed[i]= true;
             buttonsPressed2[i] = true;
         }
@@ -60,13 +62,11 @@ public class YahtzeeGameState extends GameState {
     /*
         When player rolls it updates the dice values and roll count
      */
-    public void rollDice(int DiceValues[],int rollerID)
-    {
+    public void rollDice(int DiceValues[],int rollerID) {
         //if the number of rolls is greater than 3 or it is not the players turn then don't do anything
 
             //update the dice values
-            for(int i = 0; i < diceValue.length; i++)
-            {
+            for(int i = 0; i < diceValue.length; i++) {
                 diceValue[i]= DiceValues[i];
                 Log.d("DICE VALUE " + i, "Dice Number " + diceValue[i]);
             }
@@ -77,22 +77,22 @@ public class YahtzeeGameState extends GameState {
     /*
         when a player selects a score, update their score, the round, and switch players
      */
-    public void selectScore(int score, int index, int player, boolean buttonPressed)
-    {
+    public void selectScore(int score, int index, int player, boolean buttonPressed) {
         //if its not the players turn don't do anything
         if(player == currentPlayerID) {
             //if its the 1st player update their score else do the other player
             if (player == player1Id) {
-                player1Score[index] = score;
-                buttonsPressed[index] = buttonPressed;
-                currentPlayerID = player2Id;
+
+                player1Score[index] = score; //updates the array that holds the player's score
+                buttonsPressed[index] = buttonPressed; //updates the button being pressed
+                currentPlayerID = player2Id; //sets the new current players
                 Log.d("SCORE",""+player1Score[index]);
                 player1turns++;
             } else
             {
-                player2Score[index] = score;
+                player2Score[index] = score; //updates teh array that holds the player's score
                 buttonsPressed2[index] = buttonPressed;
-                currentPlayerID = player1Id;
+                currentPlayerID = player1Id; //changes who's turn it is
                 player2turns++;
             }
             rolls = 1;
