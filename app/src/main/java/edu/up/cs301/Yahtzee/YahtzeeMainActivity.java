@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.animation.Dice;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
@@ -31,7 +32,16 @@ public class YahtzeeMainActivity extends GameMainActivity{
     private static final int PORT_NUMBER = 2278;
     public int DICE_COLOR = Color.WHITE;
     public int DICE_HOLD_COLOR = Color.BLUE;
-     public MediaPlayer mMediaPlayer = new MediaPlayer();
+    public MediaPlayer mMediaPlayer = new MediaPlayer();
+    public Dice[] menudice; //the five dice drawn on the screen
+    private static final int[] dieID = // the ID of the imageButtons of the dice
+            {
+                    R.id.menuDie1,
+                    R.id.menuDie2,
+                    R.id.menuDie3,
+                    R.id.menuDie4,
+                    R.id.menuDie5,
+            };
 
 
 
@@ -52,6 +62,14 @@ public class YahtzeeMainActivity extends GameMainActivity{
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
+        menudice = new Dice[dieID.length];
+
+        // fill the array using the indices in the buttonIndices array
+        for (int i = 0; i < menudice.length; i++) {
+            menudice[i] =
+                    (Dice) this.findViewById(dieID[i]);
+            menudice[i].setBackgroundColor(DICE_COLOR);
+        }
 
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
