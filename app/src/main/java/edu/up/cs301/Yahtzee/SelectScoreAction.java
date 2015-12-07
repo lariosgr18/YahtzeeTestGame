@@ -28,3 +28,4 @@ public class SelectScoreAction  extends GameAction{
         super.setPlayer(p);
     }
 }
+//
