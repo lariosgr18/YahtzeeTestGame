@@ -2,9 +2,12 @@ package edu.up.cs301.Yahtzee;
 
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
+import edu.up.cs301.game.R;
 import edu.up.cs301.game.actionMsg.GameAction;
 
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.Log;
 
 /**
@@ -14,6 +17,9 @@ import android.util.Log;
  */
 public class YahtzeeLocalGame extends LocalGame {
     YahtzeeGameState currentGame = new YahtzeeGameState();
+
+    private SoundPool rollingSound;
+    private int sound;
 
     /*
         sends state info to player
@@ -28,6 +34,7 @@ public class YahtzeeLocalGame extends LocalGame {
     */
     @Override
     protected boolean canMove(int playerIdx) {
+
         if(playerIdx == currentGame.getCurrentPlayerID()) {
             return true;
         }
@@ -75,6 +82,7 @@ public class YahtzeeLocalGame extends LocalGame {
                         + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }
             else {
+
                 return playerNames[1] + " WINS \n" +  playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
                         + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }

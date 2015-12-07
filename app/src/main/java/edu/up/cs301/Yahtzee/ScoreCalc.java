@@ -12,45 +12,37 @@ import edu.up.cs301.animation.Dice;
  * Controls the scores associated with each of the buttons.
  */
 public class ScoreCalc {
-    public int[] diceVals = new int[6];//the number of values of each dice
 
     private Dice[] diceObjects = new Dice[6];// the dice objects passed in
 
-    private int currentYahtzeeScore = 0;//the current score of the yahtzee category
-
     private Button[] playerButtons = new Button[13];//the players buttons
-
     private Button[] computerButtons = new Button[13];//the buttons used by the computer
 
+    public int scoreValues[] = new int[13];//values of each of the scores available
+    public int diceVals[] = new int[6];//the number of values of each dice
+
+
     private static final int FULLHOUSESCORE = 25;//value of a fullhouse
-
     private static final int SMALLSTRAIGHTSCORE = 30;//value of a small straight
-
     private static final int LARGESTRAIGHTSCORE = 40;//value of a large straight
-
     private static final int YAHTZEESCORE = 50;//value of a yahtzee
-
     public static boolean YAHTZEE = false;//check to see if a player has gotten at least one yahtzee
 
-    public int scoreValues[] = new int[13];//values of each of the scores available
 
-    public int highest; // represents the highest score available
+    private int currentYahtzeeScore = 0;//the current score of the yahtzee category
+    public int yahtzeeCount=0; // Records the number of yahtzees the human player has selected
 
-    public int yahtzeeCount=0;
-
-    public int yahtzeeCount2 = 0;
-    /*
-    Constructor for the Human player
-    Takes in an array of buttons, dice objects, and the computers buttons
-     */
-    public ScoreCalc(Button[] buttons, Dice[] dice, Button[] computerButtons1)
-    {
+    /**
+    *
+    *Constructor for the Human player
+    * Takes in an array of buttons, dice objects, and the computers buttons and sets them
+     *  */
+    public ScoreCalc(Button[] buttons, Dice[] dice, Button[] computerButtons1) {
         //Activity card = player.mainActivity;
         for (int i = 0; i < playerButtons.length; i++) {
             this.playerButtons[i] = buttons[i];
             this.computerButtons[i] = computerButtons1[i];
         }
-
 
         this.diceObjects = dice;
     }
@@ -59,9 +51,7 @@ public class ScoreCalc {
     Constructor for the computer player
     Takes in array of integer values
      */
-    public ScoreCalc(int Values[])
-    {
-
+    public ScoreCalc(int Values[]) {
         //Sets our array of integer values based on the array taken in
         for (int j = 0; j < Values.length; j++) {
             diceVals[Values[j] - 1]++;
@@ -74,14 +64,13 @@ public class ScoreCalc {
      */
     public void updateScoreCard() {
 
+        //updates our array so the correct score can be calculated
         for (int j = 0; j < diceObjects.length; j++) {
             diceVals[diceObjects[j].dieNum - 1]++;
         }
 
-
         //Updates the button if it has not been chosen yet.
-        if(playerButtons[0].isEnabled())
-        {
+        if(playerButtons[0].isEnabled()) {
             playerButtons[0].setText("" + aceScore());
         }
         //Updates the button if it has not been chosen yet.
@@ -125,8 +114,7 @@ public class ScoreCalc {
             playerButtons[10].setText("" + largeStraight());
         }
         //Updates the button if it has not been chosen yet.
-        if(CheckYahtzee() && Integer.parseInt((String)playerButtons[11].getText()) >= 50)
-        {
+        if(CheckYahtzee() && Integer.parseInt((String)playerButtons[11].getText()) >= 50) {
             playerButtons[11].setBackgroundColor(Color.LTGRAY);
             playerButtons[11].setEnabled(true);
             playerButtons[11].setTextSize(15);
@@ -152,14 +140,14 @@ public class ScoreCalc {
     */
     public  void updateComputerCard(){
 
+        //update the dice values fso our score can be calculated correctly
         for (int j = 0; j < diceObjects.length; j++) {
             diceVals[diceObjects[j].dieNum - 1]++;
             Log.d("updateComputerCard: ", "" + diceObjects[j]);
         }
 
         //Updates the button if it has not been chosen yet.
-        if(computerButtons[0].isEnabled())
-        {
+        if(computerButtons[0].isEnabled()) {
             computerButtons[0].setText("" + aceScore());
         }
         //Updates the button if it has not been chosen yet.
@@ -217,7 +205,6 @@ public class ScoreCalc {
             diceVals[j] = 0;
         }
 
-
     }
 
     /*
@@ -225,10 +212,8 @@ public class ScoreCalc {
     */
     public void computerCalculator() {
 
-        for(int i = 0; i < scoreValues.length; i++)
-        {
-            switch (i)
-            {   //Updates the scoreValue index based on its associated score
+        for(int i = 0; i < scoreValues.length; i++) {
+            switch (i) {   //Updates the scoreValue index based on its associated score
                 case 0:
                     scoreValues[i] = aceScore();
                     break;
@@ -282,25 +267,20 @@ public class ScoreCalc {
                     break;
             }
         }
-
     }
 
     /*
     updates the values of the dice
      */
-    public void updateDiceVals( int diceV[])
-    {
+    public void updateDiceVals( int diceV[]) {
         //Resets to zero to be ready to be updated
         for (int j = 0; j < diceVals.length; j++) {
-
             diceVals[j] = 0;
         }
         //Updates based on the array taken in
         for (int j = 0; j < diceV.length; j++) {
-
             diceVals[diceV[j] - 1]++;
         }
-
 
     }
 
@@ -383,6 +363,7 @@ public class ScoreCalc {
                         }
                     }
                 }
+
                 if(diceVals[i] == 3){
                     for(int j = i+1; j < diceVals.length; j++){
                         if(diceVals[j] == 2) {
@@ -408,7 +389,8 @@ public class ScoreCalc {
                     else if(diceVals[4] > 0){
                         return SMALLSTRAIGHTSCORE;
                     }
-                } else if(diceVals[4] > 0){
+                }
+                else if(diceVals[4] > 0){
                     if(diceVals[5] > 0){
                         return SMALLSTRAIGHTSCORE;
                     }
@@ -452,7 +434,7 @@ public class ScoreCalc {
     public int yahtzeeComputer(){
         for(int i = 0; i < diceVals.length; i++){
             if(diceVals[i] == 5){
-                currentYahtzeeScore = YAHTZEESCORE + 100* yahtzeeCount2;
+                currentYahtzeeScore = YAHTZEESCORE;
                 return currentYahtzeeScore;
             }
         }

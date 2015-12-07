@@ -71,6 +71,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
             menudice[i].setBackgroundColor(DICE_COLOR);
         }
 
+
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
@@ -120,6 +121,8 @@ public class YahtzeeMainActivity extends GameMainActivity{
     public LocalGame createLocalGame() {
 
         mMediaPlayer.stop();
+        mMediaPlayer.release();
+        mMediaPlayer = null;
         return new YahtzeeLocalGame();
     }
 

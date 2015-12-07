@@ -15,7 +15,7 @@ public class HowToPlayActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
-        this.setTitle("How to Play");
+        this.setTitle("How to Play"); //Sets title
     }
 
     @Override
@@ -39,6 +39,7 @@ public class HowToPlayActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Closes the Activity
     public void close(){
         finish();
     }
