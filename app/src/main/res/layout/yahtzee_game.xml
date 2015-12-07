@@ -468,6 +468,13 @@
             android:id="@+id/howtoplay_button"
             android:layout_gravity="center_horizontal|bottom" />
 
+        <TextView
+            android:layout_width="407dp"
+            android:layout_height="55dp"
+            android:id="@+id/turnViewer"
+            android:layout_gravity="center_horizontal|top"
+            android:textSize="45dp" />
+
 
     </FrameLayout>
 

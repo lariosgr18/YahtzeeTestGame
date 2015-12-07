@@ -97,6 +97,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     public TextView humanName;
     public TextView computerName;
+    public TextView currentPlayerViewer;
 
     public int DICE_COLOR;
     public int DICE_HOLD_COLOR;
@@ -145,6 +146,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         //comment
         humanName = (TextView) mainActivity.findViewById(R.id.player1_title);
         computerName =(TextView) mainActivity.findViewById(R.id.player2_title);
+        currentPlayerViewer = (TextView) mainActivity.findViewById(R.id.turnViewer);
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
         roll.setOnClickListener(this);
         scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
@@ -210,12 +212,17 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         if ( state.getCurrentPlayerID() ==1)
         {
             humanName.setBackgroundColor( Color.WHITE);
-            computerName.setBackgroundColor( Color.rgb(8,197,245));
+            computerName.setBackgroundColor(Color.rgb(8, 197, 245));
+            currentPlayerViewer.setText("" + allPlayerNames[1 - playerNum] +"'s turn.");
+            //currentPlayerViewer.setBackgroundColor( Color.rgb(8,197,245));
         }
         else
         {
-            computerName.setBackgroundColor( Color.WHITE);
+            computerName.setBackgroundColor(Color.WHITE);
             humanName.setBackgroundColor( Color.rgb(8,197,245));
+            currentPlayerViewer.setText("" + allPlayerNames[playerNum] + "'s turn.");
+            //currentPlayerViewer.setBackgroundColor( Color.rgb(8,197,245));
+
         }
 
         //Set the dice to the inputted values

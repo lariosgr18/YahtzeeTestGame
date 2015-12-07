@@ -53,6 +53,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
 
+
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
@@ -102,6 +103,8 @@ public class YahtzeeMainActivity extends GameMainActivity{
     public LocalGame createLocalGame() {
 
         mMediaPlayer.stop();
+        mMediaPlayer.release();
+       mMediaPlayer = null;
         return new YahtzeeLocalGame();
     }
 
