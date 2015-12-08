@@ -32,10 +32,8 @@ import android.view.View.OnClickListener;
 public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener {
 
     GameMainActivity mainActivity = null; //game activity
-    // the game's state
-    YahtzeeGameState state = null;//the state to
+    YahtzeeGameState state = null; //the game's state
 
-    private FrameLayout layout;
     private SoundPool rollingSound;
     private int sound;
 
@@ -46,8 +44,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     private int currentScoreIndex;
     private int scoreChosen;
     private int diceValues[] = new int[5];
-    private int yahtzeeCount; //the number of times the player has gotten a yahtzee
-    private static final int[] buttonIndices = { //the button ids the player can click
+    //the button ids the player can click
+    private static final int[] buttonIndices = {
             R.id.p1_ace,
             R.id.p1_two,
             R.id.p1_three,
@@ -62,7 +60,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p1_yahtzee,
             R.id.p1_chance,
     };
-    private static final int[] computerButtonIndices = { //the button ids the player can click
+    //the button ids the player can click
+    private static final int[] computerButtonIndices = {
             R.id.p2_ace,
             R.id.p2_two,
             R.id.p2_three,
@@ -77,20 +76,19 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             R.id.p2_yahtzee,
             R.id.p2_chance,
     };
-
     public Button[] numberedButtons1; // the buttons the player can click
     public Button[] computerButtons = {null}; // the buttons the player can click
-
     public Button roll; // the roll button
     public Dice[] thedice; //the five dice drawn on the screen
-    private static final int[] dieID = // the ID of the imageButtons of the dice
-            {
+
+    // the ID of the imageButtons of the dice
+    private static final int[] dieID = {
                     R.id.imageButton,
                     R.id.imageButton2,
                     R.id.imageButton3,
                     R.id.imageButton4,
                     R.id.imageButton5,
-            };
+    };
 
     public Button quit;
     public Button howToPlay;
@@ -99,19 +97,22 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
     public TextView computerName;
     public TextView currentPlayerViewer;
 
-    public int DICE_COLOR;
-    public int DICE_HOLD_COLOR;
-    public Menu settings;
+    //color values for the dice
+    public static int DICE_COLOR;
+    public static int DICE_HOLD_COLOR;
+
     /**
      * constructor
      *
      * @param name
      */
+
+    //initialize the player name
     public YahtzeeHumanPlayer(String name) {
         super(name);
-    } // initialize the player name
+    }
 
-    /*
+    /**
         Initialize all the ID's to buttons
     */
     private void initializeButtons() {
@@ -132,8 +133,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             computerButtons[i] =
                     (Button) mainActivity.findViewById(computerButtonIndices[i]);
         }
-
-
         thedice = new Dice[dieID.length];
 
         // fill the array using the indices in the buttonIndices array
@@ -143,7 +142,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             thedice[i].setBackgroundColor(DICE_COLOR);
         }
 
-        //comment
+        //initialize all TextView and Buttons
         humanName = (TextView) mainActivity.findViewById(R.id.player1_title);
         computerName =(TextView) mainActivity.findViewById(R.id.player2_title);
         currentPlayerViewer = (TextView) mainActivity.findViewById(R.id.turnViewer);
@@ -155,18 +154,15 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         howToPlay = (Button) mainActivity.findViewById(R.id.howtoplay_button);
         howToPlay.setOnClickListener(this);
 
+        //rolling sound effect
         rollingSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
         sound = rollingSound.load(mainActivity.getApplicationContext(),R.raw.diceroll,1);
-
-
     }
-    //
 
-    /*
+    /**
         set the title of the activity, change the player names, and start the round and roll number
      */
     protected void initAfterReady() {
-
         // update the title, including the player names
         mainActivity.setTitle("Yahtzee: " + allPlayerNames[0] + " vs. " + allPlayerNames[1]);
 
@@ -193,7 +189,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         myName.setText(allPlayerNames[playerNum]);
     }
 
-    /*
+    /**
         get the layout of the activity
      */
     @Override
@@ -201,37 +197,28 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         return (RelativeLayout) mainActivity.findViewById(R.id.top_gui_layout);
     }
 
-    /*
+    /**
         get the gamestate info
      */
     @Override
     public void receiveInfo(GameInfo info) {
-
         state = (YahtzeeGameState) info;
 
-        if ( state.getCurrentPlayerID() ==1)
-        {
+        if (state.getCurrentPlayerID() ==1) {
             humanName.setBackgroundColor( Color.WHITE);
             computerName.setBackgroundColor(Color.rgb(8, 197, 245));
             currentPlayerViewer.setText("" + allPlayerNames[1 - playerNum] +"'s turn.");
-            //currentPlayerViewer.setBackgroundColor( Color.rgb(8,197,245));
         }
-        else
-        {
+        else {
             computerName.setBackgroundColor(Color.WHITE);
             humanName.setBackgroundColor( Color.rgb(8,197,245));
             currentPlayerViewer.setText("" + allPlayerNames[playerNum] + "'s turn.");
-            //currentPlayerViewer.setBackgroundColor( Color.rgb(8,197,245));
-
         }
-
         //Set the dice to the inputted values
-        for(int i = 0; i < thedice.length; i++)
-        {
+        for(int i = 0; i < thedice.length; i++) {
             thedice[i].dieNum = state.getDiceValue()[i];
             thedice[i].invalidate();
             Log.d("recieveInfo: ", "" + state.getDiceValue()[i]);
-
         }
         //change the dice objects int the score calculator
        scoreCard.setDiceObjects(thedice);
@@ -240,7 +227,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             rollingSound.play(sound,1.0f,1.0f,0,0,1.5f);
             scoreCard.updateComputerCard();
         }
-
         //update the computers buttons depending if they have been pressed or not
         for(int i = 0; i<13;i++ ) {
             computerButtons[i].setEnabled(((YahtzeeGameState) info).getButtonsPressed2()[i]);
@@ -249,21 +235,20 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             }
         }
 
+        //change dice color if user chooses
         DICE_HOLD_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_HOLD_COLOR;
         DICE_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_COLOR;
-        for(int i = 0; i < thedice.length; i++)
-        {
+        for(int i = 0; i < thedice.length; i++) {
             if(thedice[i].keep == false) {
                 thedice[i].setBackgroundColor(DICE_COLOR);
             }
-            else
-            {
+            else {
                 thedice[i].setBackgroundColor(DICE_HOLD_COLOR);
             }
         }
     }
 
-    /*
+    /**
         set as an interactable gui for the user
      */
     public void setAsGui(GameMainActivity activity) {
@@ -274,7 +259,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         // Load the layout resource for the new configuration
         activity.setContentView(R.layout.yahtzee_game);
         initializeButtons();
-
 
         // put the player names into the GUI
         updatePlayerNames();
@@ -289,11 +273,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             thedice[i].setOnClickListener(this);
         }
 
-
         DICE_HOLD_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_HOLD_COLOR;
         DICE_COLOR = ((YahtzeeMainActivity)mainActivity).DICE_COLOR;
-        for(int i = 0; i < thedice.length; i++)
-        {
+        for(int i = 0; i < thedice.length; i++) {
             thedice[i].setBackgroundColor(DICE_COLOR);
 
         }
@@ -301,19 +283,13 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         if (state != null) {
             receiveInfo(state);
         }
-
-
     }
 
-
-
-    /*//
-        onClick method for the buttons//
+    /**
+        onClick method for the buttons
      */
     public void onClick(View view) {
-
-        if(view == quit)
-        {
+        if(view == quit) {
             mainActivity.recreate();
             return;
         }
@@ -322,10 +298,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             mainActivity.startActivity(intent);
             return;
         }
-        if(((YahtzeeLocalGame)super.game).canMove(playerNum))
-        {
+        if(((YahtzeeLocalGame)super.game).canMove(playerNum)) {
             Log.d("HUMAN PLAYER", "CAN MAKE MOVE");
-            //if the user clicks the roll button and hasnt rolled 3 times, change dice values and send to gamestate
+            //if the user clicks the roll button and has not rolled 3 times, change dice values and send to GameState
             if (view == roll && rollNum <= 3) {
                 rollingSound.play(sound,1.0f,1.0f,0,0,1.5f);
                 for (int i = 0; i < thedice.length; i++) {
@@ -338,7 +313,6 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                 scoreCard.updateScoreCard();
                 rollNum++;
                 return;
-
             }
             for(int i = 0; i < thedice.length; i++) {
                 if(view == thedice[i]) {
@@ -368,9 +342,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
                         currentScoreIndex = i;
                         scoreChosen = scores[i];
-
-                        if(numberedButtons1[11] == view && Integer.parseInt((String)numberedButtons1[11].getText()) >= 50)
-                        {
+                        if(numberedButtons1[11] == view && Integer.parseInt((String)numberedButtons1[11].getText()) >= 50) {
                             scoreCard.incrementYahtzee();
                         }
                     }
@@ -386,15 +358,12 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     thedice[i].keep = false;
                     thedice[i].setBackgroundColor(DICE_COLOR);
                 }
-
-
             }
         }
-
     }
 
-    /*
-    GETTER AND SETTER METHODS
+    /**
+        GETTER AND SETTER METHODS
      */
 
     public int[] getDiceValues() {
