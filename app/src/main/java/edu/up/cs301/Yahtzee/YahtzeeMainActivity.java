@@ -143,18 +143,40 @@ public class YahtzeeMainActivity extends GameMainActivity{
         if (itemId == R.id.WhiteDiceeMenuItem) {
             this.DICE_COLOR = Color.WHITE;
             this.DICE_HOLD_COLOR = Color.BLUE;
+            this.updateDiceColor();
             return true;
         } else if (itemId == R.id.redDiceMenuItem) {
             this.DICE_COLOR = Color.RED;
             this.DICE_HOLD_COLOR = Color.YELLOW;
+            this.updateDiceColor();
             return true;
         } else if (itemId == R.id.CyanDiceMenuItem) {
             this.DICE_COLOR = Color.CYAN;
             this.DICE_HOLD_COLOR = Color.MAGENTA;
+            this.updateDiceColor();
             return true;
         }
 
         return false;
     }// onOptionsItemSelected
+
+    /*
+        Change the Dice color from the menu selection
+     */
+    public void updateDiceColor()
+    {
+        //If the game is going catch and return, do not update menu dice.
+        try {
+            for (int i = 0; i < menudice.length; i++) {
+                menudice[i] =
+                        (Dice) this.findViewById(dieID[i]);
+                menudice[i].setBackgroundColor(DICE_COLOR);
+            }
+        }
+        catch (NullPointerException e)
+        {
+            return;
+        }
+    }
 
 }
