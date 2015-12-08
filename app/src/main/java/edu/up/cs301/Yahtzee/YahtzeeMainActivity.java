@@ -33,7 +33,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
     //set default color for dice when they are held
     public int DICE_COLOR = Color.WHITE;
     public int DICE_HOLD_COLOR = Color.BLUE;
-    public MediaPlayer mMediaPlayer = new MediaPlayer();
+    public MediaPlayer MediaPlayer = new MediaPlayer();
     public Dice[] menudice; //the five dice drawn on the screen
     private static final int[] dieID = // the ID of the imageButtons of the dice
             {
