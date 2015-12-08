@@ -35,8 +35,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
     public int DICE_HOLD_COLOR = Color.BLUE;
     public MediaPlayer MediaPlayer = new MediaPlayer();
     public Dice[] menudice; //the five dice drawn on the screen
-    private static final int[] dieID = // the ID of the imageButtons of the dice
-            {
+    private static final int[] dieID = {// the ID of the imageButtons of the dice
                     R.id.menuDie1,
                     R.id.menuDie2,
                     R.id.menuDie3,
