@@ -163,7 +163,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         }
         return false;
     }// onOptionsItemSelected
-
+//
     /*
         Change the Dice color from the menu selection
      */

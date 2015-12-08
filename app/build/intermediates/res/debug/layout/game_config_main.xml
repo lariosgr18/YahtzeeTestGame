@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#ff3f25">
 
     <include
         android:id="@+id/tabHost"
@@ -14,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/table_row_vert_pad" >
+        android:layout_marginBottom="@dimen/table_row_vert_pad"
+        android:id="@+id/relativeLayout">
 
         <Button
             android:id="@+id/saveConfigButton"
@@ -45,4 +47,103 @@
 
     </RelativeLayout>
 
-</RelativeLayout><!-- From: file:/Users/Abhinav/Desktop/YahtzeeTestGame/app/src/main/res/layout/game_config_main.xml -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tabHost"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yahtzee!"
+            android:id="@+id/Title"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fff920"
+            android:textStyle="bold|italic"
+            android:typeface="serif"
+            android:textSize="50dp"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&quot;The classic shake, score, &amp; shout dice game!&quot;"
+            android:id="@+id/subTitle"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#fff920"
+            android:textStyle="bold|italic"
+            android:typeface="serif"
+            android:textSize="40dp"
+            android:textIsSelectable="false" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="733dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <edu.up.cs301.animation.Dice
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/menuDie1"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView8"
+                android:visibility="invisible" />
+
+            <edu.up.cs301.animation.Dice
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/menuDie2"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView9"
+                android:visibility="invisible" />
+
+            <edu.up.cs301.animation.Dice
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/menuDie3"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView10"
+                android:visibility="invisible" />
+
+            <edu.up.cs301.animation.Dice
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/menuDie4"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView11"
+                android:visibility="invisible" />
+
+            <edu.up.cs301.animation.Dice
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/menuDie5"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout><!-- From: file:/C:/Users/Grayson/Documents/CS%20301/YahtzeeTestGame/app/src/main/res/layout/game_config_main.xml -->
