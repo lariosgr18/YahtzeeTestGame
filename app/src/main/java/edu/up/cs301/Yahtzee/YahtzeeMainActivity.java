@@ -179,8 +179,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
                 menudice[i].setBackgroundColor(DICE_COLOR);
             }
         }
-        catch (NullPointerException e)
-        {
+        catch (NullPointerException e) {
             return;
         }
     }

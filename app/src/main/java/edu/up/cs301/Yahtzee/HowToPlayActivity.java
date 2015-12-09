@@ -1,6 +1,7 @@
 package edu.up.cs301.Yahtzee;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ public class HowToPlayActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
         this.setTitle("How to Play"); //Sets title
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
     @Override
