@@ -473,7 +473,9 @@
             android:layout_height="55dp"
             android:id="@+id/turnViewer"
             android:layout_gravity="center_horizontal|top"
-            android:textSize="45dp" />
+            android:textSize="45dp"
+            android:textStyle="bold|italic"
+            android:typeface="sans" />
 
 
     </FrameLayout>

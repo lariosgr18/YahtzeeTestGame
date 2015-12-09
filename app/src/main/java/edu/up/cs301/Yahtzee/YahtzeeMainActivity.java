@@ -61,7 +61,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         mMediaPlayer = MediaPlayer.create(this, R.raw.mouse);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(true);
-        mMediaPlayer.start();
+       mMediaPlayer.start();
         menudice = new Dice[dieID.length];
 
         // fill the array using the indices in the buttonIndices array
@@ -122,9 +122,11 @@ public class YahtzeeMainActivity extends GameMainActivity{
      */
     public LocalGame createLocalGame() {
         //stop playing music when local game is created
-        mMediaPlayer.stop();
-        mMediaPlayer.release();
-        mMediaPlayer = null;
+        if(mMediaPlayer != null) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
         return new YahtzeeLocalGame();
     }
 
