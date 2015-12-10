@@ -6,7 +6,8 @@
     <TabWidget
         android:id="@android:id/tabs"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
 
     <FrameLayout
         android:id="@android:id/tabcontent"
@@ -32,11 +33,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/tab_height" >
+            android:paddingTop="@dimen/tab_height"
+            android:visibility="invisible">
 
             <include
                 android:id="@+id/remoteTabLayout"
-                layout="@layout/game_remote_tab" />
+                layout="@layout/game_remote_tab"
+                android:visibility="invisible"/>
         </LinearLayout>
     </FrameLayout>
 

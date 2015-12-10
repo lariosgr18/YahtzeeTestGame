@@ -29,7 +29,8 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/remove_player"
             android:scaleType="centerInside"
-            android:src="@drawable/purple_delete_button" />
+            android:src="@drawable/purple_delete_button"
+            android:visibility="invisible" />
     </FrameLayout>
 
-</TableRow><!-- From: file:/Users/Abhinav/Desktop/YahtzeeTestGame/app/src/main/res/layout/game_player_list_row.xml -->
+</TableRow><!-- From: file:/C:/Users/Grayson/Documents/CS%20301/YahtzeeTestGame/app/src/main/res/layout/game_player_list_row.xml -->
