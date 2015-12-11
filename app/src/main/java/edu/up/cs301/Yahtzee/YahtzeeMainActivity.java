@@ -166,7 +166,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
     }// onOptionsItemSelected
 //
     /*
-        Change the Dice color from the menu selection
+        Change the dice color from the menu selection
      */
     public void updateDiceColor()
     {
