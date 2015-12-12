@@ -48,7 +48,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
 
     /**
      * Create the default configuration for this game:
-     * - one human player vs. one computer player
+     * - one human player vs. one computer player.
      * - minimum of 1 player, maximum of 2
      *
      * @return
@@ -60,6 +60,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         //start song with loop when app is opened
         mMediaPlayer = MediaPlayer.create(this, R.raw.mouse);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setVolume(0.1f, 0.1f);
         mMediaPlayer.setLooping(true);
        mMediaPlayer.start();
         menudice = new Dice[dieID.length];
@@ -104,6 +105,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
+
 
         return defaultConfig;
     }//createDefaultConfig

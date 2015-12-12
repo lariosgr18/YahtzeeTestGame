@@ -327,6 +327,10 @@ View.OnClickListener {
 		if (players[1].requiresGui()) {
 			return "Player 2 must be an AI opponent.";
 		}
+		//
+		if (players[1] instanceof ProxyPlayer || players[0] instanceof ProxyPlayer) {
+			return "NETWORK PLAY NOT YET IMPLEMENTED. PLEASE COME BACK LATER.";
+		}
 
 		// if there is a player that supports a GUI, link it to the activity,
 		// otherwise set the GUI to be a "dummy" one with a "no GUI" message
