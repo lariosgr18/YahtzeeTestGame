@@ -37,6 +37,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
 
     private SoundPool rollingSound;
     private int sound;
+    private SoundPool losingSound;
+    private int losing;
+    private SoundPool winningSound;
+    private int winning;
 
     int round; // what round it is
     int rollNum; // the number of rolls the player has done
@@ -158,6 +162,10 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         //rolling sound effect
         rollingSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
         sound = rollingSound.load(mainActivity.getApplicationContext(),R.raw.diceroll,1);
+        losingSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        losing = losingSound.load(mainActivity.getApplicationContext(),R.raw.losing,1);
+        winningSound = new SoundPool(10, AudioManager.STREAM_MUSIC,0);
+        winning = winningSound.load(mainActivity.getApplicationContext(),R.raw.winning,1);
     }
 
     /**
@@ -246,6 +254,22 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             else {
                 thedice[i].setBackgroundColor(DICE_HOLD_COLOR);
             }
+        }
+        //decide which sound to play depending on who wins and loses
+        int totalScore1=0;
+        int totalScore2=0;
+        if(state.getPlayer1turns() >= 13 && state.getPlayer2turns() >= 13) {
+            for(int i = 0; i < 13; i++) {
+                totalScore1 += state.getPlayer1Score()[i];
+                totalScore2 += state.getPlayer2Score()[i];
+            }
+
+            if (totalScore1>= totalScore2) {
+                    winningSound.play(winning, 1.0f, 1.0f, 0, 0, 1.5f);
+            }
+            else {
+                    losingSound.play(losing, 1.0f, 1.0f, 0, 0, 1.5f);
+                }
         }
     }
 

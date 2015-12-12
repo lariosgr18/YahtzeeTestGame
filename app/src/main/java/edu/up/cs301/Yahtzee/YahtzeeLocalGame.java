@@ -55,6 +55,7 @@ public class YahtzeeLocalGame extends LocalGame {
             String notifyOfBonus2="";
 
             //take sum of all scores
+            //determine winner by comparing scores
             for(int i = 0; i < 13; i++) {
                 totalScore1 +=  currentGame.getPlayer1Score()[i];
                 totalScore2 += currentGame.getPlayer2Score()[i];
@@ -71,7 +72,6 @@ public class YahtzeeLocalGame extends LocalGame {
                 }
                 Log.d("gameOver scores:", "" + currentGame.getPlayer2Score()[i]);
             }
-            //determine winner by comparing scores
             if(totalScore1 > totalScore2) {
 
                 return playerNames[0] + " WINS \n" + playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
