@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 /**
  * Created by Michael, Abhinav, Grayson on 10/20/2015.
@@ -359,6 +360,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             if (view != roll && rollNum >= 2) {
                 for (int i = 0; i < numberedButtons1.length; i++) {
                     if (numberedButtons1[i] == view) {
+                        Toast.makeText(mainActivity, "You have Selected!!!", Toast.LENGTH_SHORT).show();
                         numberedButtons1[i].setEnabled(false);
                         numberedButtons1[i].setBackgroundColor(Color.MAGENTA);
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
