@@ -16,7 +16,7 @@ public class HowToPlayActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
-        this.setTitle("How to Play"); //Sets title
+        this.setTitle("How to Play"); //Set title
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
     }
 
