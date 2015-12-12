@@ -327,6 +327,7 @@ View.OnClickListener {
 		if (players[1].requiresGui()) {
 			return "Player 2 must be an AI opponent.";
 		}
+		//
 		if (players[1] instanceof ProxyPlayer || players[0] instanceof ProxyPlayer) {
 			return "NETWORK PLAY NOT YET IMPLEMENTED. PLEASE COME BACK LATER.";
 		}
