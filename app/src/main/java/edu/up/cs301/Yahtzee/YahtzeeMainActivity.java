@@ -48,7 +48,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
 
     /**
      * Create the default configuration for this game:
-     * - one human player vs. one computer player
+     * - one human player vs. one computer player.
      * - minimum of 1 player, maximum of 2
      *
      * @return
