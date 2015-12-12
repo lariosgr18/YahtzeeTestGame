@@ -106,6 +106,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
 
+
         return defaultConfig;
     }//createDefaultConfig
 
