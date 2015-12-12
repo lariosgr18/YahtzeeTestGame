@@ -7,6 +7,7 @@ import edu.up.cs301.game.actionMsg.GameAction;
 
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.util.Log;
 
@@ -18,6 +19,7 @@ import android.util.Log;
 public class YahtzeeLocalGame extends LocalGame {
     //create new game state when a local game is started
     YahtzeeGameState currentGame = new YahtzeeGameState();
+
 
     /**
         sends state info to player
@@ -43,6 +45,7 @@ public class YahtzeeLocalGame extends LocalGame {
      */
     @Override
     protected String checkIfGameOver() {
+
         if((currentGame.getPlayer1turns() > 12) && (currentGame.getPlayer2turns() > 12)){
             //initialize
             int totalScore1=0;
@@ -70,6 +73,7 @@ public class YahtzeeLocalGame extends LocalGame {
             }
             //determine winner by comparing scores
             if(totalScore1 > totalScore2) {
+
                 return playerNames[0] + " WINS \n" + playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
                         + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }
@@ -78,6 +82,7 @@ public class YahtzeeLocalGame extends LocalGame {
                         + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }
             else {
+
                 return playerNames[1] + " WINS \n" +  playerNames[0] + notifyOfBonus1 + "\nTotal Score: "+totalScore1 +"\n"
                         + playerNames[1] + notifyOfBonus2 + "\nTotal Score: " + totalScore2;
             }

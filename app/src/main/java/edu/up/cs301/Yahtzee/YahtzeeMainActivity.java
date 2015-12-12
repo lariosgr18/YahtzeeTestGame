@@ -60,6 +60,7 @@ public class YahtzeeMainActivity extends GameMainActivity{
         //start song with loop when app is opened
         mMediaPlayer = MediaPlayer.create(this, R.raw.mouse);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setVolume(0.1f, 0.1f);
         mMediaPlayer.setLooping(true);
        mMediaPlayer.start();
         menudice = new Dice[dieID.length];

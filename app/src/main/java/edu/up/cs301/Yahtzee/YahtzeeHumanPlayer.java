@@ -31,6 +31,7 @@ import android.view.View.OnClickListener;
  */
 public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListener {
 
+
     GameMainActivity mainActivity = null; //game activity
     YahtzeeGameState state = null; //the game's state
 
