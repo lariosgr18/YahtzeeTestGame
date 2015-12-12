@@ -425,14 +425,6 @@
                 android:layout_column="2" />
         </GridLayout>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quit to Menu"
-            android:id="@+id/quit"
-            android:layout_gravity="right|top"
-            android:background="#ff0055ff" />
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="246dp"
@@ -460,14 +452,6 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="How To Play"
-            android:id="@+id/howtoplay_button"
-            android:layout_gravity="center_horizontal|bottom" />
-
         <TextView
             android:layout_width="407dp"
             android:layout_height="55dp"
@@ -476,6 +460,20 @@
             android:textSize="45dp"
             android:textStyle="bold|italic"
             android:typeface="sans" />
+
+        <ImageButton
+            android:layout_width="78dp"
+            android:layout_height="73dp"
+            android:id="@+id/quit"
+            android:layout_gravity="right|top"
+            android:src="@drawable/backarrow" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/howtoplay_button"
+            android:layout_gravity="right|bottom"
+            android:src="@drawable/question_mark" />
 
 
     </FrameLayout>

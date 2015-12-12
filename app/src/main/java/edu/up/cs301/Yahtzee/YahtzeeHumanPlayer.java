@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -96,8 +97,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
                     R.id.imageButton5,
     };
 
-    public Button quit;
-    public Button howToPlay;
+    public ImageButton quit;
+    public ImageButton howToPlay;
 
     public TextView humanName;
     public TextView computerName;
@@ -155,9 +156,9 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         roll = (Button) mainActivity.findViewById(R.id.rollButton);
         roll.setOnClickListener(this);
         scoreCard = new ScoreCalc(numberedButtons1, thedice, computerButtons);
-        quit = (Button) mainActivity.findViewById(R.id.quit);
+        quit = (ImageButton) mainActivity.findViewById(R.id.quit);
         quit.setOnClickListener(this);
-        howToPlay = (Button) mainActivity.findViewById(R.id.howtoplay_button);
+        howToPlay = (ImageButton) mainActivity.findViewById(R.id.howtoplay_button);
         howToPlay.setOnClickListener(this);
 
         //rolling sound effect
