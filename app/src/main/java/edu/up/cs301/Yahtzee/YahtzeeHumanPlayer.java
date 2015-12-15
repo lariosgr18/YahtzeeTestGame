@@ -242,6 +242,7 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
         for(int i = 0; i<13;i++ ) {
             computerButtons[i].setEnabled(((YahtzeeGameState) info).getButtonsPressed2()[i]);
             if(((YahtzeeGameState) info).getButtonsPressed2()[i] == false) {
+
                 computerButtons[i].setBackgroundColor(Color.MAGENTA);
             }
         }
@@ -361,7 +362,8 @@ public class YahtzeeHumanPlayer extends GameHumanPlayer implements OnClickListen
             if (view != roll && rollNum >= 2) {
                 for (int i = 0; i < numberedButtons1.length; i++) {
                     if (numberedButtons1[i] == view) {
-                        Toast.makeText(mainActivity, "You have Selected!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mainActivity, "You have selected a score of " + numberedButtons1[i].getText()+
+                                " for this round!!!", Toast.LENGTH_SHORT).show();
                         numberedButtons1[i].setEnabled(false);
                         numberedButtons1[i].setBackgroundColor(Color.MAGENTA);
                         scores[i] = Integer.parseInt(((String) numberedButtons1[i].getText()));
